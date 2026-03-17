@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 export class ArnoSource extends Source {
   constructor() {
     super({
-      name: "ar-no",
+      name: "arno",
       baseUrl: "https://ar-no.com/",
       version: "0.0.1",
       language: "ar",
@@ -34,6 +34,7 @@ export class ArnoSource extends Source {
           id,
           title,
           cover,
+          source: "arno",
         });
       }
     });
@@ -46,7 +47,6 @@ export class ArnoSource extends Source {
     if (page > 1) {
       url.searchParams.set("paged", page.toString());
     }
-    console.log(url);
 
     const $ = await this.fetchHtml(url.toString());
 
@@ -65,6 +65,7 @@ export class ArnoSource extends Source {
           id,
           title,
           cover,
+          source: "arno",
         });
       }
     });
@@ -99,50 +100,56 @@ export class ArnoSource extends Source {
       }
     });
 
-    const mangaId = $("#manga-chapters-holder").attr("data-id") || novelId;
-
-    const chapters = await this.fetchChapters(mangaId);
-
     return {
       id: novelId,
+      source: "arno",
       title,
       description,
       cover,
       author,
       genres,
       status,
-      chapters,
     };
   }
 
-  async fetchChapters(mangaId: string): Promise<Chapter[]> {
-    const chaptersUrl = new URL(`${this.baseUrl}wp-admin/admin-ajax.php`);
-    chaptersUrl.searchParams.set("action", "manga_get_chapters");
-    chaptersUrl.searchParams.set("manga", mangaId);
+  async fetchChapters(novelSlug?: string): Promise<Chapter[]> {
+    if (!novelSlug) return [];
 
-    const response = await this.client.get(chaptersUrl.toString());
-    const html = await response.text();
-    const $ = cheerio.load(html);
+    try {
+      const url = new URL(this.baseUrl);
+      url.pathname = `/novel/${novelSlug}/ajax/chapters/`;
 
-    const chapters: Chapter[] = [];
+      const response = await this.client.post(url.toString(), {
+        headers: {
+          Accept: "text/html,application/xhtml+xml",
+        },
+      });
 
-    $("li.wp-manga-chapter").each((_: number, element: any) => {
-      const $el = $(element);
-      const link = $el.find("a");
-      const url = link.attr("href") || "";
-      const title = $el.find(".chapter-name").text().trim() || link.text().trim();
-      const id = url.match(/\/([^\/]+)\/?$/)?.[1] || "";
+      const html = await response.text();
+      const $ = cheerio.load(html);
 
-      if (url && title) {
-        chapters.push({
-          id,
-          title,
-          url,
-        });
-      }
-    });
+      const chapters: Chapter[] = [];
 
-    return chapters;
+      $(".wp-manga-chapter").each((_, element) => {
+        const $el = $(element);
+        const link = $el.find("a");
+        const chapterUrl = link.attr("href") || "";
+        const chapterTitle = link.text().trim();
+
+        if (chapterUrl && chapterTitle) {
+          chapters.push({
+            id: chapterUrl,
+            title: chapterTitle,
+            url: chapterUrl,
+          });
+        }
+      });
+
+      return chapters.reverse();
+    } catch (error) {
+      console.error("Failed to fetch chapters:", error);
+      return [];
+    }
   }
 
   async fetchChapterContent(chapterId: string): Promise<ChapterContent> {
