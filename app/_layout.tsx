@@ -10,6 +10,7 @@ import { PortalHost } from "@rn-primitives/portal";
 import { useColorScheme } from "@/components/useColorScheme";
 import { NAV_THEME } from "@/lib/theme";
 import { StatusBar } from "react-native";
+import ReactQueryProvider from "@/providers/ReactQuery";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,11 +53,13 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={NAV_THEME[colorScheme]}>
-      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-      </Stack>
-      <PortalHost />
+      <ReactQueryProvider>
+        <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+        <PortalHost />
+      </ReactQueryProvider>
     </ThemeProvider>
   );
 }

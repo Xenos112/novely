@@ -58,7 +58,7 @@ export class ArnoSource extends Source {
       const title = titleEl.text().trim();
       const url = titleEl.attr("href") || "";
       const id = url.match(/\/novel\/([^\/]+)\/?/)?.[1] || "";
-      const cover = $el.find(".post-thumb img").attr("src") || "";
+      const cover = $el.find(".slider__thumb_item img").attr("src") || "";
 
       if (title && id) {
         results.push({

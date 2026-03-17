@@ -1,31 +1,18 @@
 import { View } from "@/components/Themed";
-import { Text } from "@/components/ui/text";
-import { useEffect, useState } from "react";
-import { sources } from "@/sources/plugins";
-import { Button } from "@/components/ui/button";
-import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import NovelListDisplay from "@/components/NoveListDisplay";
+import { usePopularQuery } from "@/hooks/usePopularQuery";
+import NovelListSkeleton from "@/components/NovelListSkeleton";
 
 export default function TabOneScreen() {
-  const [page, setPage] = useState<any>("");
+  const { data: popular, isLoading } = usePopularQuery("arno", 1);
 
-  useEffect(() => {
-    (async () => {
-      const ar = new sources["arno"]();
-      const title = await ar.fetchPopular(1);
-      setPage(title);
-    })();
-  });
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View className="flex-1 align-center justify-center">
-          <Button>
-            <Text>Click me</Text>
-          </Button>
-          <Text>{JSON.stringify(page)}</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView className="flex-1">
+      <View className="flex-1">
+        {isLoading && <NovelListSkeleton />}
+        <NovelListDisplay data={popular || []} />
+      </View>
     </SafeAreaView>
   );
 }

@@ -23,7 +23,7 @@ export abstract class Source {
     this.version = options.version;
     this.language = options.language;
     this.client = ky.create({
-      cache: "force-cache",
+      cache: "no-cache",
       timeout: 20000,
       headers: {
         "User-Agent":
