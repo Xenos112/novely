@@ -1,12 +1,15 @@
-import "./global.css";
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import "@/global.css";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "react-native-reanimated";
+import { PortalHost } from "@rn-primitives/portal";
 
 import { useColorScheme } from "@/components/useColorScheme";
+import { NAV_THEME } from "@/lib/theme";
+import { StatusBar } from "react-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -48,11 +51,12 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={NAV_THEME[colorScheme]}>
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
       </Stack>
+      <PortalHost />
     </ThemeProvider>
   );
 }
