@@ -1,7 +1,7 @@
 import { ArnoSource } from "./arabic/arno";
 
 export const sources = {
-  arno: ArnoSource,
+	arno: ArnoSource
 };
 
 export const sourcesNames = ["arno"];
