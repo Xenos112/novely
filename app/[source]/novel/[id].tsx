@@ -4,7 +4,7 @@ import { Image } from "expo-image";
 import { Skeleton } from "@/components/ui/skeleton";
 import useChaptersQuery from "@/hooks/useChaptersQuery";
 import useNovelQuery from "@/hooks/useNovelQuery";
-import { Sources } from "@/sources";
+import type { Sources } from "@/sources";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { FlatList, Pressable } from "react-native";
 import type { Chapter } from "@/types/source";

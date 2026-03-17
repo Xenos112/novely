@@ -1,4 +1,4 @@
-import { Sources } from "@/sources";
+import type { Sources } from "@/sources";
 
 export type Novel = {
 	id: string;

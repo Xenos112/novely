@@ -1,7 +1,7 @@
 import { sources } from "@/sources/plugins";
-import { Novel } from "@/types/source";
+import type { Novel } from "@/types/source";
 import { useQuery } from "@tanstack/react-query";
-import { Sources } from "@/sources";
+import type { Sources } from "@/sources";
 
 export default function useNovelQuery(sourceName: Sources, id: string) {
 	return useQuery({

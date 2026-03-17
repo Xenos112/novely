@@ -1,40 +1,58 @@
 {
-	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"plugins": [],
-	"categories": {},
-	"rules": {},
-	"settings": {
-		"jsx-a11y": {
-			"polymorphicPropName": "",
-			"components": {},
-			"attributes": {}
-		},
-		"next": {
-			"rootDir": []
-		},
-		"react": {
-			"formComponents": [],
-			"linkComponents": [],
-			"version": "19.2.0",
-			"componentWrapperFunctions": []
-		},
-		"jsdoc": {
-			"ignorePrivate": false,
-			"ignoreInternal": false,
-			"ignoreReplacesDocs": true,
-			"overrideReplacesDocs": true,
-			"augmentsExtendsReplacesDocs": false,
-			"implementsReplacesDocs": false,
-			"exemptDestructuredRootsFromChecks": false,
-			"tagNamePreference": {}
-		},
-		"vitest": {
-			"typecheck": false
-		}
-	},
-	"env": {
-		"builtin": true
-	},
-	"globals": {},
-	"ignorePatterns": ["sources/plugins.js"]
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "react-perf", "typescript", "unicorn", "import"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "error",
+    "eqeqeq": "error",
+    "no-unused-vars": "off",
+
+    "typescript/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "typescript/no-explicit-any": "warn",
+    "typescript/consistent-type-imports": "error",
+
+    "react/self-closing-comp": "warn",
+    "react/jsx-no-useless-fragment": "warn",
+    "react-perf/jsx-no-new-object-as-prop": "warn",
+    "react-perf/jsx-no-new-array-as-prop": "warn",
+    "react-perf/jsx-no-new-function-as-prop": "warn",
+
+    "import/no-duplicates": "error",
+    "import/no-cycle": "warn",
+
+    "unicorn/prefer-includes": "error",
+    "unicorn/no-array-for-each": "warn",
+    "unicorn/prefer-string-trim-start-end": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js"],
+      "rules": {
+        "typescript/no-explicit-any": "off",
+        "typescript/consistent-type-imports": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "sources/plugins.js",
+    "dist/**",
+    ".expo/**",
+    "android/**",
+    "ios/**"
+  ]
 }

@@ -1,6 +1,6 @@
-import { Sources } from "@/sources";
+import type { Sources } from "@/sources";
 import { sources } from "@/sources/plugins";
-import { Chapter } from "@/types/source";
+import type { Chapter } from "@/types/source";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useChaptersQuery(sourceName: Sources, id: string) {

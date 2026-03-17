@@ -155,7 +155,7 @@ export class ArnoSource extends Source {
 				}
 			});
 
-			return chapters.reverse();
+			return chapters.toReversed();
 		} catch (error) {
 			console.error("Failed to fetch chapters:", error);
 			return [];

@@ -1,6 +1,6 @@
 import { View } from "@/components/Themed";
 import { Text } from "@/components/ui/text";
-import { AbstactNovel } from "@/types/source";
+import type { AbstactNovel } from "@/types/source";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { FlatList, Pressable } from "react-native";
