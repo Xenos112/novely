@@ -1,10 +1,10 @@
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import { useLayoutEffect } from 'react'
 import { FlatList } from 'react-native'
-import NovelInfoSkeleton from '@/components/NovelInfoSkeleton'
-import NovelHeader from '@/components/NovelHeader'
-import NovelItem from '@/components/NovelItem'
-import ChapterItemSkeleton from '@/components/ChapterItemSkeleton'
+import ChapterItemSkeleton from '@/app/[source]/novel/_components/ChapterItemSkeleton'
+import NovelHeader from '@/app/[source]/novel/_components/NovelHeader'
+import NovelInfoSkeleton from '@/app/[source]/novel/_components/NovelInfoSkeleton'
+import NovelItem from '@/app/[source]/novel/_components/NovelItem'
 import { View } from '@/components/Themed'
 import { Text } from '@/components/ui/text'
 import useChaptersQuery from '@/hooks/useChaptersQuery'
@@ -50,7 +50,12 @@ export default function Novel() {
       className="flex-1 bg-background"
       data={chapters}
       keyExtractor={item => item.id}
-      ListHeaderComponent={<NovelHeader novel={novel} chapterCount={chapters?.length ?? 0} />}
+      ListHeaderComponent={
+        <NovelHeader
+          novel={novel}
+          chapterCount={chapters?.length ?? 0}
+        />
+      }
       renderItem={({ item: chapter }: { item: Chapter; index: number }) => (
         <NovelItem
           chapter={chapter}

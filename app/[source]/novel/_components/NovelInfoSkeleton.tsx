@@ -1,5 +1,5 @@
-import { View } from '../../../../components/Themed'
-import { Skeleton } from '../../../../components/ui/skeleton'
+import { View } from '@/components/Themed'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function NovelInfoSkeleton() {
   return (

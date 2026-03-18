@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Pressable } from 'react-native'
 import { View } from '@/components/Themed'
 import { Text } from '@/components/ui/text'
-import type { Novel } from '@/types/source'
 import { APP } from '@/constants/config'
+import type { Novel } from '@/types/source'
 
 type NovelHeaderProps = {
   novel: Novel
@@ -28,15 +28,6 @@ export default function NovelHeader({ novel, chapterCount = 0 }: NovelHeaderProp
   return (
     <View>
       <View className="relative">
-        <View className="absolute inset-0 h-2">
-          <Image
-            source={novel.cover}
-            contentFit="cover"
-            style={{ width: '100%', height: '100%' }}
-            transition={300}
-          />
-        </View>
-
         <View className="relative px-4 pb-4">
           <View className="flex-row gap-4">
             <View className="shrink-0">
