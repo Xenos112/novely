@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import useChaptersQuery from "@/hooks/useChaptersQuery";
 import useNovelQuery from "@/hooks/useNovelQuery";
 import type { Sources } from "@/sources";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import { FlatList, Pressable } from "react-native";
 import type { Chapter } from "@/types/source";
 import NovelInfoSkeleton from "@/components/NovelInfoSkeleton";
@@ -17,16 +17,25 @@ function formatDescription(description: string) {
 	return description.replace(/<br>/g, "\n");
 }
 
-const NovelItem = memo(({ chapter }: { chapter: Chapter }) => (
-	<Pressable className="flex-row items-center justify-between px-4 py-3 border-b border-border active:bg-accent">
-		<View className="flex-1">
-			<Text className="text-sm font-medium text-foreground" numberOfLines={1}>
-				{chapter.title}
-			</Text>
-		</View>
-		<View className="w-2 h-2 rounded-full bg-primary ml-3" />
-	</Pressable>
-));
+const NovelItem = memo(
+	({ chapter, sourceName }: { chapter: Chapter; sourceName: Sources }) => (
+		<Pressable
+			onPress={() =>
+				router.push(
+					`/${sourceName}/novel/chapter/${encodeURIComponent(chapter.id)}`
+				)
+			}
+			className="flex-row items-center justify-between px-4 py-3 border-b border-border active:bg-accent"
+		>
+			<View className="flex-1">
+				<Text className="text-sm font-medium text-foreground" numberOfLines={1}>
+					{chapter.title}
+				</Text>
+			</View>
+			<View className="w-2 h-2 rounded-full bg-primary ml-3" />
+		</Pressable>
+	)
+);
 
 function ChapterItemSkeleton() {
 	return (
@@ -196,7 +205,7 @@ export default function Novel() {
 				</View>
 			}
 			renderItem={({ item: chapter }: { item: Chapter; index: number }) => (
-				<NovelItem chapter={chapter} />
+				<NovelItem chapter={chapter} sourceName={source as Sources} />
 			)}
 			ListFooterComponent={
 				isLoadingChapters ? (

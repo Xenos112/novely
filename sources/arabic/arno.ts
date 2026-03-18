@@ -163,7 +163,7 @@ export class ArnoSource extends Source {
 	}
 
 	async fetchChapterContent(chapterId: string): Promise<ChapterContent> {
-		const url = `${this.baseUrl}${chapterId}`;
+		const url = chapterId; // FIX: maybe i will not
 		const $ = await this.fetchHtml(url);
 
 		const title = $(".entry-title").text().trim() || $("h1").text().trim();
