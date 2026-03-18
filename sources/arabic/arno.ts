@@ -1,7 +1,5 @@
 import * as cheerio from 'cheerio'
-
 import { Source } from '@/sources/base'
-
 import type { Novel, Chapter, ChapterContent, AbstactNovel } from '@/types/source'
 
 export class ArnoSource extends Source {
@@ -170,6 +168,7 @@ export class ArnoSource extends Source {
     return {
       title,
       content,
+      language: this.language,
     }
   }
 }

@@ -1,5 +1,4 @@
 import { FlatList } from 'react-native'
-
 import { View } from '@/components/Themed'
 import { Skeleton } from '@/components/ui/skeleton'
 

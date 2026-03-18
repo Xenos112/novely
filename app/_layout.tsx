@@ -1,6 +1,5 @@
 import '@/global.css'
 import 'react-native-reanimated'
-
 import { ThemeProvider } from '@react-navigation/native'
 import { PortalHost } from '@rn-primitives/portal'
 import { useFonts } from 'expo-font'
@@ -8,7 +7,6 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import React, { useEffect } from 'react'
 import { StatusBar } from 'react-native'
-
 import { useColorScheme } from '@/components/useColorScheme'
 import { NAV_THEME } from '@/lib/theme'
 import ReactQueryProvider from '@/providers/ReactQuery'

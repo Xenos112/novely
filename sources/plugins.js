@@ -11625,7 +11625,7 @@ class mZ extends TZ {
       K = J('.entry-title').text().trim() || J('h1').text().trim(),
       Q = J('.reading-content, .c-blog-post .entry-content').text().trim()
     if (!Q) Q = J('.c-blog-post .entry-content_wrap').text().trim()
-    return { title: K, content: Q }
+    return { title: K, content: Q, language: this.language }
   }
 }
 var LQ = { arno: mZ },

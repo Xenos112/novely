@@ -2,10 +2,8 @@ import { Image } from 'expo-image'
 import { router } from 'expo-router'
 import { memo } from 'react'
 import { FlatList, Pressable } from 'react-native'
-
 import { View } from '@/components/Themed'
 import { Text } from '@/components/ui/text'
-
 import type { AbstactNovel } from '@/types/source'
 
 const NUM_COLUMNS = 3

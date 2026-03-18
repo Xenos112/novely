@@ -1,6 +1,5 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import NovelListDisplay from '@/components/NoveListDisplay'
 import NovelListSkeleton from '@/components/NovelListSkeleton'
 import { View } from '@/components/Themed'

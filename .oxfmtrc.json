@@ -33,7 +33,7 @@
   "sortImports": {
     "order": "asc",
     "ignoreCase": true,
-    "newlinesBetween": true,
+    "newlinesBetween": false,
     "partitionByNewline": false,
     "partitionByComment": false,
     "sortSideEffects": false,

@@ -1,7 +1,6 @@
 // oxlint-disable react_perf/jsx-no-new-object-as-prop
 import { Link, Stack } from 'expo-router'
 import { StyleSheet } from 'react-native'
-
 import { Text, View } from '@/components/Themed'
 
 export default function NotFoundScreen() {

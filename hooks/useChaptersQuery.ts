@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-
 import { sources } from '@/sources/plugins'
-
 import type { Sources } from '@/sources'
 import type { Chapter } from '@/types/source'
 

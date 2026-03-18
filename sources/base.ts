@@ -1,6 +1,5 @@
 import * as cheerio from 'cheerio'
 import ky, { type KyInstance } from 'ky'
-
 import type { AbstactNovel, Chapter, ChapterContent, Novel } from '@/types/source'
 
 export type SourceOptions = {

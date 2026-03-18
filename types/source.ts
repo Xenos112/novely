@@ -23,4 +23,5 @@ export type AbstactNovel = Omit<Novel, 'chapters' | 'status' | 'genres' | 'autho
 export type ChapterContent = {
   title: string
   content: string
+  language: string
 }

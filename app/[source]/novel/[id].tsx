@@ -2,14 +2,12 @@ import { Image } from 'expo-image'
 import { router, useLocalSearchParams, useNavigation } from 'expo-router'
 import { memo, useLayoutEffect, useState } from 'react'
 import { FlatList, Pressable } from 'react-native'
-
 import NovelInfoSkeleton from '@/components/NovelInfoSkeleton'
 import { View } from '@/components/Themed'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Text } from '@/components/ui/text'
 import useChaptersQuery from '@/hooks/useChaptersQuery'
 import useNovelQuery from '@/hooks/useNovelQuery'
-
 import type { Sources } from '@/sources'
 import type { Chapter } from '@/types/source'
 
