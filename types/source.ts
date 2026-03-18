@@ -1,5 +1,7 @@
 import type { Sources } from '@/sources'
 
+export type { Sources }
+
 export type Novel = {
   id: string
   source: Sources

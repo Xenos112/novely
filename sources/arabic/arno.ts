@@ -172,7 +172,10 @@ export class ArnoSource extends Source {
     const div = cheerio.load(html)
     const text = div.text()
 
-    const paragraphs = text.split(/\n{2,}/).filter(p => p.trim()).map(p => p.trim())
+    const paragraphs = text
+      .split(/\n{2,}/)
+      .filter(p => p.trim())
+      .map(p => p.trim())
 
     const content = paragraphs.join('\n\n')
 

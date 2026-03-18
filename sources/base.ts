@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio'
 import ky, { type KyInstance } from 'ky'
+import { HTTP } from '@/constants/config'
 import type { AbstactNovel, Chapter, ChapterContent, Novel } from '@/types/source'
 
 export type SourceOptions = {
@@ -23,8 +24,8 @@ export abstract class Source {
     this.version = options.version
     this.language = options.language
     this.client = ky.create({
-      cache: 'no-cache',
-      timeout: 20000,
+      cache: HTTP.CACHE,
+      timeout: HTTP.TIMEOUT,
       headers: {
         'User-Agent':
           options.userAgent ?? 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',

@@ -1,17 +1,15 @@
 import { FlatList } from 'react-native'
 import { View } from '@/components/Themed'
 import { Skeleton } from '@/components/ui/skeleton'
-
-const NUM_COLUMNS = 3
-const ITEM_COUNT = 12
+import { APP } from '@/constants/config'
 
 export default function NovelListSkeleton() {
-  const paddedData = Array.from({ length: ITEM_COUNT }).fill(null)
+  const paddedData = Array.from({ length: APP.SKELETON_ITEMS }).fill(null)
 
   return (
     <FlatList
       data={paddedData}
-      numColumns={NUM_COLUMNS}
+      numColumns={APP.GRID_COLUMNS}
       keyExtractor={(_, index) => `skeleton-${index}`}
       renderItem={() => (
         <View className="flex-1 m-1 pt-2">

@@ -1,43 +1,20 @@
-// oxlint-disable react_perf/jsx-no-new-object-as-prop
 import { Link, Stack } from 'expo-router'
-import { StyleSheet } from 'react-native'
 import { Text, View } from '@/components/Themed'
 
 export default function NotFoundScreen() {
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
-      <View style={styles.container}>
-        <Text style={styles.title}>This screen doesn't exist.</Text>
+      <View className="flex-1 items-center justify-center p-5">
+        <Text className="text-xl font-bold mb-4">This screen doesn't exist.</Text>
 
         <Link
           href="/"
-          style={styles.link}
+          className="mt-4 py-4"
         >
-          <Text style={styles.linkText}>Go to home screen!</Text>
+          <Text className="text-base text-blue-600">Go to home screen!</Text>
         </Link>
       </View>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  linkText: {
-    fontSize: 14,
-    color: '#2e78b7',
-  },
-})
