@@ -6,7 +6,7 @@ function eY(Z) {
 }
 var Z7,
   Y7,
-  N0 = (Z, Y, J) => {
+  g0 = (Z, Y, J) => {
     var K = Z != null && typeof Z === 'object'
     if (K) {
       var Q = Y ? (Z7 ??= new WeakMap()) : (Y7 ??= new WeakMap()),
@@ -27,8 +27,8 @@ function X7(Z, Y) {
 var V0 = (Z, Y) => {
   for (var J in Y) L4(Z, J, { get: Y[J], enumerable: !0, configurable: !0, set: X7.bind(Y, J) })
 }
-var v0 = J7((dX, g8) => {
-  g8.exports = {
+var v0 = J7((d2, M8) => {
+  M8.exports = {
     trueFunc: function () {
       return !0
     },
@@ -37,7 +37,6 @@ var v0 = J7((dX, g8) => {
     },
   }
 })
-import PK from 'ky'
 var S4 = {}
 V0(S4, {
   xml: () => r7,
@@ -58,8 +57,8 @@ V0(P0, {
   removeSubsets: () => I7,
   removeElement: () => F0,
   prevElementSibling: () => $1,
-  prependChild: () => M7,
-  prepend: () => N7,
+  prependChild: () => N7,
+  prepend: () => g7,
   nextElementSibling: () => G1,
   isText: () => r,
   isTag: () => f,
@@ -70,43 +69,43 @@ V0(P0, {
   hasChildren: () => C,
   hasAttrib: () => O7,
   getText: () => D1,
-  getSiblings: () => E4,
+  getSiblings: () => u4,
   getParent: () => oZ,
   getOuterHTML: () => nZ,
   getName: () => b7,
   getInnerHTML: () => P7,
   getFeed: () => S7,
-  getElementsByTagType: () => E7,
+  getElementsByTagType: () => u7,
   getElementsByTagName: () => h0,
-  getElementsByClassName: () => u7,
+  getElementsByClassName: () => E7,
   getElements: () => G7,
   getElementById: () => $7,
   getChildren: () => i0,
   getAttributeValue: () => v7,
   findOneChild: () => x7,
-  findOne: () => E1,
+  findOne: () => u1,
   findAll: () => h7,
-  find: () => u1,
+  find: () => E1,
   filter: () => c0,
   existsOne: () => tZ,
   compareDocumentPosition: () => Z8,
   appendChild: () => y7,
-  append: () => g7,
+  append: () => M7,
   DocumentPosition: () => o,
 })
 var p = {}
 V0(p, {
   isTag: () => R4,
   Text: () => v4,
-  Tag: () => g4,
+  Tag: () => M4,
   Style: () => y4,
   Script: () => f4,
   Root: () => P4,
   ElementType: () => x,
-  Doctype: () => N4,
+  Doctype: () => g4,
   Directive: () => O4,
   Comment: () => b4,
-  CDATA: () => M4,
+  CDATA: () => N4,
 })
 var x
 ;(function (Z) {
@@ -130,9 +129,9 @@ var {
   Comment: b4,
   Script: f4,
   Style: y4,
-  Tag: g4,
-  CDATA: M4,
-  Doctype: N4,
+  Tag: M4,
+  CDATA: N4,
+  Doctype: g4,
 } = x
 class h4 {
   constructor() {
@@ -164,7 +163,7 @@ class h4 {
     return m0(this, Z)
   }
 }
-class g1 extends h4 {
+class M1 extends h4 {
   constructor(Z) {
     super()
     this.data = Z
@@ -176,7 +175,7 @@ class g1 extends h4 {
     this.data = Z
   }
 }
-class H0 extends g1 {
+class H0 extends M1 {
   constructor() {
     super(...arguments)
     this.type = x.Text
@@ -185,7 +184,7 @@ class H0 extends g1 {
     return 3
   }
 }
-class k0 extends g1 {
+class k0 extends M1 {
   constructor() {
     super(...arguments)
     this.type = x.Comment
@@ -194,7 +193,7 @@ class k0 extends g1 {
     return 8
   }
 }
-class _0 extends g1 {
+class _0 extends M1 {
   constructor(Z, Y) {
     super(Y)
     ;((this.name = Z), (this.type = x.Directive))
@@ -203,7 +202,7 @@ class _0 extends g1 {
     return 1
   }
 }
-class M1 extends h4 {
+class N1 extends h4 {
   constructor(Z) {
     super()
     this.children = Z
@@ -222,7 +221,7 @@ class M1 extends h4 {
     this.children = Z
   }
 }
-class N1 extends M1 {
+class g1 extends N1 {
   constructor() {
     super(...arguments)
     this.type = x.CDATA
@@ -231,7 +230,7 @@ class N1 extends M1 {
     return 4
   }
 }
-class a extends M1 {
+class a extends N1 {
   constructor() {
     super(...arguments)
     this.type = x.Root
@@ -240,7 +239,7 @@ class a extends M1 {
     return 9
   }
 }
-class A0 extends M1 {
+class A0 extends N1 {
   constructor(Z, Y, J = [], K = Z === 'script' ? x.Script : Z === 'style' ? x.Style : x.Tag) {
     super(J)
     ;((this.name = Z), (this.attribs = Y), (this.type = K))
@@ -300,7 +299,7 @@ function m0(Z, Y = !1) {
     J = Q
   } else if (T0(Z)) {
     let K = Y ? x4(Z.children) : [],
-      Q = new N1(K)
+      Q = new g1(K)
     ;(K.forEach(V => (V.parent = Q)), (J = Q))
   } else if (n(Z)) {
     let K = Y ? x4(Z.children) : [],
@@ -393,7 +392,7 @@ class C4 {
   }
   oncdatastart() {
     let Z = new H0(''),
-      Y = new N1([Z])
+      Y = new g1([Z])
     ;(this.addNode(Y), (Z.parent = Y), (this.lastNode = Z))
   }
   oncdataend() {
@@ -645,28 +644,28 @@ var aZ = new Set([
   'track',
   'wbr',
 ])
-function u4(Z, Y = {}) {
+function E4(Z, Y = {}) {
   let J = 'length' in Z ? Z : [Z],
     K = ''
   for (let Q = 0; Q < J.length; Q++) K += U7(J[Q], Y)
   return K
 }
-var C1 = u4
+var C1 = E4
 function U7(Z, Y) {
   switch (Z.type) {
     case P4:
-      return u4(Z.children, Y)
-    case N4:
+      return E4(Z.children, Y)
+    case g4:
     case O4:
-      return B7(Z)
+      return w7(Z)
     case b4:
       return R7(Z)
-    case M4:
+    case N4:
       return L7(Z)
     case f4:
     case y4:
-    case g4:
-      return q7(Z, Y)
+    case M4:
+      return B7(Z, Y)
     case v4:
       return j7(Z, Y)
   }
@@ -682,8 +681,8 @@ var F7 = new Set([
     'desc',
     'title',
   ]),
-  w7 = new Set(['svg', 'math'])
-function q7(Z, Y) {
+  q7 = new Set(['svg', 'math'])
+function B7(Z, Y) {
   var J
   if (Y.xmlMode === 'foreign') {
     if (
@@ -692,7 +691,7 @@ function q7(Z, Y) {
     )
       Y = { ...Y, xmlMode: !1 }
   }
-  if (!Y.xmlMode && w7.has(Z.name)) Y = { ...Y, xmlMode: 'foreign' }
+  if (!Y.xmlMode && q7.has(Z.name)) Y = { ...Y, xmlMode: 'foreign' }
   let K = `<${Z.name}`,
     Q = H7(Z.attribs, Y)
   if (Q) K += ` ${Q}`
@@ -703,12 +702,12 @@ function q7(Z, Y) {
     if (!Y.xmlMode) K += ' '
     K += '/>'
   } else {
-    if (((K += '>'), Z.children.length > 0)) K += u4(Z.children, Y)
+    if (((K += '>'), Z.children.length > 0)) K += E4(Z.children, Y)
     if (Y.xmlMode || !aZ.has(Z.name)) K += `</${Z.name}>`
   }
   return K
 }
-function B7(Z) {
+function w7(Z) {
   return `<${Z.data}>`
 }
 function j7(Z, Y) {
@@ -762,7 +761,7 @@ function i0(Z) {
 function oZ(Z) {
   return Z.parent || null
 }
-function E4(Z) {
+function u4(Z) {
   let Y = oZ(Z)
   if (Y != null) return i0(Y)
   let J = [Z],
@@ -820,7 +819,7 @@ function y7(Z, Y) {
     ;((J.next = Y), (Y.prev = J))
   } else Y.prev = null
 }
-function g7(Z, Y) {
+function M7(Z, Y) {
   F0(Y)
   let { parent: J } = Z,
     K = Z.next
@@ -831,13 +830,13 @@ function g7(Z, Y) {
     }
   } else if (J) J.children.push(Y)
 }
-function M7(Z, Y) {
+function N7(Z, Y) {
   if ((F0(Y), (Y.parent = Z), (Y.prev = null), Z.children.unshift(Y) !== 1)) {
     let J = Z.children[1]
     ;((J.prev = Y), (Y.next = J))
   } else Y.next = null
 }
-function N7(Z, Y) {
+function g7(Z, Y) {
   F0(Y)
   let { parent: J } = Z
   if (J) {
@@ -848,9 +847,9 @@ function N7(Z, Y) {
   ;((Y.parent = J), (Y.prev = Z.prev), (Y.next = Z), (Z.prev = Y))
 }
 function c0(Z, Y, J = !0, K = 1 / 0) {
-  return u1(Z, Array.isArray(Y) ? Y : [Y], J, K)
+  return E1(Z, Array.isArray(Y) ? Y : [Y], J, K)
 }
-function u1(Z, Y, J, K) {
+function E1(Z, Y, J, K) {
   let Q = [],
     V = [Array.isArray(Y) ? Y : [Y]],
     z = [0]
@@ -870,13 +869,13 @@ function u1(Z, Y, J, K) {
 function x7(Z, Y) {
   return Y.find(Z)
 }
-function E1(Z, Y, J = !0) {
+function u1(Z, Y, J = !0) {
   let K = Array.isArray(Y) ? Y : [Y]
   for (let Q = 0; Q < K.length; Q++) {
     let V = K[Q]
     if (f(V) && Z(V)) return V
     if (J && C(V) && V.children.length > 0) {
-      let z = E1(Z, V.children, !0)
+      let z = u1(Z, V.children, !0)
       if (z) return z
     }
   }
@@ -939,15 +938,15 @@ function G7(Z, Y, J, K = 1 / 0) {
 }
 function $7(Z, Y, J = !0) {
   if (!Array.isArray(Y)) Y = [Y]
-  return E1(I4('id', Z), Y, J)
+  return u1(I4('id', Z), Y, J)
 }
 function h0(Z, Y, J = !0, K = 1 / 0) {
   return c0(I1.tag_name(Z), Y, J, K)
 }
-function u7(Z, Y, J = !0, K = 1 / 0) {
+function E7(Z, Y, J = !0, K = 1 / 0) {
   return c0(I4('class', Z), Y, J, K)
 }
-function E7(Z, Y, J = !0, K = 1 / 0) {
+function u7(Z, Y, J = !0, K = 1 / 0) {
   return c0(I1.tag_type(Z), Y, J, K)
 }
 function I7(Z) {
@@ -987,10 +986,10 @@ function Z8(Z, Y) {
   while (z < V && J[z] === K[z]) z++
   if (z === 0) return o.DISCONNECTED
   let F = J[z - 1],
-    w = F.children,
-    B = J[z],
+    q = F.children,
+    w = J[z],
     L = K[z]
-  if (w.indexOf(B) > w.indexOf(L)) {
+  if (q.indexOf(w) > q.indexOf(L)) {
     if (F === Y) return o.FOLLOWING | o.CONTAINED_BY
     return o.FOLLOWING
   }
@@ -1020,16 +1019,16 @@ function k7(Z) {
       type: 'atom',
       items: h0('entry', J).map(z => {
         var F
-        let { children: w } = z,
-          B = { media: Y8(w) }
-        ;(l(B, 'id', 'id', w), l(B, 'title', 'title', w))
-        let L = (F = S1('link', w)) === null || F === void 0 ? void 0 : F.attribs.href
-        if (L) B.link = L
-        let O = R0('summary', w) || R0('content', w)
-        if (O) B.description = O
-        let b = R0('updated', w)
-        if (b) B.pubDate = new Date(b)
-        return B
+        let { children: q } = z,
+          w = { media: Y8(q) }
+        ;(l(w, 'id', 'id', q), l(w, 'title', 'title', q))
+        let L = (F = S1('link', q)) === null || F === void 0 ? void 0 : F.attribs.href
+        if (L) w.link = L
+        let O = R0('summary', q) || R0('content', q)
+        if (O) w.description = O
+        let b = R0('updated', q)
+        if (b) w.pubDate = new Date(b)
+        return w
       }),
     }
   ;(l(K, 'id', 'id', J), l(K, 'title', 'title', J))
@@ -1052,14 +1051,14 @@ function _7(Z) {
       id: '',
       items: h0('item', Z.children).map(z => {
         let { children: F } = z,
-          w = { media: Y8(F) }
-        ;(l(w, 'id', 'guid', F),
-          l(w, 'title', 'title', F),
-          l(w, 'link', 'link', F),
-          l(w, 'description', 'description', F))
-        let B = R0('pubDate', F) || R0('dc:date', F)
-        if (B) w.pubDate = new Date(B)
-        return w
+          q = { media: Y8(F) }
+        ;(l(q, 'id', 'guid', F),
+          l(q, 'title', 'title', F),
+          l(q, 'link', 'link', F),
+          l(q, 'description', 'description', F))
+        let w = R0('pubDate', F) || R0('dc:date', F)
+        if (w) q.pubDate = new Date(w)
+        return q
       }),
     }
   ;(l(Q, 'title', 'title', K), l(Q, 'link', 'link', K), l(Q, 'description', 'description', K))
@@ -1173,14 +1172,14 @@ function J8(Z) {
 }
 var p4 = {}
 V0(p4, {
-  val: () => U5,
+  val: () => U9,
   toggleClass: () => O8,
   removeClass: () => v8,
-  removeAttr: () => F5,
-  prop: () => V5,
-  hasClass: () => w5,
-  data: () => H5,
-  attr: () => Q5,
+  removeAttr: () => F9,
+  prop: () => V9,
+  hasClass: () => q9,
+  data: () => H9,
+  attr: () => Q9,
   addClass: () => P8,
 })
 function t(Z) {
@@ -1291,7 +1290,7 @@ var T
     (Z[(Z.BRANCH_LENGTH = 8064)] = 'BRANCH_LENGTH'),
     (Z[(Z.JUMP_TABLE = 127)] = 'JUMP_TABLE'))
 })(T || (T = {}))
-var u
+var E
 ;(function (Z) {
   ;((Z[(Z.NUM = 35)] = 'NUM'),
     (Z[(Z.SEMI = 59)] = 'SEMI'),
@@ -1305,19 +1304,19 @@ var u
     (Z[(Z.UPPER_A = 65)] = 'UPPER_A'),
     (Z[(Z.UPPER_F = 70)] = 'UPPER_F'),
     (Z[(Z.UPPER_Z = 90)] = 'UPPER_Z'))
-})(u || (u = {}))
+})(E || (E = {}))
 var z8 = 32
 function m4(Z) {
-  return Z >= u.ZERO && Z <= u.NINE
+  return Z >= E.ZERO && Z <= E.NINE
 }
 function n7(Z) {
-  return (Z >= u.UPPER_A && Z <= u.UPPER_F) || (Z >= u.LOWER_A && Z <= u.LOWER_F)
+  return (Z >= E.UPPER_A && Z <= E.UPPER_F) || (Z >= E.LOWER_A && Z <= E.LOWER_F)
 }
 function o7(Z) {
-  return (Z >= u.UPPER_A && Z <= u.UPPER_Z) || (Z >= u.LOWER_A && Z <= u.LOWER_Z) || m4(Z)
+  return (Z >= E.UPPER_A && Z <= E.UPPER_Z) || (Z >= E.LOWER_A && Z <= E.LOWER_Z) || m4(Z)
 }
 function t7(Z) {
-  return Z === u.EQUALS || o7(Z)
+  return Z === E.EQUALS || o7(Z)
 }
 var k
 ;(function (Z) {
@@ -1358,7 +1357,7 @@ class i4 {
   write(Z, Y) {
     switch (this.state) {
       case k.EntityStart: {
-        if (Z.charCodeAt(Y) === u.NUM)
+        if (Z.charCodeAt(Y) === E.NUM)
           return (
             (this.state = k.NumericStart), (this.consumed += 1), this.stateNumericStart(Z, Y + 1)
           )
@@ -1376,7 +1375,7 @@ class i4 {
   }
   stateNumericStart(Z, Y) {
     if (Y >= Z.length) return -1
-    if ((Z.charCodeAt(Y) | z8) === u.LOWER_X)
+    if ((Z.charCodeAt(Y) | z8) === E.LOWER_X)
       return ((this.state = k.NumericHex), (this.consumed += 1), this.stateNumericHex(Z, Y + 1))
     return ((this.state = k.NumericDecimal), this.stateNumericDecimal(Z, Y))
   }
@@ -1384,7 +1383,7 @@ class i4 {
     while (Y < Z.length) {
       let J = Z.charCodeAt(Y)
       if (m4(J) || n7(J)) {
-        let K = J <= u.NINE ? J - u.ZERO : (J | z8) - u.LOWER_A + 10
+        let K = J <= E.NINE ? J - E.ZERO : (J | z8) - E.LOWER_A + 10
         ;((this.result = this.result * 16 + K), this.consumed++, Y++)
       } else return this.emitNumericEntity(J, 3)
     }
@@ -1393,7 +1392,7 @@ class i4 {
   stateNumericDecimal(Z, Y) {
     while (Y < Z.length) {
       let J = Z.charCodeAt(Y)
-      if (m4(J)) ((this.result = this.result * 10 + (J - u.ZERO)), this.consumed++, Y++)
+      if (m4(J)) ((this.result = this.result * 10 + (J - E.ZERO)), this.consumed++, Y++)
       else return this.emitNumericEntity(J, 2)
     }
     return -1
@@ -1407,10 +1406,10 @@ class i4 {
           J.absenceOfDigitsInNumericCharacterReference(this.consumed),
         0
       )
-    if (Z === u.SEMI) this.consumed += 1
+    if (Z === E.SEMI) this.consumed += 1
     else if (this.decodeMode === J0.Strict) return 0
     if ((this.emitCodePoint(_4(this.result), this.consumed), this.errors)) {
-      if (Z !== u.SEMI) this.errors.missingSemicolonAfterCharacterReference()
+      if (Z !== E.SEMI) this.errors.missingSemicolonAfterCharacterReference()
       this.errors.validateNumericCharacterReference(this.result)
     }
     return this.consumed
@@ -1431,9 +1430,9 @@ class i4 {
         while (this.runConsumed < z) {
           if (Y >= Z.length) return -1
           let F = this.runConsumed - 1,
-            w = J[this.treeIndex + 1 + (F >> 1)],
-            B = F % 2 === 0 ? w & 255 : (w >> 8) & 255
-          if (Z.charCodeAt(Y) !== B)
+            q = J[this.treeIndex + 1 + (F >> 1)],
+            w = F % 2 === 0 ? q & 255 : (q >> 8) & 255
+          if (Z.charCodeAt(Y) !== w)
             return (
               (this.runConsumed = 0), this.result === 0 ? 0 : this.emitNotTerminatedNamedEntity()
             )
@@ -1446,14 +1445,14 @@ class i4 {
       }
       if (Y >= Z.length) break
       let V = Z.charCodeAt(Y)
-      if (V === u.SEMI && Q !== 0 && (K & T.FLAG13) !== 0)
+      if (V === E.SEMI && Q !== 0 && (K & T.FLAG13) !== 0)
         return this.emitNamedEntityData(this.treeIndex, Q, this.consumed + this.excess)
       if (((this.treeIndex = e7(J, K, this.treeIndex + Math.max(1, Q), V)), this.treeIndex < 0))
         return this.result === 0 || (this.decodeMode === J0.Attribute && (Q === 0 || t7(V)))
           ? 0
           : this.emitNotTerminatedNamedEntity()
       if (((K = J[this.treeIndex]), (Q = (K & T.VALUE_LENGTH) >> 14), Q !== 0)) {
-        if (V === u.SEMI)
+        if (V === E.SEMI)
           return this.emitNamedEntityData(this.treeIndex, Q, this.consumed + this.excess)
         if (this.decodeMode !== J0.Strict && (K & T.FLAG13) === 0)
           ((this.result = this.treeIndex), (this.consumed += this.excess), (this.excess = 0))
@@ -1507,23 +1506,23 @@ function e7(Z, Y, J, K) {
     V = Y & T.JUMP_TABLE
   if (Q === 0) return V !== 0 && K === V ? J : -1
   if (V) {
-    let B = K - V
-    return B < 0 || B >= Q ? -1 : Z[J + B] - 1
+    let w = K - V
+    return w < 0 || w >= Q ? -1 : Z[J + w] - 1
   }
   let z = (Q + 1) >> 1,
     F = 0,
-    w = Q - 1
-  while (F <= w) {
-    let B = (F + w) >>> 1,
-      L = B >> 1,
-      b = (Z[J + L] >> ((B & 1) * 8)) & 255
-    if (b < K) F = B + 1
-    else if (b > K) w = B - 1
-    else return Z[J + z + B]
+    q = Q - 1
+  while (F <= q) {
+    let w = (F + q) >>> 1,
+      L = w >> 1,
+      b = (Z[J + L] >> ((w & 1) * 8)) & 255
+    if (b < K) F = w + 1
+    else if (b > K) q = w - 1
+    else return Z[J + z + w]
   }
   return -1
 }
-var g
+var M
 ;(function (Z) {
   ;((Z[(Z.Tab = 9)] = 'Tab'),
     (Z[(Z.NewLine = 10)] = 'NewLine'),
@@ -1552,7 +1551,7 @@ var g
     (Z[(Z.LowerZ = 122)] = 'LowerZ'),
     (Z[(Z.LowerX = 120)] = 'LowerX'),
     (Z[(Z.OpeningSquareBracket = 91)] = 'OpeningSquareBracket'))
-})(g || (g = {}))
+})(M || (M = {}))
 var P
 ;(function (Z) {
   ;((Z[(Z.Text = 1)] = 'Text'),
@@ -1582,16 +1581,16 @@ var P
     (Z[(Z.InSpecialTag = 25)] = 'InSpecialTag'),
     (Z[(Z.InEntity = 26)] = 'InEntity'))
 })(P || (P = {}))
-function w0(Z) {
+function q0(Z) {
   return (
-    Z === g.Space || Z === g.NewLine || Z === g.Tab || Z === g.FormFeed || Z === g.CarriageReturn
+    Z === M.Space || Z === M.NewLine || Z === M.Tab || Z === M.FormFeed || Z === M.CarriageReturn
   )
 }
 function A1(Z) {
-  return Z === g.Slash || Z === g.Gt || w0(Z)
+  return Z === M.Slash || Z === M.Gt || q0(Z)
 }
-function Z5(Z) {
-  return (Z >= g.LowerA && Z <= g.LowerZ) || (Z >= g.UpperA && Z <= g.UpperZ)
+function Z9(Z) {
+  return (Z >= M.LowerA && Z <= M.LowerZ) || (Z >= M.UpperA && Z <= M.UpperZ)
 }
 var K0
 ;(function (Z) {
@@ -1651,10 +1650,10 @@ class T1 {
     if (((this.running = !0), this.index < this.buffer.length + this.offset)) this.parse()
   }
   stateText(Z) {
-    if (Z === g.Lt || (!this.decodeEntities && this.fastForwardTo(g.Lt))) {
+    if (Z === M.Lt || (!this.decodeEntities && this.fastForwardTo(M.Lt))) {
       if (this.index > this.sectionStart) this.cbs.ontext(this.sectionStart, this.index)
       ;((this.state = P.BeforeTagName), (this.sectionStart = this.index))
-    } else if (this.decodeEntities && Z === g.Amp) this.startEntity()
+    } else if (this.decodeEntities && Z === M.Amp) this.startEntity()
   }
   stateSpecialStartSequence(Z) {
     let Y = this.sequenceIndex === this.currentSequence.length
@@ -1667,7 +1666,7 @@ class T1 {
   }
   stateInSpecialTag(Z) {
     if (this.sequenceIndex === this.currentSequence.length) {
-      if (Z === g.Gt || w0(Z)) {
+      if (Z === M.Gt || q0(Z)) {
         let Y = this.index - this.currentSequence.length
         if (this.sectionStart < Y) {
           let J = this.index
@@ -1681,9 +1680,9 @@ class T1 {
     if ((Z | 32) === this.currentSequence[this.sequenceIndex]) this.sequenceIndex += 1
     else if (this.sequenceIndex === 0) {
       if (this.currentSequence === I.TitleEnd) {
-        if (this.decodeEntities && Z === g.Amp) this.startEntity()
-      } else if (this.fastForwardTo(g.Lt)) this.sequenceIndex = 1
-    } else this.sequenceIndex = Number(Z === g.Lt)
+        if (this.decodeEntities && Z === M.Amp) this.startEntity()
+      } else if (this.fastForwardTo(M.Lt)) this.sequenceIndex = 1
+    } else this.sequenceIndex = Number(Z === M.Lt)
   }
   stateCDATASequence(Z) {
     if (Z === I.Cdata[this.sequenceIndex]) {
@@ -1711,7 +1710,7 @@ class T1 {
     } else if (Z !== this.currentSequence[this.sequenceIndex - 1]) this.sequenceIndex = 0
   }
   isTagStartChar(Z) {
-    return this.xmlMode ? !A1(Z) : Z5(Z)
+    return this.xmlMode ? !A1(Z) : Z9(Z)
   }
   startSpecial(Z, Y) {
     ;((this.isSpecial = !0),
@@ -1720,9 +1719,9 @@ class T1 {
       (this.state = P.SpecialStartSequence))
   }
   stateBeforeTagName(Z) {
-    if (Z === g.ExclamationMark)
+    if (Z === M.ExclamationMark)
       ((this.state = P.BeforeDeclaration), (this.sectionStart = this.index + 1))
-    else if (Z === g.Questionmark)
+    else if (Z === M.Questionmark)
       ((this.state = P.InProcessingInstruction), (this.sectionStart = this.index + 1))
     else if (this.isTagStartChar(Z)) {
       let Y = Z | 32
@@ -1730,7 +1729,7 @@ class T1 {
       else if (Y === I.ScriptEnd[2]) this.state = P.BeforeSpecialS
       else if (Y === I.TitleEnd[2] || Y === I.XmpEnd[2]) this.state = P.BeforeSpecialT
       else this.state = P.InTagName
-    } else if (Z === g.Slash) this.state = P.BeforeClosingTagName
+    } else if (Z === M.Slash) this.state = P.BeforeClosingTagName
     else ((this.state = P.Text), this.stateText(Z))
   }
   stateInTagName(Z) {
@@ -1741,65 +1740,65 @@ class T1 {
         this.stateBeforeAttributeName(Z))
   }
   stateBeforeClosingTagName(Z) {
-    if (w0(Z));
-    else if (Z === g.Gt) this.state = P.Text
+    if (q0(Z));
+    else if (Z === M.Gt) this.state = P.Text
     else
       ((this.state = this.isTagStartChar(Z) ? P.InClosingTagName : P.InSpecialComment),
         (this.sectionStart = this.index))
   }
   stateInClosingTagName(Z) {
-    if (Z === g.Gt || w0(Z))
+    if (Z === M.Gt || q0(Z))
       (this.cbs.onclosetag(this.sectionStart, this.index),
         (this.sectionStart = -1),
         (this.state = P.AfterClosingTagName),
         this.stateAfterClosingTagName(Z))
   }
   stateAfterClosingTagName(Z) {
-    if (Z === g.Gt || this.fastForwardTo(g.Gt))
+    if (Z === M.Gt || this.fastForwardTo(M.Gt))
       ((this.state = P.Text), (this.sectionStart = this.index + 1))
   }
   stateBeforeAttributeName(Z) {
-    if (Z === g.Gt) {
+    if (Z === M.Gt) {
       if ((this.cbs.onopentagend(this.index), this.isSpecial))
         ((this.state = P.InSpecialTag), (this.sequenceIndex = 0))
       else this.state = P.Text
       this.sectionStart = this.index + 1
-    } else if (Z === g.Slash) this.state = P.InSelfClosingTag
-    else if (!w0(Z)) ((this.state = P.InAttributeName), (this.sectionStart = this.index))
+    } else if (Z === M.Slash) this.state = P.InSelfClosingTag
+    else if (!q0(Z)) ((this.state = P.InAttributeName), (this.sectionStart = this.index))
   }
   stateInSelfClosingTag(Z) {
-    if (Z === g.Gt)
+    if (Z === M.Gt)
       (this.cbs.onselfclosingtag(this.index),
         (this.state = P.Text),
         (this.sectionStart = this.index + 1),
         (this.isSpecial = !1))
-    else if (!w0(Z)) ((this.state = P.BeforeAttributeName), this.stateBeforeAttributeName(Z))
+    else if (!q0(Z)) ((this.state = P.BeforeAttributeName), this.stateBeforeAttributeName(Z))
   }
   stateInAttributeName(Z) {
-    if (Z === g.Eq || A1(Z))
+    if (Z === M.Eq || A1(Z))
       (this.cbs.onattribname(this.sectionStart, this.index),
         (this.sectionStart = this.index),
         (this.state = P.AfterAttributeName),
         this.stateAfterAttributeName(Z))
   }
   stateAfterAttributeName(Z) {
-    if (Z === g.Eq) this.state = P.BeforeAttributeValue
-    else if (Z === g.Slash || Z === g.Gt)
+    if (Z === M.Eq) this.state = P.BeforeAttributeValue
+    else if (Z === M.Slash || Z === M.Gt)
       (this.cbs.onattribend(K0.NoValue, this.sectionStart),
         (this.sectionStart = -1),
         (this.state = P.BeforeAttributeName),
         this.stateBeforeAttributeName(Z))
-    else if (!w0(Z))
+    else if (!q0(Z))
       (this.cbs.onattribend(K0.NoValue, this.sectionStart),
         (this.state = P.InAttributeName),
         (this.sectionStart = this.index))
   }
   stateBeforeAttributeValue(Z) {
-    if (Z === g.DoubleQuote)
+    if (Z === M.DoubleQuote)
       ((this.state = P.InAttributeValueDq), (this.sectionStart = this.index + 1))
-    else if (Z === g.SingleQuote)
+    else if (Z === M.SingleQuote)
       ((this.state = P.InAttributeValueSq), (this.sectionStart = this.index + 1))
-    else if (!w0(Z))
+    else if (!q0(Z))
       ((this.sectionStart = this.index),
         (this.state = P.InAttributeValueNq),
         this.stateInAttributeValueNoQuotes(Z))
@@ -1808,43 +1807,43 @@ class T1 {
     if (Z === Y || (!this.decodeEntities && this.fastForwardTo(Y)))
       (this.cbs.onattribdata(this.sectionStart, this.index),
         (this.sectionStart = -1),
-        this.cbs.onattribend(Y === g.DoubleQuote ? K0.Double : K0.Single, this.index + 1),
+        this.cbs.onattribend(Y === M.DoubleQuote ? K0.Double : K0.Single, this.index + 1),
         (this.state = P.BeforeAttributeName))
-    else if (this.decodeEntities && Z === g.Amp) this.startEntity()
+    else if (this.decodeEntities && Z === M.Amp) this.startEntity()
   }
   stateInAttributeValueDoubleQuotes(Z) {
-    this.handleInAttributeValue(Z, g.DoubleQuote)
+    this.handleInAttributeValue(Z, M.DoubleQuote)
   }
   stateInAttributeValueSingleQuotes(Z) {
-    this.handleInAttributeValue(Z, g.SingleQuote)
+    this.handleInAttributeValue(Z, M.SingleQuote)
   }
   stateInAttributeValueNoQuotes(Z) {
-    if (w0(Z) || Z === g.Gt)
+    if (q0(Z) || Z === M.Gt)
       (this.cbs.onattribdata(this.sectionStart, this.index),
         (this.sectionStart = -1),
         this.cbs.onattribend(K0.Unquoted, this.index),
         (this.state = P.BeforeAttributeName),
         this.stateBeforeAttributeName(Z))
-    else if (this.decodeEntities && Z === g.Amp) this.startEntity()
+    else if (this.decodeEntities && Z === M.Amp) this.startEntity()
   }
   stateBeforeDeclaration(Z) {
-    if (Z === g.OpeningSquareBracket) ((this.state = P.CDATASequence), (this.sequenceIndex = 0))
-    else this.state = Z === g.Dash ? P.BeforeComment : P.InDeclaration
+    if (Z === M.OpeningSquareBracket) ((this.state = P.CDATASequence), (this.sequenceIndex = 0))
+    else this.state = Z === M.Dash ? P.BeforeComment : P.InDeclaration
   }
   stateInDeclaration(Z) {
-    if (Z === g.Gt || this.fastForwardTo(g.Gt))
+    if (Z === M.Gt || this.fastForwardTo(M.Gt))
       (this.cbs.ondeclaration(this.sectionStart, this.index),
         (this.state = P.Text),
         (this.sectionStart = this.index + 1))
   }
   stateInProcessingInstruction(Z) {
-    if (Z === g.Gt || this.fastForwardTo(g.Gt))
+    if (Z === M.Gt || this.fastForwardTo(M.Gt))
       (this.cbs.onprocessinginstruction(this.sectionStart, this.index),
         (this.state = P.Text),
         (this.sectionStart = this.index + 1))
   }
   stateBeforeComment(Z) {
-    if (Z === g.Dash)
+    if (Z === M.Dash)
       ((this.state = P.InCommentLike),
         (this.currentSequence = I.CommentEnd),
         (this.sequenceIndex = 2),
@@ -1852,7 +1851,7 @@ class T1 {
     else this.state = P.InDeclaration
   }
   stateInSpecialComment(Z) {
-    if (Z === g.Gt || this.fastForwardTo(g.Gt))
+    if (Z === M.Gt || this.fastForwardTo(M.Gt))
       (this.cbs.oncomment(this.sectionStart, this.index, 0),
         (this.state = P.Text),
         (this.sectionStart = this.index + 1))
@@ -1899,7 +1898,7 @@ class T1 {
     if (Y >= 0) {
       if (((this.state = this.baseState), Y === 0)) this.index -= 1
     } else {
-      if (Z < this.buffer.length && this.buffer.charCodeAt(Z) === g.Amp) {
+      if (Z < this.buffer.length && this.buffer.charCodeAt(Z) === M.Amp) {
         ;((this.state = this.baseState), (this.index -= 1))
         return
       }
@@ -2077,7 +2076,7 @@ var d0 = new Set(['input', 'option', 'optgroup', 'select', 'button', 'datalist',
   W8 = new Set(['thead', 'tbody']),
   H8 = new Set(['dd', 'dt']),
   U8 = new Set(['rt', 'rp']),
-  Y5 = new Map([
+  Y9 = new Map([
     ['tr', new Set(['tr', 'th', 'td'])],
     ['th', new Set(['th'])],
     ['td', new Set(['thead', 'th', 'td'])],
@@ -2126,7 +2125,7 @@ var d0 = new Set(['input', 'option', 'optgroup', 'select', 'button', 'datalist',
     ['tbody', W8],
     ['tfoot', W8],
   ]),
-  J5 = new Set([
+  J9 = new Set([
     'area',
     'base',
     'basefont',
@@ -2148,7 +2147,7 @@ var d0 = new Set(['input', 'option', 'optgroup', 'select', 'button', 'datalist',
     'wbr',
   ]),
   F8 = new Set(['math', 'svg']),
-  w8 = new Set([
+  q8 = new Set([
     'mi',
     'mo',
     'mn',
@@ -2159,7 +2158,7 @@ var d0 = new Set(['input', 'option', 'optgroup', 'select', 'button', 'datalist',
     'desc',
     'title',
   ]),
-  K5 = /\s|\//
+  K9 = /\s|\//
 class c4 {
   constructor(Z, Y = {}) {
     var J, K, Q, V, z, F
@@ -2204,7 +2203,7 @@ class c4 {
       (this.startIndex = Y))
   }
   isVoidElement(Z) {
-    return this.htmlMode && J5.has(Z)
+    return this.htmlMode && J9.has(Z)
   }
   onopentagname(Z, Y) {
     this.endIndex = Y
@@ -2215,7 +2214,7 @@ class c4 {
   emitOpenTag(Z) {
     var Y, J, K, Q
     ;((this.openTagStart = this.startIndex), (this.tagname = Z))
-    let V = this.htmlMode && Y5.get(Z)
+    let V = this.htmlMode && Y9.get(Z)
     if (V)
       while (this.stack.length > 0 && V.has(this.stack[0])) {
         let z = this.stack.shift()
@@ -2224,7 +2223,7 @@ class c4 {
     if (!this.isVoidElement(Z)) {
       if ((this.stack.unshift(Z), this.htmlMode)) {
         if (F8.has(Z)) this.foreignContext.unshift(!0)
-        else if (w8.has(Z)) this.foreignContext.unshift(!1)
+        else if (q8.has(Z)) this.foreignContext.unshift(!1)
       }
     }
     if (
@@ -2248,23 +2247,23 @@ class c4 {
     ;((this.endIndex = Z), this.endOpenTag(!1), (this.startIndex = Z + 1))
   }
   onclosetag(Z, Y) {
-    var J, K, Q, V, z, F, w, B
+    var J, K, Q, V, z, F, q, w
     this.endIndex = Y
     let L = this.getSlice(Z, Y)
     if (this.lowerCaseTagNames) L = L.toLowerCase()
-    if (this.htmlMode && (F8.has(L) || w8.has(L))) this.foreignContext.shift()
+    if (this.htmlMode && (F8.has(L) || q8.has(L))) this.foreignContext.shift()
     if (!this.isVoidElement(L)) {
       let O = this.stack.indexOf(L)
       if (O !== -1)
         for (let b = 0; b <= O; b++) {
-          let M = this.stack.shift()
-          ;(K = (J = this.cbs).onclosetag) === null || K === void 0 || K.call(J, M, b !== O)
+          let N = this.stack.shift()
+          ;(K = (J = this.cbs).onclosetag) === null || K === void 0 || K.call(J, N, b !== O)
         }
       else if (this.htmlMode && L === 'p') (this.emitOpenTag('p'), this.closeCurrentTag(!0))
     } else if (this.htmlMode && L === 'br')
       ((V = (Q = this.cbs).onopentagname) === null || V === void 0 || V.call(Q, 'br'),
         (F = (z = this.cbs).onopentag) === null || F === void 0 || F.call(z, 'br', {}, !0),
-        (B = (w = this.cbs).onclosetag) === null || B === void 0 || B.call(w, 'br', !1))
+        (w = (q = this.cbs).onclosetag) === null || w === void 0 || w.call(q, 'br', !1))
     this.startIndex = Y + 1
   }
   onselfclosingtag(Z) {
@@ -2308,7 +2307,7 @@ class c4 {
     this.attribvalue = ''
   }
   getInstructionName(Z) {
-    let Y = Z.search(K5),
+    let Y = Z.search(K9),
       J = Y < 0 ? Z : Z.substr(0, Y)
     if (this.lowerCaseTagNames) J = J.toLowerCase()
     return J
@@ -2339,15 +2338,15 @@ class c4 {
       (this.startIndex = Y + 1))
   }
   oncdata(Z, Y, J) {
-    var K, Q, V, z, F, w, B, L, O, b
+    var K, Q, V, z, F, q, w, L, O, b
     this.endIndex = Y
-    let M = this.getSlice(Z, Y - J)
+    let N = this.getSlice(Z, Y - J)
     if (!this.htmlMode || this.options.recognizeCDATA)
       ((Q = (K = this.cbs).oncdatastart) === null || Q === void 0 || Q.call(K),
-        (z = (V = this.cbs).ontext) === null || z === void 0 || z.call(V, M),
-        (w = (F = this.cbs).oncdataend) === null || w === void 0 || w.call(F))
+        (z = (V = this.cbs).ontext) === null || z === void 0 || z.call(V, N),
+        (q = (F = this.cbs).oncdataend) === null || q === void 0 || q.call(F))
     else
-      ((L = (B = this.cbs).oncomment) === null || L === void 0 || L.call(B, `[CDATA[${M}]]`),
+      ((L = (w = this.cbs).oncomment) === null || L === void 0 || L.call(w, `[CDATA[${N}]]`),
         (b = (O = this.cbs).oncommentend) === null || b === void 0 || b.call(O))
     this.startIndex = Y + 1
   }
@@ -2427,7 +2426,7 @@ class c4 {
     this.end(Z)
   }
 }
-function q8(Z, Y) {
+function B8(Z, Y) {
   let J = new C4(void 0, Y)
   return (new c4(J, Y).end(Z), J.root)
 }
@@ -2440,7 +2439,7 @@ var d4,
   l4 = 'data-',
   s4 =
     /^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i,
-  X5 = /^{[^]*}$|^\[[^]*]$/
+  X9 = /^{[^]*}$|^\[[^]*]$/
 function m1(Z, Y, J) {
   var K
   if (!Z || !f(Z)) return
@@ -2459,7 +2458,7 @@ function r0(Z, Y, J) {
   if (J === null) R8(Z, Y)
   else Z.attribs[Y] = `${J}`
 }
-function Q5(Z, Y) {
+function Q9(Z, Y) {
   if (typeof Z === 'object' || Y !== void 0) {
     if (typeof Y === 'function') {
       if (typeof Z !== 'string') throw Error('Bad combination of arguments.')
@@ -2479,14 +2478,14 @@ function Q5(Z, Y) {
   }
   return arguments.length > 1 ? this : m1(this[0], Z, this.options.xmlMode)
 }
-function B8(Z, Y, J) {
+function w8(Z, Y, J) {
   return Y in Z ? Z[Y] : !J && s4.test(Y) ? m1(Z, Y, !1) !== void 0 : m1(Z, Y, J)
 }
 function r4(Z, Y, J, K) {
   if (Y in Z) Z[Y] = J
   else r0(Z, Y, !K && s4.test(Y) ? (J ? '' : null) : `${J}`)
 }
-function V5(Z, Y) {
+function V9(Z, Y) {
   var J
   if (typeof Z === 'string' && Y === void 0) {
     let K = this[0]
@@ -2534,7 +2533,7 @@ function V5(Z, Y) {
         return this.html()
       default: {
         if (!f(K)) return
-        return B8(K, Z, this.options.xmlMode)
+        return w8(K, Z, this.options.xmlMode)
       }
     }
   }
@@ -2542,7 +2541,7 @@ function V5(Z, Y) {
     if (typeof Y === 'function') {
       if (typeof Z === 'object') throw TypeError('Bad combination of arguments.')
       return G(this, (K, Q) => {
-        if (f(K)) r4(K, Z, Y.call(K, Q, B8(K, Z, this.options.xmlMode)), this.options.xmlMode)
+        if (f(K)) r4(K, Z, Y.call(K, Q, w8(K, Z, this.options.xmlMode)), this.options.xmlMode)
       })
     }
     return G(this, K => {
@@ -2563,7 +2562,7 @@ function j8(Z, Y, J) {
     Object.assign(Z.data, Y)
   else if (typeof Y === 'string' && J !== void 0) Z.data[Y] = J
 }
-function z5(Z) {
+function z9(Z) {
   for (let Y of Object.keys(Z.attribs)) {
     if (!Y.startsWith(l4)) continue
     let J = Q8(Y.slice(l4.length))
@@ -2571,7 +2570,7 @@ function z5(Z) {
   }
   return Z.data
 }
-function W5(Z, Y) {
+function W9(Z, Y) {
   let J = l4 + V8(Y),
     K = Z.data
   if (X1(K, Y)) return K[Y]
@@ -2584,18 +2583,18 @@ function L8(Z) {
   if (Z === 'false') return !1
   let Y = Number(Z)
   if (Z === String(Y)) return Y
-  if (X5.test(Z))
+  if (X9.test(Z))
     try {
       return JSON.parse(Z)
     } catch {}
   return Z
 }
-function H5(Z, Y) {
+function H9(Z, Y) {
   var J
   let K = this[0]
   if (!K || !f(K)) return
   let Q = K
-  if ((((J = Q.data) !== null && J !== void 0) || (Q.data = {}), Z == null)) return z5(Q)
+  if ((((J = Q.data) !== null && J !== void 0) || (Q.data = {}), Z == null)) return z9(Q)
   if (typeof Z === 'object' || Y !== void 0)
     return (
       G(this, V => {
@@ -2605,9 +2604,9 @@ function H5(Z, Y) {
       }),
       this
     )
-  return W5(Q, Z)
+  return W9(Q, Z)
 }
-function U5(Z) {
+function U9(Z) {
   let Y = arguments.length === 0,
     J = this[0]
   if (!J || !f(J)) return Y ? void 0 : this
@@ -2639,7 +2638,7 @@ function R8(Z, Y) {
 function i1(Z) {
   return Z ? Z.trim().split(Q1) : []
 }
-function F5(Z) {
+function F9(Z) {
   let Y = i1(Z)
   for (let J of Y)
     G(this, K => {
@@ -2647,7 +2646,7 @@ function F5(Z) {
     })
   return this
 }
-function w5(Z) {
+function q9(Z) {
   return this.toArray().some(Y => {
     let J = f(Y) && Y.attribs.class,
       K = -1
@@ -2677,8 +2676,8 @@ function P8(Z) {
     if (V) {
       let z = ` ${V} `
       for (let F of Y) {
-        let w = `${F} `
-        if (!z.includes(` ${w}`)) z += w
+        let q = `${F} `
+        if (!z.includes(` ${q}`)) z += q
       }
       r0(Q, 'class', z.trim())
     } else r0(Q, 'class', Y.join(' ').trim())
@@ -2700,8 +2699,8 @@ function v8(Z) {
       let V = i1(Q.attribs.class),
         z = !1
       for (let F = 0; F < J; F++) {
-        let w = V.indexOf(Y[F])
-        if (w !== -1) (V.splice(w, 1), (z = !0), F--)
+        let q = V.indexOf(Y[F])
+        if (q !== -1) (V.splice(q, 1), (z = !0), F--)
       }
       if (z) Q.attribs.class = V.join(' ')
     }
@@ -2720,50 +2719,50 @@ function O8(Z, Y) {
   for (let z = 0; z < V; z++) {
     let F = this[z]
     if (!f(F)) continue
-    let w = i1(F.attribs.class)
-    for (let B = 0; B < K; B++) {
-      let L = w.indexOf(J[B])
-      if (Q >= 0 && L === -1) w.push(J[B])
-      else if (Q <= 0 && L !== -1) w.splice(L, 1)
+    let q = i1(F.attribs.class)
+    for (let w = 0; w < K; w++) {
+      let L = q.indexOf(J[w])
+      if (Q >= 0 && L === -1) q.push(J[w])
+      else if (Q <= 0 && L !== -1) q.splice(L, 1)
     }
-    F.attribs.class = w.join(' ')
+    F.attribs.class = q.join(' ')
   }
   return this
 }
 var RZ = {}
 V0(RZ, {
-  toArray: () => z9,
-  slice: () => H9,
-  siblings: () => p5,
-  prevUntil: () => s5,
-  prevAll: () => l5,
-  prev: () => r5,
-  parentsUntil: () => T5,
-  parents: () => A5,
-  parent: () => _5,
-  not: () => Y9,
-  nextUntil: () => d5,
-  nextAll: () => c5,
-  next: () => i5,
-  map: () => t5,
-  last: () => X9,
-  is: () => Z9,
-  index: () => W9,
-  has: () => J9,
-  get: () => V9,
-  first: () => K9,
-  find: () => S5,
+  toArray: () => z5,
+  slice: () => H5,
+  siblings: () => p9,
+  prevUntil: () => s9,
+  prevAll: () => l9,
+  prev: () => r9,
+  parentsUntil: () => T9,
+  parents: () => A9,
+  parent: () => _9,
+  not: () => Y5,
+  nextUntil: () => d9,
+  nextAll: () => c9,
+  next: () => i9,
+  map: () => t9,
+  last: () => X5,
+  is: () => Z5,
+  index: () => W5,
+  has: () => J5,
+  get: () => V5,
+  first: () => K5,
+  find: () => S9,
   filterArray: () => LZ,
-  filter: () => e5,
-  eq: () => Q9,
-  end: () => U9,
-  each: () => o5,
-  contents: () => n5,
-  closest: () => m5,
-  children: () => a5,
-  addBack: () => w9,
-  add: () => F9,
-  _findBySelector: () => k5,
+  filter: () => e9,
+  eq: () => Q5,
+  end: () => U5,
+  each: () => o9,
+  contents: () => n9,
+  closest: () => m9,
+  children: () => a9,
+  addBack: () => q5,
+  add: () => F5,
+  _findBySelector: () => k9,
 })
 var y
 ;(function (Z) {
@@ -2779,7 +2778,7 @@ var y
     (Z.Sibling = 'sibling'),
     (Z.ColumnCombinator = 'column-combinator'))
 })(y || (y = {}))
-var E
+var u
 ;(function (Z) {
   ;((Z.Any = 'any'),
     (Z.Element = 'element'),
@@ -2789,18 +2788,18 @@ var E
     (Z.Hyphen = 'hyphen'),
     (Z.Not = 'not'),
     (Z.Start = 'start'))
-})(E || (E = {}))
+})(u || (u = {}))
 var b8 = /^[^\\#]?(?:\\(?:[\da-f]{1,6}\s?|.)|[\w\-\u00b0-\uFFFF])+/,
-  q5 = /\\([\da-f]{1,6}\s?|(\s)|.)/gi,
-  B5 = new Map([
-    [126, E.Element],
-    [94, E.Start],
-    [36, E.End],
-    [42, E.Any],
-    [33, E.Not],
-    [124, E.Hyphen],
+  B9 = /\\([\da-f]{1,6}\s?|(\s)|.)/gi,
+  w9 = new Map([
+    [126, u.Element],
+    [94, u.Start],
+    [36, u.End],
+    [42, u.Any],
+    [33, u.Not],
+    [124, u.Hyphen],
   ]),
-  j5 = new Set(['has', 'not', 'matches', 'is', 'where', 'host', 'host-context'])
+  j9 = new Set(['has', 'not', 'matches', 'is', 'where', 'host', 'host-context'])
 function G0(Z) {
   switch (Z.type) {
     case y.Adjacent:
@@ -2814,8 +2813,8 @@ function G0(Z) {
       return !1
   }
 }
-var L5 = new Set(['contains', 'icontains'])
-function R5(Z, Y, J) {
+var L9 = new Set(['contains', 'icontains'])
+function R9(Z, Y, J) {
   let K = parseInt(Y, 16) - 65536
   return K !== K || J
     ? Y
@@ -2824,7 +2823,7 @@ function R5(Z, Y, J) {
       : String.fromCharCode((K >> 10) | 55296, (K & 1023) | 56320)
 }
 function V1(Z) {
-  return Z.replace(q5, R5)
+  return Z.replace(B9, R9)
 }
 function a4(Z) {
   return Z === 39 || Z === 34
@@ -2832,7 +2831,7 @@ function a4(Z) {
 function f8(Z) {
   return Z === 32 || Z === 9 || Z === 10 || Z === 12 || Z === 13
 }
-function q0(Z) {
+function B0(Z) {
   let Y = [],
     J = y8(Y, `${Z}`, 0)
   if (J < Z.length) throw Error(`Unmatched selector: ${Z.slice(J)}`)
@@ -2841,10 +2840,10 @@ function q0(Z) {
 function y8(Z, Y, J) {
   let K = []
   function Q(b) {
-    let M = Y.slice(J + b).match(b8)
-    if (!M) throw Error(`Expected name, found ${Y.slice(J)}`)
-    let [N] = M
-    return ((J += b + N.length), V1(N))
+    let N = Y.slice(J + b).match(b8)
+    if (!N) throw Error(`Expected name, found ${Y.slice(J)}`)
+    let [g] = N
+    return ((J += b + g.length), V1(g))
   }
   function V(b) {
     J += b
@@ -2853,33 +2852,33 @@ function y8(Z, Y, J) {
   function z() {
     J += 1
     let b = J,
-      M = 1
-    for (; M > 0 && J < Y.length; J++)
-      if (Y.charCodeAt(J) === 40 && !F(J)) M++
-      else if (Y.charCodeAt(J) === 41 && !F(J)) M--
-    if (M) throw Error('Parenthesis not matched')
+      N = 1
+    for (; N > 0 && J < Y.length; J++)
+      if (Y.charCodeAt(J) === 40 && !F(J)) N++
+      else if (Y.charCodeAt(J) === 41 && !F(J)) N--
+    if (N) throw Error('Parenthesis not matched')
     return V1(Y.slice(b, J - 1))
   }
   function F(b) {
-    let M = 0
-    while (Y.charCodeAt(--b) === 92) M++
-    return (M & 1) === 1
+    let N = 0
+    while (Y.charCodeAt(--b) === 92) N++
+    return (N & 1) === 1
   }
-  function w() {
+  function q() {
     if (K.length > 0 && G0(K[K.length - 1])) throw Error('Did not expect successive traversals.')
   }
-  function B(b) {
+  function w(b) {
     if (K.length > 0 && K[K.length - 1].type === y.Descendant) {
       K[K.length - 1].type = b
       return
     }
-    ;(w(), K.push({ type: b }))
+    ;(q(), K.push({ type: b }))
   }
-  function L(b, M) {
+  function L(b, N) {
     K.push({
       type: y.Attribute,
       name: b,
-      action: M,
+      action: N,
       value: Q(1),
       namespace: null,
       ignoreCase: 'quirks',
@@ -2899,58 +2898,58 @@ function y8(Z, Y, J) {
       case 10:
       case 12:
       case 13: {
-        if (K.length === 0 || K[0].type !== y.Descendant) (w(), K.push({ type: y.Descendant }))
+        if (K.length === 0 || K[0].type !== y.Descendant) (q(), K.push({ type: y.Descendant }))
         V(1)
         break
       }
       case 62: {
-        ;(B(y.Child), V(1))
+        ;(w(y.Child), V(1))
         break
       }
       case 60: {
-        ;(B(y.Parent), V(1))
+        ;(w(y.Parent), V(1))
         break
       }
       case 126: {
-        ;(B(y.Sibling), V(1))
+        ;(w(y.Sibling), V(1))
         break
       }
       case 43: {
-        ;(B(y.Adjacent), V(1))
+        ;(w(y.Adjacent), V(1))
         break
       }
       case 46: {
-        L('class', E.Element)
+        L('class', u.Element)
         break
       }
       case 35: {
-        L('id', E.Equals)
+        L('id', u.Equals)
         break
       }
       case 91: {
         V(1)
-        let M,
-          N = null
-        if (Y.charCodeAt(J) === 124) M = Q(1)
-        else if (Y.startsWith('*|', J)) ((N = '*'), (M = Q(2)))
-        else if (((M = Q(0)), Y.charCodeAt(J) === 124 && Y.charCodeAt(J + 1) !== 61))
-          ((N = M), (M = Q(1)))
+        let N,
+          g = null
+        if (Y.charCodeAt(J) === 124) N = Q(1)
+        else if (Y.startsWith('*|', J)) ((g = '*'), (N = Q(2)))
+        else if (((N = Q(0)), Y.charCodeAt(J) === 124 && Y.charCodeAt(J + 1) !== 61))
+          ((g = N), (N = Q(1)))
         V(0)
-        let S = E.Exists,
-          Y0 = B5.get(Y.charCodeAt(J))
+        let S = u.Exists,
+          Y0 = w9.get(Y.charCodeAt(J))
         if (Y0) {
           if (((S = Y0), Y.charCodeAt(J + 1) !== 61)) throw Error('Expected `=`')
           V(2)
-        } else if (Y.charCodeAt(J) === 61) ((S = E.Equals), V(1))
+        } else if (Y.charCodeAt(J) === 61) ((S = u.Equals), V(1))
         let I0 = '',
           S0 = null
         if (S !== 'exists') {
           if (a4(Y.charCodeAt(J))) {
             let y1 = Y.charCodeAt(J),
-              M0 = J + 1
-            while (M0 < Y.length && (Y.charCodeAt(M0) !== y1 || F(M0))) M0 += 1
-            if (Y.charCodeAt(M0) !== y1) throw Error("Attribute value didn't end")
-            ;((I0 = V1(Y.slice(J + 1, M0))), (J = M0 + 1))
+              N0 = J + 1
+            while (N0 < Y.length && (Y.charCodeAt(N0) !== y1 || F(N0))) N0 += 1
+            if (Y.charCodeAt(N0) !== y1) throw Error("Attribute value didn't end")
+            ;((I0 = V1(Y.slice(J + 1, N0))), (J = N0 + 1))
           } else {
             let y1 = J
             while (J < Y.length && ((!f8(Y.charCodeAt(J)) && Y.charCodeAt(J) !== 93) || F(J)))
@@ -2964,7 +2963,7 @@ function y8(Z, Y, J) {
         }
         if (Y.charCodeAt(J) !== 93) throw Error("Attribute selector didn't terminate")
         J += 1
-        let t0 = { type: y.Attribute, name: M, action: S, value: I0, namespace: N, ignoreCase: S0 }
+        let t0 = { type: y.Attribute, name: N, action: S, value: I0, namespace: g, ignoreCase: S0 }
         K.push(t0)
         break
       }
@@ -2977,22 +2976,22 @@ function y8(Z, Y, J) {
           })
           continue
         }
-        let M = Q(1).toLowerCase(),
-          N = null
+        let N = Q(1).toLowerCase(),
+          g = null
         if (Y.charCodeAt(J) === 40)
-          if (j5.has(M)) {
-            if (a4(Y.charCodeAt(J + 1))) throw Error(`Pseudo-selector ${M} cannot be quoted`)
-            if (((N = []), (J = y8(N, Y, J + 1)), Y.charCodeAt(J) !== 41))
-              throw Error(`Missing closing parenthesis in :${M} (${Y})`)
+          if (j9.has(N)) {
+            if (a4(Y.charCodeAt(J + 1))) throw Error(`Pseudo-selector ${N} cannot be quoted`)
+            if (((g = []), (J = y8(g, Y, J + 1)), Y.charCodeAt(J) !== 41))
+              throw Error(`Missing closing parenthesis in :${N} (${Y})`)
             J += 1
           } else {
-            if (((N = z()), L5.has(M))) {
-              let S = N.charCodeAt(0)
-              if (S === N.charCodeAt(N.length - 1) && a4(S)) N = N.slice(1, -1)
+            if (((g = z()), L9.has(N))) {
+              let S = g.charCodeAt(0)
+              if (S === g.charCodeAt(g.length - 1) && a4(S)) g = g.slice(1, -1)
             }
-            N = V1(N)
+            g = V1(g)
           }
-        K.push({ type: y.Pseudo, name: M, data: N })
+        K.push({ type: y.Pseudo, name: N, data: g })
         break
       }
       case 44: {
@@ -3006,48 +3005,48 @@ function y8(Z, Y, J) {
           if (((J = S + 2), K.length === 0)) V(0)
           break
         }
-        let M = null,
-          N
-        if (b === 42) ((J += 1), (N = '*'))
+        let N = null,
+          g
+        if (b === 42) ((J += 1), (g = '*'))
         else if (b === 124) {
-          if (((N = ''), Y.charCodeAt(J + 1) === 124)) {
-            ;(B(y.ColumnCombinator), V(2))
+          if (((g = ''), Y.charCodeAt(J + 1) === 124)) {
+            ;(w(y.ColumnCombinator), V(2))
             break
           }
-        } else if (b8.test(Y.slice(J))) N = Q(0)
+        } else if (b8.test(Y.slice(J))) g = Q(0)
         else break Z
         if (Y.charCodeAt(J) === 124 && Y.charCodeAt(J + 1) !== 124)
-          if (((M = N), Y.charCodeAt(J + 1) === 42)) ((N = '*'), (J += 2))
-          else N = Q(1)
+          if (((N = g), Y.charCodeAt(J + 1) === 42)) ((g = '*'), (J += 2))
+          else g = Q(1)
         K.push(
-          N === '*' ? { type: y.Universal, namespace: M } : { type: y.Tag, name: N, namespace: M },
+          g === '*' ? { type: y.Universal, namespace: N } : { type: y.Tag, name: g, namespace: N },
         )
       }
     }
   }
   return (O(), J)
 }
-var VZ = N0(v0(), 1)
-var B0 = N0(v0(), 1)
-var M8 = new Map([
+var VZ = g0(v0(), 1)
+var w0 = g0(v0(), 1)
+var N8 = new Map([
   [y.Universal, 50],
   [y.Tag, 30],
   [y.Attribute, 1],
   [y.Pseudo, 0],
 ])
 function z1(Z) {
-  return !M8.has(Z.type)
+  return !N8.has(Z.type)
 }
-var P5 = new Map([
-  [E.Exists, 10],
-  [E.Equals, 8],
-  [E.Not, 7],
-  [E.Start, 6],
-  [E.End, 6],
-  [E.Any, 5],
+var P9 = new Map([
+  [u.Exists, 10],
+  [u.Equals, 8],
+  [u.Not, 7],
+  [u.Start, 6],
+  [u.End, 6],
+  [u.Any, 5],
 ])
 function n4(Z) {
-  let Y = Z.map(N8)
+  let Y = Z.map(g8)
   for (let J = 1; J < Z.length; J++) {
     let K = Y[J]
     if (K < 0) continue
@@ -3057,13 +3056,13 @@ function n4(Z) {
     }
   }
 }
-function N8(Z) {
+function g8(Z) {
   var Y, J
-  let K = (Y = M8.get(Z.type)) !== null && Y !== void 0 ? Y : -1
+  let K = (Y = N8.get(Z.type)) !== null && Y !== void 0 ? Y : -1
   if (Z.type === y.Attribute) {
     if (
-      ((K = (J = P5.get(Z.action)) !== null && J !== void 0 ? J : 4),
-      Z.action === E.Equals && Z.name === 'id')
+      ((K = (J = P9.get(Z.action)) !== null && J !== void 0 ? J : 4),
+      Z.action === u.Equals && Z.name === 'id')
     )
       K = 9
     if (Z.ignoreCase) K >>= 1
@@ -3071,16 +3070,16 @@ function N8(Z) {
     if (!Z.data) K = 3
     else if (Z.name === 'has' || Z.name === 'contains') K = 0
     else if (Array.isArray(Z.data)) {
-      if (((K = Math.min(...Z.data.map(Q => Math.min(...Q.map(N8))))), K < 0)) K = 0
+      if (((K = Math.min(...Z.data.map(Q => Math.min(...Q.map(g8))))), K < 0)) K = 0
     } else K = 2
   return K
 }
-var W1 = N0(v0(), 1),
-  v5 = /[-[\]{}()*+?.,\\^$|#\s]/g
+var W1 = g0(v0(), 1),
+  v9 = /[-[\]{}()*+?.,\\^$|#\s]/g
 function x8(Z) {
-  return Z.replace(v5, '\\$&')
+  return Z.replace(v9, '\\$&')
 }
-var O5 = new Set([
+var O9 = new Set([
   'accept',
   'accept-charset',
   'align',
@@ -3133,7 +3132,7 @@ function $0(Z, Y) {
     ? Z.ignoreCase
     : Z.ignoreCase === 'quirks'
       ? !!Y.quirksMode
-      : !Y.xmlMode && O5.has(Z.name)
+      : !Y.xmlMode && O9.has(Z.name)
 }
 var h8 = {
   equals(Z, Y, J) {
@@ -3158,19 +3157,19 @@ var h8 = {
     if ($0(Y, J))
       return (
         (V = V.toLowerCase()),
-        function (w) {
-          let B = K.getAttributeValue(w, Q)
+        function (q) {
+          let w = K.getAttributeValue(q, Q)
           return (
-            B != null &&
-            (B.length === z || B.charAt(z) === '-') &&
-            B.substr(0, z).toLowerCase() === V &&
-            Z(w)
+            w != null &&
+            (w.length === z || w.charAt(z) === '-') &&
+            w.substr(0, z).toLowerCase() === V &&
+            Z(q)
           )
         }
       )
-    return function (w) {
-      let B = K.getAttributeValue(w, Q)
-      return B != null && (B.length === z || B.charAt(z) === '-') && B.substr(0, z) === V && Z(w)
+    return function (q) {
+      let w = K.getAttributeValue(q, Q)
+      return w != null && (w.length === z || w.charAt(z) === '-') && w.substr(0, z) === V && Z(q)
     }
   },
   element(Z, Y, J) {
@@ -3178,9 +3177,9 @@ var h8 = {
       { name: Q, value: V } = Y
     if (/\s/.test(V)) return W1.default.falseFunc
     let z = new RegExp(`(?:^|\\s)${x8(V)}(?:$|\\s)`, $0(Y, J) ? 'i' : '')
-    return function (w) {
-      let B = K.getAttributeValue(w, Q)
-      return B != null && B.length >= V.length && z.test(B) && Z(w)
+    return function (q) {
+      let w = K.getAttributeValue(q, Q)
+      return w != null && w.length >= V.length && z.test(w) && Z(q)
     }
   },
   exists(Z, { name: Y }, { adapter: J }) {
@@ -3196,14 +3195,14 @@ var h8 = {
       return (
         (V = V.toLowerCase()),
         F => {
-          let w = K.getAttributeValue(F, Q)
-          return w != null && w.length >= z && w.substr(0, z).toLowerCase() === V && Z(F)
+          let q = K.getAttributeValue(F, Q)
+          return q != null && q.length >= z && q.substr(0, z).toLowerCase() === V && Z(F)
         }
       )
     return F => {
-      var w
+      var q
       return (
-        !!((w = K.getAttributeValue(F, Q)) === null || w === void 0 ? void 0 : w.startsWith(V)) &&
+        !!((q = K.getAttributeValue(F, Q)) === null || q === void 0 ? void 0 : q.startsWith(V)) &&
         Z(F)
       )
     }
@@ -3218,18 +3217,18 @@ var h8 = {
       return (
         (V = V.toLowerCase()),
         F => {
-          var w
+          var q
           return (
-            ((w = K.getAttributeValue(F, Q)) === null || w === void 0
+            ((q = K.getAttributeValue(F, Q)) === null || q === void 0
               ? void 0
-              : w.substr(z).toLowerCase()) === V && Z(F)
+              : q.substr(z).toLowerCase()) === V && Z(F)
           )
         }
       )
     return F => {
-      var w
+      var q
       return (
-        !!((w = K.getAttributeValue(F, Q)) === null || w === void 0 ? void 0 : w.endsWith(V)) &&
+        !!((q = K.getAttributeValue(F, Q)) === null || q === void 0 ? void 0 : q.endsWith(V)) &&
         Z(F)
       )
     }
@@ -3240,9 +3239,9 @@ var h8 = {
     if (V === '') return W1.default.falseFunc
     if ($0(Y, J)) {
       let z = new RegExp(x8(V), 'i')
-      return function (w) {
-        let B = K.getAttributeValue(w, Q)
-        return B != null && B.length >= V.length && z.test(B) && Z(w)
+      return function (q) {
+        let w = K.getAttributeValue(q, Q)
+        return w != null && w.length >= V.length && z.test(w) && Z(q)
       }
     }
     return z => {
@@ -3269,7 +3268,7 @@ var h8 = {
     return z => K.getAttributeValue(z, Q) !== V && Z(z)
   },
 }
-var b5 = new Set([9, 10, 12, 13, 32])
+var b9 = new Set([9, 10, 12, 13, 32])
 function C8(Z) {
   if (((Z = Z.trim().toLowerCase()), Z === 'even')) return [2, 0]
   else if (Z === 'odd') return [2, 1]
@@ -3289,17 +3288,17 @@ function C8(Z) {
     return 1
   }
   function z() {
-    let w = Y,
-      B = 0
+    let q = Y,
+      w = 0
     while (Y < Z.length && Z.charCodeAt(Y) >= 48 && Z.charCodeAt(Y) <= 57)
-      ((B = B * 10 + (Z.charCodeAt(Y) - 48)), Y++)
-    return Y === w ? null : B
+      ((w = w * 10 + (Z.charCodeAt(Y) - 48)), Y++)
+    return Y === q ? null : w
   }
   function F() {
-    while (Y < Z.length && b5.has(Z.charCodeAt(Y))) Y++
+    while (Y < Z.length && b9.has(Z.charCodeAt(Y))) Y++
   }
 }
-var o4 = N0(v0(), 1)
+var o4 = g0(v0(), 1)
 function D8(Z) {
   let Y = Z[0],
     J = Z[1] - 1
@@ -3314,7 +3313,7 @@ function D8(Z) {
 function l0(Z) {
   return D8(C8(Z))
 }
-var s = N0(v0(), 1)
+var s = g0(v0(), 1)
 function c1(Z, Y) {
   return J => {
     let K = Y.getParent(J)
@@ -3339,12 +3338,12 @@ var s0 = {
     if (Q === s.default.trueFunc) return c1(Z, J)
     return function (z) {
       let F = J.getSiblings(z),
-        w = 0
-      for (let B = 0; B < F.length; B++) {
-        if (K(z, F[B])) break
-        if (J.isTag(F[B])) w++
+        q = 0
+      for (let w = 0; w < F.length; w++) {
+        if (K(z, F[w])) break
+        if (J.isTag(F[w])) q++
       }
-      return Q(w) && Z(z)
+      return Q(q) && Z(z)
     }
   },
   'nth-last-child'(Z, Y, { adapter: J, equals: K }) {
@@ -3353,12 +3352,12 @@ var s0 = {
     if (Q === s.default.trueFunc) return c1(Z, J)
     return function (z) {
       let F = J.getSiblings(z),
-        w = 0
-      for (let B = F.length - 1; B >= 0; B--) {
-        if (K(z, F[B])) break
-        if (J.isTag(F[B])) w++
+        q = 0
+      for (let w = F.length - 1; w >= 0; w--) {
+        if (K(z, F[w])) break
+        if (J.isTag(F[w])) q++
       }
-      return Q(w) && Z(z)
+      return Q(q) && Z(z)
     }
   },
   'nth-of-type'(Z, Y, { adapter: J, equals: K }) {
@@ -3367,13 +3366,13 @@ var s0 = {
     if (Q === s.default.trueFunc) return c1(Z, J)
     return function (z) {
       let F = J.getSiblings(z),
-        w = 0
-      for (let B = 0; B < F.length; B++) {
-        let L = F[B]
+        q = 0
+      for (let w = 0; w < F.length; w++) {
+        let L = F[w]
         if (K(z, L)) break
-        if (J.isTag(L) && J.getName(L) === J.getName(z)) w++
+        if (J.isTag(L) && J.getName(L) === J.getName(z)) q++
       }
-      return Q(w) && Z(z)
+      return Q(q) && Z(z)
     }
   },
   'nth-last-of-type'(Z, Y, { adapter: J, equals: K }) {
@@ -3382,13 +3381,13 @@ var s0 = {
     if (Q === s.default.trueFunc) return c1(Z, J)
     return function (z) {
       let F = J.getSiblings(z),
-        w = 0
-      for (let B = F.length - 1; B >= 0; B--) {
-        let L = F[B]
+        q = 0
+      for (let w = F.length - 1; w >= 0; w--) {
+        let L = F[w]
         if (K(z, L)) break
-        if (J.isTag(L) && J.getName(L) === J.getName(z)) w++
+        if (J.isTag(L) && J.getName(L) === J.getName(z)) q++
       }
-      return Q(w) && Z(z)
+      return Q(q) && Z(z)
     }
   },
   root(Z, Y, { adapter: J }) {
@@ -3493,7 +3492,7 @@ var d1 = {
   input: ':is(input, textarea, select, button)',
   text: "input:is(:not([type!='']), [type=text])",
 }
-var e = N0(v0(), 1)
+var e = g0(v0(), 1)
 var JZ = {}
 function KZ(Z, Y) {
   if (Z === e.default.falseFunc) return e.default.falseFunc
@@ -3543,20 +3542,20 @@ var ZZ = (Z, Y, J, K, Q) => {
         z = YZ(J)
       z.relativeSelector = !0
       let F = Y.some(L => L.some(z1)) ? [JZ] : void 0,
-        w = Q(Y, z, F)
-      if (w === e.default.falseFunc) return e.default.falseFunc
-      let B = KZ(w, V)
-      if (F && w !== e.default.trueFunc) {
-        let { shouldTestNextSiblings: L = !1 } = w
+        q = Q(Y, z, F)
+      if (q === e.default.falseFunc) return e.default.falseFunc
+      let w = KZ(q, V)
+      if (F && q !== e.default.trueFunc) {
+        let { shouldTestNextSiblings: L = !1 } = q
         return O => {
           if (!Z(O)) return !1
           F[0] = O
           let b = V.getChildren(O),
-            M = L ? [...b, ...XZ(O, V)] : b
-          return V.existsOne(B, M)
+            N = L ? [...b, ...XZ(O, V)] : b
+          return V.existsOne(w, N)
         }
       }
-      return L => Z(L) && V.existsOne(B, V.getChildren(L))
+      return L => Z(L) && V.existsOne(w, V.getChildren(L))
     },
   }
 function G8(Z, Y, J, K, Q) {
@@ -3566,14 +3565,14 @@ function G8(Z, Y, J, K, Q) {
     if (!(z in r1)) throw Error(`Unknown pseudo-class :${z}(${F})`)
     return r1[z](Z, F, J, K, Q)
   }
-  let w = (V = J.pseudos) === null || V === void 0 ? void 0 : V[z],
-    B = typeof w === 'string' ? w : d1[z]
-  if (typeof B === 'string') {
+  let q = (V = J.pseudos) === null || V === void 0 ? void 0 : V[z],
+    w = typeof q === 'string' ? q : d1[z]
+  if (typeof w === 'string') {
     if (F != null) throw Error(`Pseudo ${z} doesn't have any arguments`)
-    let L = q0(B)
+    let L = B0(w)
     return r1.is(Z, L, J, K, Q)
   }
-  if (typeof w === 'function') return (e4(w, z, F, 1), L => w(L, F) && Z(L))
+  if (typeof q === 'function') return (e4(q, z, F, 1), L => q(L, F) && Z(L))
   if (z in s0) return s0[z](Z, F, J, K)
   if (z in H1) {
     let L = H1[z]
@@ -3606,20 +3605,20 @@ function $8(Z, Y, J, K, Q) {
         throw Error('Namespaced tag names are not yet supported by css-select')
       let { name: F } = Y
       if (!J.xmlMode || J.lowerCaseTags) F = F.toLowerCase()
-      return function (B) {
-        return V.getName(B) === F && Z(B)
+      return function (w) {
+        return V.getName(w) === F && Z(w)
       }
     }
     case y.Descendant: {
       if (J.cacheResults === !1 || typeof WeakSet > 'u')
-        return function (B) {
-          let L = B
+        return function (w) {
+          let L = w
           while ((L = QZ(L, V))) if (Z(L)) return !0
           return !1
         }
       let F = new WeakSet()
-      return function (B) {
-        let L = B
+      return function (w) {
+        let L = w
         while ((L = QZ(L, V)))
           if (!F.has(L)) {
             if (V.isTag(L) && Z(L)) return !0
@@ -3629,43 +3628,43 @@ function $8(Z, Y, J, K, Q) {
       }
     }
     case '_flexibleDescendant':
-      return function (w) {
-        let B = w
-        do if (Z(B)) return !0
-        while ((B = QZ(B, V)))
+      return function (q) {
+        let w = q
+        do if (Z(w)) return !0
+        while ((w = QZ(w, V)))
         return !1
       }
     case y.Parent:
-      return function (w) {
-        return V.getChildren(w).some(B => V.isTag(B) && Z(B))
+      return function (q) {
+        return V.getChildren(q).some(w => V.isTag(w) && Z(w))
       }
     case y.Child:
-      return function (w) {
-        let B = V.getParent(w)
-        return B != null && V.isTag(B) && Z(B)
+      return function (q) {
+        let w = V.getParent(q)
+        return w != null && V.isTag(w) && Z(w)
       }
     case y.Sibling:
-      return function (w) {
-        let B = V.getSiblings(w)
-        for (let L = 0; L < B.length; L++) {
-          let O = B[L]
-          if (z(w, O)) break
+      return function (q) {
+        let w = V.getSiblings(q)
+        for (let L = 0; L < w.length; L++) {
+          let O = w[L]
+          if (z(q, O)) break
           if (V.isTag(O) && Z(O)) return !0
         }
         return !1
       }
     case y.Adjacent: {
       if (V.prevElementSibling)
-        return function (w) {
-          let B = V.prevElementSibling(w)
-          return B != null && Z(B)
+        return function (q) {
+          let w = V.prevElementSibling(q)
+          return w != null && Z(w)
         }
-      return function (w) {
-        let B = V.getSiblings(w),
+      return function (q) {
+        let w = V.getSiblings(q),
           L
-        for (let O = 0; O < B.length; O++) {
-          let b = B[O]
-          if (z(w, b)) break
+        for (let O = 0; O < w.length; O++) {
+          let b = w[O]
+          if (z(q, b)) break
           if (V.isTag(b)) L = b
         }
         return !!L && Z(L)
@@ -3678,24 +3677,24 @@ function $8(Z, Y, J, K, Q) {
     }
   }
 }
-function u8(Z, Y, J) {
+function E8(Z, Y, J) {
   let K = l1(Z, Y, J)
   return KZ(K, Y.adapter)
 }
 function l1(Z, Y, J) {
-  let K = typeof Z === 'string' ? q0(Z) : Z
+  let K = typeof Z === 'string' ? B0(Z) : Z
   return s1(K, Y, J)
 }
-function E8(Z) {
+function u8(Z) {
   return (
     Z.type === y.Pseudo &&
-    (Z.name === 'scope' || (Array.isArray(Z.data) && Z.data.some(Y => Y.some(E8))))
+    (Z.name === 'scope' || (Array.isArray(Z.data) && Z.data.some(Y => Y.some(u8))))
   )
 }
-var f5 = { type: y.Descendant },
-  y5 = { type: '_flexibleDescendant' },
-  g5 = { type: y.Pseudo, name: 'scope', data: null }
-function M5(Z, { adapter: Y }, J) {
+var f9 = { type: y.Descendant },
+  y9 = { type: '_flexibleDescendant' },
+  M9 = { type: y.Pseudo, name: 'scope', data: null }
+function N9(Z, { adapter: Y }, J) {
   let K = !!(J === null || J === void 0
     ? void 0
     : J.every(Q => {
@@ -3704,9 +3703,9 @@ function M5(Z, { adapter: Y }, J) {
       }))
   for (let Q of Z) {
     if (Q.length > 0 && z1(Q[0]) && Q[0].type !== y.Descendant);
-    else if (K && !Q.some(E8)) Q.unshift(f5)
+    else if (K && !Q.some(u8)) Q.unshift(f9)
     else continue
-    Q.unshift(g5)
+    Q.unshift(M9)
   }
 }
 function s1(Z, Y, J) {
@@ -3714,40 +3713,40 @@ function s1(Z, Y, J) {
   ;(Z.forEach(n4), (J = (K = Y.context) !== null && K !== void 0 ? K : J))
   let Q = Array.isArray(J),
     V = J && (Array.isArray(J) ? J : [J])
-  if (Y.relativeSelector !== !1) M5(Z, Y, V)
-  else if (Z.some(w => w.length > 0 && z1(w[0])))
+  if (Y.relativeSelector !== !1) N9(Z, Y, V)
+  else if (Z.some(q => q.length > 0 && z1(q[0])))
     throw Error('Relative selectors are not allowed when the `relativeSelector` option is disabled')
   let z = !1,
-    F = Z.map(w => {
-      if (w.length >= 2) {
-        let [B, L] = w
-        if (B.type !== y.Pseudo || B.name !== 'scope');
-        else if (Q && L.type === y.Descendant) w[1] = y5
+    F = Z.map(q => {
+      if (q.length >= 2) {
+        let [w, L] = q
+        if (w.type !== y.Pseudo || w.name !== 'scope');
+        else if (Q && L.type === y.Descendant) q[1] = y9
         else if (L.type === y.Adjacent || L.type === y.Sibling) z = !0
       }
-      return N5(w, Y, V)
-    }).reduce(x5, B0.default.falseFunc)
+      return g9(q, Y, V)
+    }).reduce(x9, w0.default.falseFunc)
   return ((F.shouldTestNextSiblings = z), F)
 }
-function N5(Z, Y, J) {
+function g9(Z, Y, J) {
   var K
   return Z.reduce(
-    (Q, V) => (Q === B0.default.falseFunc ? B0.default.falseFunc : $8(Q, V, Y, J, s1)),
-    (K = Y.rootFunc) !== null && K !== void 0 ? K : B0.default.trueFunc,
+    (Q, V) => (Q === w0.default.falseFunc ? w0.default.falseFunc : $8(Q, V, Y, J, s1)),
+    (K = Y.rootFunc) !== null && K !== void 0 ? K : w0.default.trueFunc,
   )
 }
-function x5(Z, Y) {
-  if (Y === B0.default.falseFunc || Z === B0.default.trueFunc) return Z
-  if (Z === B0.default.falseFunc || Y === B0.default.trueFunc) return Y
+function x9(Z, Y) {
+  if (Y === w0.default.falseFunc || Z === w0.default.trueFunc) return Z
+  if (Z === w0.default.falseFunc || Y === w0.default.trueFunc) return Y
   return function (K) {
     return Z(K) || Y(K)
   }
 }
 var I8 = (Z, Y) => Z === Y,
-  h5 = { adapter: P0, equals: I8 }
+  h9 = { adapter: P0, equals: I8 }
 function S8(Z) {
   var Y, J, K, Q
-  let V = Z !== null && Z !== void 0 ? Z : h5
+  let V = Z !== null && Z !== void 0 ? Z : h9
   return (
     ((Y = V.adapter) !== null && Y !== void 0) || (V.adapter = P0),
     ((J = V.equals) !== null && J !== void 0) ||
@@ -3764,8 +3763,8 @@ function zZ(Z) {
     return Z(J, V, Q)
   }
 }
-var y2 = zZ(u8),
-  g2 = zZ(l1),
+var yX = zZ(E8),
+  MX = zZ(l1),
   p1 = zZ(s1)
 function k8(Z) {
   return function (J, K, Q) {
@@ -3776,10 +3775,10 @@ function k8(Z) {
   }
 }
 function a1(Z, Y, J = !1) {
-  if (J) Z = C5(Z, Y)
+  if (J) Z = C9(Z, Y)
   return Array.isArray(Z) ? Y.removeSubsets(Z) : Y.getChildren(Z)
 }
-function C5(Z, Y) {
+function C9(Z, Y) {
   let J = Array.isArray(Z) ? Z.slice(0) : [Z],
     K = J.length
   for (let Q = 0; Q < K; Q++) {
@@ -3788,17 +3787,17 @@ function C5(Z, Y) {
   }
   return J
 }
-var M2 = k8((Z, Y, J) =>
+var NX = k8((Z, Y, J) =>
     Z === VZ.default.falseFunc || !Y || Y.length === 0 ? [] : J.adapter.findAll(Z, Y),
   ),
-  N2 = k8((Z, Y, J) =>
+  gX = k8((Z, Y, J) =>
     Z === VZ.default.falseFunc || !Y || Y.length === 0 ? null : J.adapter.findOne(Z, Y),
   )
-var o1 = N0(v0(), 1)
-var D5 = new Set(['first', 'last', 'eq', 'gt', 'nth', 'lt', 'even', 'odd'])
+var o1 = g0(v0(), 1)
+var D9 = new Set(['first', 'last', 'eq', 'gt', 'nth', 'lt', 'even', 'odd'])
 function p0(Z) {
   if (Z.type !== 'pseudo') return !1
-  if (D5.has(Z.name)) return !0
+  if (D9.has(Z.name)) return !0
   if (Z.name === 'not' && Array.isArray(Z.data)) return Z.data.some(Y => Y.some(p0))
   return !1
 }
@@ -3835,17 +3834,17 @@ function n1(Z) {
     else J.push(K)
   return [J, Y]
 }
-var G5 = { type: y.Universal, namespace: null },
-  $5 = { type: y.Pseudo, name: 'scope', data: null }
+var G9 = { type: y.Universal, namespace: null },
+  $9 = { type: y.Pseudo, name: 'scope', data: null }
 function UZ(Z, Y, J = {}) {
   return FZ([Z], Y, J)
 }
 function FZ(Z, Y, J = {}) {
   if (typeof Y === 'function') return Z.some(Y)
-  let [K, Q] = n1(q0(Y))
+  let [K, Q] = n1(B0(Y))
   return (K.length > 0 && Z.some(p1(K, J))) || Q.some(V => m8(V, Z, J).length > 0)
 }
-function u5(Z, Y, J, K) {
+function E9(Z, Y, J, K) {
   let Q = typeof J === 'string' ? parseInt(J, 10) : NaN
   switch (Z) {
     case 'first':
@@ -3868,8 +3867,8 @@ function u5(Z, Y, J, K) {
     }
   }
 }
-function wZ(Z, Y, J = {}) {
-  return T8(q0(Z), Y, J)
+function qZ(Z, Y, J = {}) {
+  return T8(B0(Z), Y, J)
 }
 function T8(Z, Y, J) {
   if (Y.length === 0) return []
@@ -3887,12 +3886,12 @@ function T8(Z, Y, J) {
   ) {
     let F = Q[z]
     if ((V ? Y.filter(L => f(L) && !V.has(L)) : Y).length === 0) break
-    let B = m8(F, Y, J)
-    if (B.length)
+    let w = m8(F, Y, J)
+    if (w.length)
       if (!V) {
-        if (z === Q.length - 1) return B
-        V = new Set(B)
-      } else B.forEach(L => V.add(L))
+        if (z === Q.length - 1) return w
+        V = new Set(w)
+      } else w.forEach(L => V.add(L))
   }
   return typeof V < 'u' ? (V.size === Y.length ? Y : Y.filter(z => V.has(z))) : []
 }
@@ -3901,48 +3900,48 @@ function m8(Z, Y, J) {
   if (Z.some(G0)) {
     let Q = (K = J.root) !== null && K !== void 0 ? K : A8(Y[0]),
       V = { ...J, context: Y, relativeSelector: !1 }
-    return (Z.push($5), t1(Q, Z, V, !0, Y.length))
+    return (Z.push($9), t1(Q, Z, V, !0, Y.length))
   }
   return t1(Y, Z, J, !1, Y.length)
 }
 function i8(Z, Y, J = {}, K = 1 / 0) {
   if (typeof Z === 'function') return c8(Y, Z)
-  let [Q, V] = n1(q0(Z)),
+  let [Q, V] = n1(B0(Z)),
     z = V.map(F => t1(Y, F, J, !0, K))
   if (Q.length) z.push(WZ(Y, Q, J, K))
   if (z.length === 0) return []
   if (z.length === 1) return z[0]
-  return L0(z.reduce((F, w) => [...F, ...w]))
+  return L0(z.reduce((F, q) => [...F, ...q]))
 }
 function t1(Z, Y, J, K, Q) {
   let V = Y.findIndex(p0),
     z = Y.slice(0, V),
     F = Y[V],
-    w = Y.length - 1 === V ? Q : 1 / 0,
-    B = _8(F.name, F.data, w)
-  if (B === 0) return []
+    q = Y.length - 1 === V ? Q : 1 / 0,
+    w = _8(F.name, F.data, q)
+  if (w === 0) return []
   let O = (
       z.length === 0 && !Array.isArray(Z)
         ? i0(Z).filter(f)
         : z.length === 0
           ? (Array.isArray(Z) ? Z : [Z]).filter(f)
           : K || z.some(G0)
-            ? WZ(Z, [z], J, B)
+            ? WZ(Z, [z], J, w)
             : HZ(Z, [z], J)
-    ).slice(0, B),
-    b = u5(F.name, O, F.data, J)
+    ).slice(0, w),
+    b = E9(F.name, O, F.data, J)
   if (b.length === 0 || Y.length === V + 1) return b
-  let M = Y.slice(V + 1),
-    N = M.some(G0)
-  if (N) {
-    if (G0(M[0])) {
-      let { type: S } = M[0]
+  let N = Y.slice(V + 1),
+    g = N.some(G0)
+  if (g) {
+    if (G0(N[0])) {
+      let { type: S } = N[0]
       if (S === y.Sibling || S === y.Adjacent) b = a1(b, P0, !0)
-      M.unshift(G5)
+      N.unshift(G9)
     }
     J = { ...J, relativeSelector: !1, rootFunc: S => b.includes(S) }
   } else if (J.rootFunc && J.rootFunc !== o1.trueFunc) J = { ...J, rootFunc: o1.trueFunc }
-  return M.some(p0) ? t1(b, M, J, !1, Q) : N ? WZ(b, [M], J, Q) : HZ(b, [M], J)
+  return N.some(p0) ? t1(b, N, J, !1, Q) : g ? WZ(b, [N], J, Q) : HZ(b, [N], J)
 }
 function WZ(Z, Y, J, K) {
   let Q = p1(Y, J, Z)
@@ -3950,7 +3949,7 @@ function WZ(Z, Y, J, K) {
 }
 function c8(Z, Y, J = 1 / 0) {
   let K = a1(Z, P0, Y.shouldTestNextSiblings)
-  return u1(Q => f(Q) && Y(Q), K, !0, J)
+  return E1(Q => f(Q) && Y(Q), K, !0, J)
 }
 function HZ(Z, Y, J) {
   let K = (Array.isArray(Z) ? Z : [Z]).filter(f)
@@ -3958,8 +3957,8 @@ function HZ(Z, Y, J) {
   let Q = p1(Y, J)
   return Q === o1.trueFunc ? K : K.filter(Q)
 }
-var I5 = /^\s*(?:[+~]|:scope\b)/
-function S5(Z) {
+var I9 = /^\s*(?:[+~]|:scope\b)/
+function S9(Z) {
   if (!Z) return this._make([])
   if (typeof Z !== 'string') {
     let Y = t(Z) ? Z.toArray() : [Z],
@@ -3968,10 +3967,10 @@ function S5(Z) {
   }
   return this._findBySelector(Z, Number.POSITIVE_INFINITY)
 }
-function k5(Z, Y) {
+function k9(Z, Y) {
   var J
   let K = this.toArray(),
-    Q = I5.test(Z) ? K : this.children().toArray(),
+    Q = I9.test(Z) ? K : this.children().toArray(),
     V = {
       context: K,
       root: (J = this._root) === null || J === void 0 ? void 0 : J[0],
@@ -3983,7 +3982,7 @@ function k5(Z, Y) {
     }
   return this._make(i8(Z, Q, V, Y))
 }
-function qZ(Z) {
+function BZ(Z) {
   return function (Y, ...J) {
     return function (K) {
       var Q
@@ -3999,7 +3998,7 @@ function qZ(Z) {
     }
   }
 }
-var U1 = qZ((Z, Y) => {
+var U1 = BZ((Z, Y) => {
     let J = []
     for (let K = 0; K < Y.length; K++) {
       let Q = Z(Y[K])
@@ -4007,7 +4006,7 @@ var U1 = qZ((Z, Y) => {
     }
     return J
   }),
-  BZ = qZ((Z, Y) => {
+  wZ = BZ((Z, Y) => {
     let J = []
     for (let K = 0; K < Y.length; K++) {
       let Q = Z(Y[K])
@@ -4017,13 +4016,13 @@ var U1 = qZ((Z, Y) => {
   })
 function jZ(Z, ...Y) {
   let J = null,
-    K = qZ((Q, V) => {
+    K = BZ((Q, V) => {
       let z = []
       return (
         G(V, F => {
-          for (let w; (w = Q(F)); F = w) {
-            if (J === null || J === void 0 ? void 0 : J(w, z.length)) break
-            z.push(w)
+          for (let q; (q = Q(F)); F = q) {
+            if (J === null || J === void 0 ? void 0 : J(q, z.length)) break
+            z.push(q)
           }
         }),
         z
@@ -4038,8 +4037,8 @@ function jZ(Z, ...Y) {
 function a0(Z) {
   return Z.length > 1 ? Array.from(new Set(Z)) : Z
 }
-var _5 = BZ(({ parent: Z }) => (Z && !n(Z) ? Z : null), a0),
-  A5 = U1(
+var _9 = wZ(({ parent: Z }) => (Z && !n(Z) ? Z : null), a0),
+  A9 = U1(
     Z => {
       let Y = []
       while (Z.parent && !n(Z.parent)) (Y.push(Z.parent), (Z = Z.parent))
@@ -4048,12 +4047,12 @@ var _5 = BZ(({ parent: Z }) => (Z && !n(Z) ? Z : null), a0),
     L0,
     Z => Z.reverse(),
   ),
-  T5 = jZ(
+  T9 = jZ(
     ({ parent: Z }) => (Z && !n(Z) ? Z : null),
     L0,
     Z => Z.reverse(),
   )
-function m5(Z) {
+function m9(Z) {
   var Y
   let J = []
   if (!Z) return this._make(J)
@@ -4076,33 +4075,33 @@ function m5(Z) {
     this._make(J)
   )
 }
-var i5 = BZ(Z => G1(Z)),
-  c5 = U1(Z => {
+var i9 = wZ(Z => G1(Z)),
+  c9 = U1(Z => {
     let Y = []
     while (Z.next) if (((Z = Z.next), f(Z))) Y.push(Z)
     return Y
   }, a0),
-  d5 = jZ(Z => G1(Z), a0),
-  r5 = BZ(Z => $1(Z)),
-  l5 = U1(Z => {
+  d9 = jZ(Z => G1(Z), a0),
+  r9 = wZ(Z => $1(Z)),
+  l9 = U1(Z => {
     let Y = []
     while (Z.prev) if (((Z = Z.prev), f(Z))) Y.push(Z)
     return Y
   }, a0),
-  s5 = jZ(Z => $1(Z), a0),
-  p5 = U1(Z => E4(Z).filter(Y => f(Y) && Y !== Z), L0),
-  a5 = U1(Z => i0(Z).filter(f), a0)
-function n5() {
+  s9 = jZ(Z => $1(Z), a0),
+  p9 = U1(Z => u4(Z).filter(Y => f(Y) && Y !== Z), L0),
+  a9 = U1(Z => i0(Z).filter(f), a0)
+function n9() {
   let Z = this.toArray().reduce((Y, J) => (C(J) ? Y.concat(J.children) : Y), [])
   return this._make(Z)
 }
-function o5(Z) {
+function o9(Z) {
   let Y = 0,
     J = this.length
   while (Y < J && Z.call(this[Y], Y, this[Y]) !== !1) ++Y
   return this
 }
-function t5(Z) {
+function t9(Z) {
   let Y = []
   for (let J = 0; J < this.length; J++) {
     let K = this[J],
@@ -4118,7 +4117,7 @@ function F1(Z) {
     return Z === Y
   }
 }
-function e5(Z) {
+function e9(Z) {
   var Y
   return this._make(
     LZ(
@@ -4130,16 +4129,16 @@ function e5(Z) {
   )
 }
 function LZ(Z, Y, J, K) {
-  return typeof Y === 'string' ? wZ(Y, Z, { xmlMode: J, root: K }) : Z.filter(F1(Y))
+  return typeof Y === 'string' ? qZ(Y, Z, { xmlMode: J, root: K }) : Z.filter(F1(Y))
 }
-function Z9(Z) {
+function Z5(Z) {
   let Y = this.toArray()
   return typeof Z === 'string' ? FZ(Y.filter(f), Z, this.options) : Z ? Y.some(F1(Z)) : !1
 }
-function Y9(Z) {
+function Y5(Z) {
   let Y = this.toArray()
   if (typeof Z === 'string') {
-    let J = new Set(wZ(Z, Y, this.options))
+    let J = new Set(qZ(Z, Y, this.options))
     Y = Y.filter(K => !J.has(K))
   } else {
     let J = F1(Z)
@@ -4147,74 +4146,74 @@ function Y9(Z) {
   }
   return this._make(Y)
 }
-function J9(Z) {
+function J5(Z) {
   return this.filter(
     typeof Z === 'string' ? `:has(${Z})` : (Y, J) => this._make(J).find(Z).length > 0,
   )
 }
-function K9() {
+function K5() {
   return this.length > 1 ? this._make(this[0]) : this
 }
-function X9() {
+function X5() {
   return this.length > 0 ? this._make(this[this.length - 1]) : this
 }
-function Q9(Z) {
+function Q5(Z) {
   var Y
   if (((Z = +Z), Z === 0 && this.length <= 1)) return this
   if (Z < 0) Z = this.length + Z
   return this._make((Y = this[Z]) !== null && Y !== void 0 ? Y : [])
 }
-function V9(Z) {
+function V5(Z) {
   if (Z == null) return this.toArray()
   return this[Z < 0 ? this.length + Z : Z]
 }
-function z9() {
+function z5() {
   return Array.prototype.slice.call(this)
 }
-function W9(Z) {
+function W5(Z) {
   let Y, J
   if (Z == null) ((Y = this.parent().children()), (J = this[0]))
   else if (typeof Z === 'string') ((Y = this._make(Z)), (J = this[0]))
   else ((Y = this), (J = t(Z) ? Z[0] : Z))
   return Array.prototype.indexOf.call(Y, J)
 }
-function H9(Z, Y) {
+function H5(Z, Y) {
   return this._make(Array.prototype.slice.call(this, Z, Y))
 }
-function U9() {
+function U5() {
   var Z
   return (Z = this.prevObject) !== null && Z !== void 0 ? Z : this._make([])
 }
-function F9(Z, Y) {
+function F5(Z, Y) {
   let J = this._make(Z, Y),
     K = L0([...this.get(), ...J.get()])
   return this._make(K)
 }
-function w9(Z) {
+function q5(Z) {
   return this.prevObject ? this.add(Z ? this.prevObject.filter(Z) : this.prevObject) : this
 }
 var PZ = {}
 V0(PZ, {
-  wrapInner: () => v9,
-  wrapAll: () => b9,
-  wrap: () => P9,
-  unwrap: () => O9,
-  toString: () => D9,
-  text: () => G9,
-  replaceWith: () => x9,
-  remove: () => N9,
-  prependTo: () => j9,
-  prepend: () => R9,
-  insertBefore: () => M9,
-  insertAfter: () => y9,
-  html: () => C9,
-  empty: () => h9,
-  clone: () => $9,
-  before: () => g9,
-  appendTo: () => B9,
-  append: () => L9,
-  after: () => f9,
-  _makeDomArray: () => q9,
+  wrapInner: () => v5,
+  wrapAll: () => b5,
+  wrap: () => P5,
+  unwrap: () => O5,
+  toString: () => D5,
+  text: () => G5,
+  replaceWith: () => x5,
+  remove: () => g5,
+  prependTo: () => j5,
+  prepend: () => R5,
+  insertBefore: () => N5,
+  insertAfter: () => y5,
+  html: () => C5,
+  empty: () => h5,
+  clone: () => $5,
+  before: () => M5,
+  appendTo: () => w5,
+  append: () => L5,
+  after: () => f5,
+  _makeDomArray: () => B5,
 })
 function d8(Z) {
   return function (J, K, Q, V) {
@@ -4239,7 +4238,7 @@ function O0(Z, Y) {
   }
   return Y
 }
-function q9(Z, Y) {
+function B5(Z, Y) {
   if (Z == null) return []
   if (typeof Z === 'string') return this._parse(Z, this.options, !1, null).children.slice(0)
   if ('length' in Z) {
@@ -4274,35 +4273,35 @@ function r8(Z) {
 function b0(Z, Y, J, K, Q) {
   var V, z
   let F = [Y, J, ...K],
-    w = Y === 0 ? null : Z[Y - 1],
-    B = Y + J >= Z.length ? null : Z[Y + J]
+    q = Y === 0 ? null : Z[Y - 1],
+    w = Y + J >= Z.length ? null : Z[Y + J]
   for (let L = 0; L < K.length; ++L) {
     let O = K[L],
       b = O.parent
     if (b) {
-      let N = b.children.indexOf(O)
-      if (N !== -1) {
-        if ((b.children.splice(N, 1), Q === b && Y > N)) F[0]--
+      let g = b.children.indexOf(O)
+      if (g !== -1) {
+        if ((b.children.splice(g, 1), Q === b && Y > g)) F[0]--
       }
     }
     if (((O.parent = Q), O.prev)) O.prev.next = (V = O.next) !== null && V !== void 0 ? V : null
     if (O.next) O.next.prev = (z = O.prev) !== null && z !== void 0 ? z : null
-    ;((O.prev = L === 0 ? w : K[L - 1]), (O.next = L === K.length - 1 ? B : K[L + 1]))
+    ;((O.prev = L === 0 ? q : K[L - 1]), (O.next = L === K.length - 1 ? w : K[L + 1]))
   }
-  if (w) w.next = K[0]
-  if (B) B.prev = K[K.length - 1]
+  if (q) q.next = K[0]
+  if (w) w.prev = K[K.length - 1]
   return Z.splice(...F)
 }
-function B9(Z) {
+function w5(Z) {
   return ((t(Z) ? Z : this._make(Z)).append(this), this)
 }
-function j9(Z) {
+function j5(Z) {
   return ((t(Z) ? Z : this._make(Z)).prepend(this), this)
 }
-var L9 = r8((Z, Y, J) => {
+var L5 = r8((Z, Y, J) => {
     b0(Y, Y.length, 0, Z, J)
   }),
-  R9 = r8((Z, Y, J) => {
+  R5 = r8((Z, Y, J) => {
     b0(Y, 0, 0, Z, J)
   })
 function l8(Z) {
@@ -4319,30 +4318,30 @@ function l8(Z) {
               : Y,
         [F] = this._makeDomArray(z, Q < J)
       if (!F || !C(F)) continue
-      let w = F,
-        B = 0
-      while (B < w.children.length) {
-        let L = w.children[B]
-        if (f(L)) ((w = L), (B = 0))
-        else B++
+      let q = F,
+        w = 0
+      while (w < q.children.length) {
+        let L = q.children[w]
+        if (f(L)) ((q = L), (w = 0))
+        else w++
       }
-      Z(V, w, [F])
+      Z(V, q, [F])
     }
     return this
   }
 }
-var P9 = l8((Z, Y, J) => {
+var P5 = l8((Z, Y, J) => {
     let { parent: K } = Z
     if (!K) return
     let Q = K.children,
       V = Q.indexOf(Z)
     ;(O0([Z], Y), b0(Q, V, 0, J, K))
   }),
-  v9 = l8((Z, Y, J) => {
+  v5 = l8((Z, Y, J) => {
     if (!C(Z)) return
     ;(O0(Z.children, Y), O0(J, Z))
   })
-function O9(Z) {
+function O5(Z) {
   return (
     this.parent(Z)
       .not('body')
@@ -4352,7 +4351,7 @@ function O9(Z) {
     this
   )
 }
-function b9(Z) {
+function b5(Z) {
   let Y = this[0]
   if (Y) {
     let J = this._make(typeof Z === 'function' ? Z.call(Y, 0, Y) : Z).insertBefore(Y),
@@ -4368,7 +4367,7 @@ function b9(Z) {
   }
   return this
 }
-function f9(...Z) {
+function f5(...Z) {
   let Y = this.length - 1
   return G(this, (J, K) => {
     if (!C(J) || !J.parent) return
@@ -4380,7 +4379,7 @@ function f9(...Z) {
     b0(Q, V + 1, 0, F, J.parent)
   })
 }
-function y9(Z) {
+function y5(Z) {
   if (typeof Z === 'string') Z = this._make(Z)
   this.remove()
   let Y = []
@@ -4395,7 +4394,7 @@ function y9(Z) {
   }
   return this._make(Y)
 }
-function g9(...Z) {
+function M5(...Z) {
   let Y = this.length - 1
   return G(this, (J, K) => {
     if (!C(J) || !J.parent) return
@@ -4407,7 +4406,7 @@ function g9(...Z) {
     b0(Q, V, 0, F, J.parent)
   })
 }
-function M9(Z) {
+function N5(Z) {
   let Y = this._make(Z)
   this.remove()
   let J = []
@@ -4424,7 +4423,7 @@ function M9(Z) {
     this._make(J)
   )
 }
-function N9(Z) {
+function g5(Z) {
   let Y = Z ? this.filter(Z) : this
   return (
     G(Y, J => {
@@ -4433,7 +4432,7 @@ function N9(Z) {
     this
   )
 }
-function x9(Z) {
+function x5(Z) {
   return G(this, (Y, J) => {
     let { parent: K } = Y
     if (!K) return
@@ -4445,14 +4444,14 @@ function x9(Z) {
     if ((b0(Q, F, 1, z, K), !z.includes(Y))) Y.parent = Y.prev = Y.next = null
   })
 }
-function h9() {
+function h5() {
   return G(this, Z => {
     if (!C(Z)) return
     for (let Y of Z.children) Y.next = Y.prev = Y.parent = null
     Z.children.length = 0
   })
 }
-function C9(Z) {
+function C5(Z) {
   if (Z === void 0) {
     let Y = this[0]
     if (!Y || !C(Y)) return null
@@ -4465,10 +4464,10 @@ function C9(Z) {
     O0(J, Y)
   })
 }
-function D9() {
+function D5() {
   return this._render(this)
 }
-function G9(Z) {
+function G5(Z) {
   if (Z === void 0) return C0(this)
   if (typeof Z === 'function') return G(this, (Y, J) => this._make(Y).text(Z.call(Y, J, C0([Y]))))
   return G(this, Y => {
@@ -4478,15 +4477,15 @@ function G9(Z) {
     O0(J, Y)
   })
 }
-function $9() {
+function $5() {
   let Z = Array.prototype.map.call(this.get(), J => m0(J, !0)),
     Y = new a(Z)
   for (let J of Z) J.parent = Y
   return this._make(Z)
 }
 var vZ = {}
-V0(vZ, { css: () => u9 })
-function u9(Z, Y) {
+V0(vZ, { css: () => E5 })
+function E5(Z, Y) {
   if ((Z != null && Y != null) || (typeof Z === 'object' && !Array.isArray(Z)))
     return G(this, (J, K) => {
       if (f(J)) s8(J, Z, Y, K)
@@ -4500,7 +4499,7 @@ function s8(Z, Y, J, K) {
       V = typeof J === 'function' ? J.call(Z, K, Q[Y]) : J
     if (V === '') delete Q[Y]
     else if (V != null) Q[Y] = V
-    Z.attribs.style = E9(Q)
+    Z.attribs.style = u5(Q)
   } else if (typeof Y === 'object') {
     let Q = Object.keys(Y)
     for (let V = 0; V < Q.length; V++) {
@@ -4511,7 +4510,7 @@ function s8(Z, Y, J, K) {
 }
 function p8(Z, Y) {
   if (!Z || !f(Z)) return
-  let J = I9(Z.attribs.style)
+  let J = I5(Z.attribs.style)
   if (typeof Y === 'string') return J[Y]
   if (Array.isArray(Y)) {
     let K = {}
@@ -4520,10 +4519,10 @@ function p8(Z, Y) {
   }
   return J
 }
-function E9(Z) {
+function u5(Z) {
   return Object.keys(Z).reduce((Y, J) => `${Y}${Y ? ' ' : ''}${J}: ${Z[J]};`, '')
 }
-function I9(Z) {
+function I5(Z) {
   if (((Z = (Z || '').trim()), !Z)) return {}
   let Y = {},
     J
@@ -4537,17 +4536,17 @@ function I9(Z) {
   return Y
 }
 var OZ = {}
-V0(OZ, { serializeArray: () => _9, serialize: () => k9 })
+V0(OZ, { serializeArray: () => _5, serialize: () => k5 })
 var a8 = 'input,select,textarea,keygen',
-  S9 = /%20/g,
+  S5 = /%20/g,
   n8 = /\r?\n/g
-function k9() {
+function k5() {
   return this.serializeArray()
     .map(J => `${encodeURIComponent(J.name)}=${encodeURIComponent(J.value)}`)
     .join('&')
-    .replace(S9, '+')
+    .replace(S5, '+')
 }
-function _9() {
+function _5() {
   return this.map((Z, Y) => {
     let J = this._make(Y)
     if (f(Y) && Y.name === 'form') return J.find(a8).toArray()
@@ -4582,36 +4581,36 @@ function _9() {
     .toArray()
 }
 var bZ = {}
-V0(bZ, { extract: () => T9 })
-function A9(Z) {
+V0(bZ, { extract: () => T5 })
+function A5(Z) {
   var Y
   if (typeof Z === 'string') return { selector: Z, value: 'textContent' }
   return { selector: Z.selector, value: (Y = Z.value) !== null && Y !== void 0 ? Y : 'textContent' }
 }
-function T9(Z) {
+function T5(Z) {
   let Y = {}
   for (let J in Z) {
     let K = Z[J],
       Q = Array.isArray(K),
-      { selector: V, value: z } = A9(Q ? K[0] : K),
+      { selector: V, value: z } = A5(Q ? K[0] : K),
       F =
         typeof z === 'function'
           ? z
           : typeof z === 'string'
-            ? w => this._make(w).prop(z)
-            : w => this._make(w).extract(z)
+            ? q => this._make(q).prop(z)
+            : q => this._make(q).extract(z)
     if (Q)
       Y[J] = this._findBySelector(V, Number.POSITIVE_INFINITY)
-        .map((w, B) => F(B, J, Y))
+        .map((q, w) => F(w, J, Y))
         .get()
     else {
-      let w = this._findBySelector(V, 1)
-      Y[J] = w.length > 0 ? F(w[0], J, Y) : void 0
+      let q = this._findBySelector(V, 1)
+      Y[J] = q.length > 0 ? F(q[0], J, Y) : void 0
     }
   }
   return Y
 }
-class u0 {
+class E0 {
   constructor(Z, Y, J) {
     if (((this.length = 0), (this.options = J), (this._root = Y), Z)) {
       for (let K = 0; K < Z.length; K++) this[K] = Z[K]
@@ -4619,73 +4618,73 @@ class u0 {
     }
   }
 }
-u0.prototype.cheerio = '[cheerio object]'
-u0.prototype.splice = Array.prototype.splice
-u0.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator]
-Object.assign(u0.prototype, p4, RZ, PZ, vZ, OZ, bZ)
+E0.prototype.cheerio = '[cheerio object]'
+E0.prototype.splice = Array.prototype.splice
+E0.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator]
+Object.assign(E0.prototype, p4, RZ, PZ, vZ, OZ, bZ)
 function o8(Z, Y) {
   return function J(K, Q, V = !0) {
     if (K == null) throw Error('cheerio.load() expects a string')
     let z = Y1(Q),
       F = Z(K, z, V, null)
-    class w extends u0 {
+    class q extends E0 {
       _make(L, O) {
-        let b = B(L, O)
+        let b = w(L, O)
         return ((b.prevObject = this), b)
       }
-      _parse(L, O, b, M) {
-        return Z(L, O, b, M)
+      _parse(L, O, b, N) {
+        return Z(L, O, b, N)
       }
       _render(L) {
         return Y(L, this.options)
       }
     }
-    function B(L, O, b = F, M) {
+    function w(L, O, b = F, N) {
       if (L && t(L)) return L
-      let N = Y1(M, z),
-        S = typeof b === 'string' ? [Z(b, N, !1, null)] : 'length' in b ? b : [b],
-        Y0 = t(S) ? S : new w(S, null, N)
-      if (((Y0._root = Y0), !L)) return new w(void 0, Y0, N)
+      let g = Y1(N, z),
+        S = typeof b === 'string' ? [Z(b, g, !1, null)] : 'length' in b ? b : [b],
+        Y0 = t(S) ? S : new q(S, null, g)
+      if (((Y0._root = Y0), !L)) return new q(void 0, Y0, g)
       let I0 =
           typeof L === 'string' && J1(L)
-            ? Z(L, N, !1, null).children
-            : m9(L)
+            ? Z(L, g, !1, null).children
+            : m5(L)
               ? [L]
               : Array.isArray(L)
                 ? L
                 : void 0,
-        S0 = new w(I0, Y0, N)
+        S0 = new q(I0, Y0, g)
       if (I0) return S0
       if (typeof L !== 'string') throw TypeError('Unexpected type of selector')
       let t0 = L,
         e0 = O
           ? typeof O === 'string'
             ? J1(O)
-              ? new w([Z(O, N, !1, null)], Y0, N)
+              ? new q([Z(O, g, !1, null)], Y0, g)
               : ((t0 = `${O} ${t0}`), Y0)
             : t(O)
               ? O
-              : new w(Array.isArray(O) ? O : [O], Y0, N)
+              : new q(Array.isArray(O) ? O : [O], Y0, g)
           : Y0
       if (!e0) return S0
       return e0.find(t0)
     }
     return (
-      Object.assign(B, S4, {
+      Object.assign(w, S4, {
         load: J,
         _root: F,
         _options: z,
-        fn: w.prototype,
-        prototype: w.prototype,
+        fn: q.prototype,
+        prototype: q.prototype,
       }),
-      B
+      w
     )
   }
 }
-function m9(Z) {
+function m5(Z) {
   return !!Z.name || Z.type === p.Root || Z.type === p.Text || Z.type === p.Comment
 }
-var i9 = new Set([
+var i5 = new Set([
     65534, 65535, 131070, 131071, 196606, 196607, 262142, 262143, 327678, 327679, 393214, 393215,
     458750, 458751, 524286, 524287, 589822, 589823, 655358, 655359, 720894, 720895, 786430, 786431,
     851966, 851967, 917502, 917503, 983038, 983039, 1048574, 1048575, 1114110, 1114111,
@@ -4744,7 +4743,7 @@ function Z4(Z) {
   )
 }
 function Y4(Z) {
-  return (Z >= 64976 && Z <= 65007) || i9.has(Z)
+  return (Z >= 64976 && Z <= 65007) || i5.has(Z)
 }
 var j
 ;(function (Z) {
@@ -4818,7 +4817,7 @@ var j
     (Z.nestedNoscriptInHead = 'nested-noscript-in-head'),
     (Z.eofInElementThatCanContainOnlyText = 'eof-in-element-that-can-contain-only-text'))
 })(j || (j = {}))
-var d9 = 65536
+var d5 = 65536
 class fZ {
   constructor(Z) {
     ;((this.handler = Z),
@@ -4829,7 +4828,7 @@ class fZ {
       (this.skipNextNewLine = !1),
       (this.lastChunkWritten = !1),
       (this.endOfChunkHit = !1),
-      (this.bufferWaterline = d9),
+      (this.bufferWaterline = d5),
       (this.isEol = !1),
       (this.lineStartPos = 0),
       (this.droppedBufferSize = 0),
@@ -4959,8 +4958,8 @@ var yZ = new Uint16Array(
     .split('')
     .map(Z => Z.charCodeAt(0)),
 )
-var gZ,
-  l9 = new Map([
+var MZ,
+  l5 = new Map([
     [0, 65533],
     [128, 8364],
     [130, 8218],
@@ -4990,9 +4989,9 @@ var gZ,
     [158, 382],
     [159, 376],
   ]),
-  s9 =
-    (gZ = String.fromCodePoint) !== null && gZ !== void 0
-      ? gZ
+  s5 =
+    (MZ = String.fromCodePoint) !== null && MZ !== void 0
+      ? MZ
       : function (Z) {
           let Y = ''
           if (Z > 65535)
@@ -5004,7 +5003,7 @@ var gZ,
 function ZY(Z) {
   var Y
   if ((Z >= 55296 && Z <= 57343) || Z > 1114111) return 65533
-  return (Y = l9.get(Z)) !== null && Y !== void 0 ? Y : Z
+  return (Y = l5.get(Z)) !== null && Y !== void 0 ? Y : Z
 }
 var A
 ;(function (Z) {
@@ -5021,24 +5020,24 @@ var A
     (Z[(Z.UPPER_F = 70)] = 'UPPER_F'),
     (Z[(Z.UPPER_Z = 90)] = 'UPPER_Z'))
 })(A || (A = {}))
-var p9 = 32,
+var p5 = 32,
   f0
 ;(function (Z) {
   ;((Z[(Z.VALUE_LENGTH = 49152)] = 'VALUE_LENGTH'),
     (Z[(Z.BRANCH_LENGTH = 16256)] = 'BRANCH_LENGTH'),
     (Z[(Z.JUMP_TABLE = 127)] = 'JUMP_TABLE'))
 })(f0 || (f0 = {}))
-function MZ(Z) {
+function NZ(Z) {
   return Z >= A.ZERO && Z <= A.NINE
 }
-function a9(Z) {
+function a5(Z) {
   return (Z >= A.UPPER_A && Z <= A.UPPER_F) || (Z >= A.LOWER_A && Z <= A.LOWER_F)
 }
-function n9(Z) {
-  return (Z >= A.UPPER_A && Z <= A.UPPER_Z) || (Z >= A.LOWER_A && Z <= A.LOWER_Z) || MZ(Z)
+function n5(Z) {
+  return (Z >= A.UPPER_A && Z <= A.UPPER_Z) || (Z >= A.LOWER_A && Z <= A.LOWER_Z) || NZ(Z)
 }
-function o9(Z) {
-  return Z === A.EQUALS || n9(Z)
+function o5(Z) {
+  return Z === A.EQUALS || n5(Z)
 }
 var _
 ;(function (Z) {
@@ -5054,7 +5053,7 @@ var z0
     (Z[(Z.Strict = 1)] = 'Strict'),
     (Z[(Z.Attribute = 2)] = 'Attribute'))
 })(z0 || (z0 = {}))
-class NZ {
+class gZ {
   constructor(Z, Y, J) {
     ;((this.decodeTree = Z),
       (this.emitCodePoint = Y),
@@ -5095,7 +5094,7 @@ class NZ {
   }
   stateNumericStart(Z, Y) {
     if (Y >= Z.length) return -1
-    if ((Z.charCodeAt(Y) | p9) === A.LOWER_X)
+    if ((Z.charCodeAt(Y) | p5) === A.LOWER_X)
       return ((this.state = _.NumericHex), (this.consumed += 1), this.stateNumericHex(Z, Y + 1))
     return ((this.state = _.NumericDecimal), this.stateNumericDecimal(Z, Y))
   }
@@ -5110,7 +5109,7 @@ class NZ {
     let J = Y
     while (Y < Z.length) {
       let K = Z.charCodeAt(Y)
-      if (MZ(K) || a9(K)) Y += 1
+      if (NZ(K) || a5(K)) Y += 1
       else return (this.addToNumericResult(Z, J, Y, 16), this.emitNumericEntity(K, 3))
     }
     return (this.addToNumericResult(Z, J, Y, 16), -1)
@@ -5119,7 +5118,7 @@ class NZ {
     let J = Y
     while (Y < Z.length) {
       let K = Z.charCodeAt(Y)
-      if (MZ(K)) Y += 1
+      if (NZ(K)) Y += 1
       else return (this.addToNumericResult(Z, J, Y, 10), this.emitNumericEntity(K, 2))
     }
     return (this.addToNumericResult(Z, J, Y, 10), -1)
@@ -5147,8 +5146,8 @@ class NZ {
       Q = (K & f0.VALUE_LENGTH) >> 14
     for (; Y < Z.length; Y++, this.excess++) {
       let V = Z.charCodeAt(Y)
-      if (((this.treeIndex = t9(J, K, this.treeIndex + Math.max(1, Q), V)), this.treeIndex < 0))
-        return this.result === 0 || (this.decodeMode === z0.Attribute && (Q === 0 || o9(V)))
+      if (((this.treeIndex = t5(J, K, this.treeIndex + Math.max(1, Q), V)), this.treeIndex < 0))
+        return this.result === 0 || (this.decodeMode === z0.Attribute && (Q === 0 || o5(V)))
           ? 0
           : this.emitNotTerminatedNamedEntity()
       if (((K = J[this.treeIndex]), (Q = (K & f0.VALUE_LENGTH) >> 14), Q !== 0)) {
@@ -5200,22 +5199,22 @@ class NZ {
     }
   }
 }
-function t9(Z, Y, J, K) {
+function t5(Z, Y, J, K) {
   let Q = (Y & f0.BRANCH_LENGTH) >> 7,
     V = Y & f0.JUMP_TABLE
   if (Q === 0) return V !== 0 && K === V ? J : -1
   if (V) {
-    let w = K - V
-    return w < 0 || w >= Q ? -1 : Z[J + w] - 1
+    let q = K - V
+    return q < 0 || q >= Q ? -1 : Z[J + q] - 1
   }
   let z = J,
     F = z + Q - 1
   while (z <= F) {
-    let w = (z + F) >>> 1,
-      B = Z[w]
-    if (B < K) z = w + 1
-    else if (B > K) F = w - 1
-    else return Z[w + Q]
+    let q = (z + F) >>> 1,
+      w = Z[q]
+    if (w < K) z = q + 1
+    else if (w > K) F = q - 1
+    else return Z[q + Q]
   }
   return -1
 }
@@ -5223,7 +5222,7 @@ var K4 = {}
 V0(K4, {
   hasUnescapedText: () => hZ,
   getTagID: () => y0,
-  TAG_NAMES: () => q,
+  TAG_NAMES: () => B,
   TAG_ID: () => X,
   SPECIAL_ELEMENTS: () => xZ,
   NUMBERED_HEADERS: () => n0,
@@ -5255,7 +5254,7 @@ var m
 ;(function (Z) {
   ;((Z.NO_QUIRKS = 'no-quirks'), (Z.QUIRKS = 'quirks'), (Z.LIMITED_QUIRKS = 'limited-quirks'))
 })(m || (m = {}))
-var q
+var B
 ;(function (Z) {
   ;((Z.A = 'a'),
     (Z.ADDRESS = 'address'),
@@ -5380,7 +5379,7 @@ var q
     (Z.VAR = 'var'),
     (Z.WBR = 'wbr'),
     (Z.XMP = 'xmp'))
-})(q || (q = {}))
+})(B || (B = {}))
 var X
 ;(function (Z) {
   ;((Z[(Z.UNKNOWN = 0)] = 'UNKNOWN'),
@@ -5508,134 +5507,134 @@ var X
     (Z[(Z.WBR = 122)] = 'WBR'),
     (Z[(Z.XMP = 123)] = 'XMP'))
 })(X || (X = {}))
-var e9 = new Map([
-  [q.A, X.A],
-  [q.ADDRESS, X.ADDRESS],
-  [q.ANNOTATION_XML, X.ANNOTATION_XML],
-  [q.APPLET, X.APPLET],
-  [q.AREA, X.AREA],
-  [q.ARTICLE, X.ARTICLE],
-  [q.ASIDE, X.ASIDE],
-  [q.B, X.B],
-  [q.BASE, X.BASE],
-  [q.BASEFONT, X.BASEFONT],
-  [q.BGSOUND, X.BGSOUND],
-  [q.BIG, X.BIG],
-  [q.BLOCKQUOTE, X.BLOCKQUOTE],
-  [q.BODY, X.BODY],
-  [q.BR, X.BR],
-  [q.BUTTON, X.BUTTON],
-  [q.CAPTION, X.CAPTION],
-  [q.CENTER, X.CENTER],
-  [q.CODE, X.CODE],
-  [q.COL, X.COL],
-  [q.COLGROUP, X.COLGROUP],
-  [q.DD, X.DD],
-  [q.DESC, X.DESC],
-  [q.DETAILS, X.DETAILS],
-  [q.DIALOG, X.DIALOG],
-  [q.DIR, X.DIR],
-  [q.DIV, X.DIV],
-  [q.DL, X.DL],
-  [q.DT, X.DT],
-  [q.EM, X.EM],
-  [q.EMBED, X.EMBED],
-  [q.FIELDSET, X.FIELDSET],
-  [q.FIGCAPTION, X.FIGCAPTION],
-  [q.FIGURE, X.FIGURE],
-  [q.FONT, X.FONT],
-  [q.FOOTER, X.FOOTER],
-  [q.FOREIGN_OBJECT, X.FOREIGN_OBJECT],
-  [q.FORM, X.FORM],
-  [q.FRAME, X.FRAME],
-  [q.FRAMESET, X.FRAMESET],
-  [q.H1, X.H1],
-  [q.H2, X.H2],
-  [q.H3, X.H3],
-  [q.H4, X.H4],
-  [q.H5, X.H5],
-  [q.H6, X.H6],
-  [q.HEAD, X.HEAD],
-  [q.HEADER, X.HEADER],
-  [q.HGROUP, X.HGROUP],
-  [q.HR, X.HR],
-  [q.HTML, X.HTML],
-  [q.I, X.I],
-  [q.IMG, X.IMG],
-  [q.IMAGE, X.IMAGE],
-  [q.INPUT, X.INPUT],
-  [q.IFRAME, X.IFRAME],
-  [q.KEYGEN, X.KEYGEN],
-  [q.LABEL, X.LABEL],
-  [q.LI, X.LI],
-  [q.LINK, X.LINK],
-  [q.LISTING, X.LISTING],
-  [q.MAIN, X.MAIN],
-  [q.MALIGNMARK, X.MALIGNMARK],
-  [q.MARQUEE, X.MARQUEE],
-  [q.MATH, X.MATH],
-  [q.MENU, X.MENU],
-  [q.META, X.META],
-  [q.MGLYPH, X.MGLYPH],
-  [q.MI, X.MI],
-  [q.MO, X.MO],
-  [q.MN, X.MN],
-  [q.MS, X.MS],
-  [q.MTEXT, X.MTEXT],
-  [q.NAV, X.NAV],
-  [q.NOBR, X.NOBR],
-  [q.NOFRAMES, X.NOFRAMES],
-  [q.NOEMBED, X.NOEMBED],
-  [q.NOSCRIPT, X.NOSCRIPT],
-  [q.OBJECT, X.OBJECT],
-  [q.OL, X.OL],
-  [q.OPTGROUP, X.OPTGROUP],
-  [q.OPTION, X.OPTION],
-  [q.P, X.P],
-  [q.PARAM, X.PARAM],
-  [q.PLAINTEXT, X.PLAINTEXT],
-  [q.PRE, X.PRE],
-  [q.RB, X.RB],
-  [q.RP, X.RP],
-  [q.RT, X.RT],
-  [q.RTC, X.RTC],
-  [q.RUBY, X.RUBY],
-  [q.S, X.S],
-  [q.SCRIPT, X.SCRIPT],
-  [q.SEARCH, X.SEARCH],
-  [q.SECTION, X.SECTION],
-  [q.SELECT, X.SELECT],
-  [q.SOURCE, X.SOURCE],
-  [q.SMALL, X.SMALL],
-  [q.SPAN, X.SPAN],
-  [q.STRIKE, X.STRIKE],
-  [q.STRONG, X.STRONG],
-  [q.STYLE, X.STYLE],
-  [q.SUB, X.SUB],
-  [q.SUMMARY, X.SUMMARY],
-  [q.SUP, X.SUP],
-  [q.TABLE, X.TABLE],
-  [q.TBODY, X.TBODY],
-  [q.TEMPLATE, X.TEMPLATE],
-  [q.TEXTAREA, X.TEXTAREA],
-  [q.TFOOT, X.TFOOT],
-  [q.TD, X.TD],
-  [q.TH, X.TH],
-  [q.THEAD, X.THEAD],
-  [q.TITLE, X.TITLE],
-  [q.TR, X.TR],
-  [q.TRACK, X.TRACK],
-  [q.TT, X.TT],
-  [q.U, X.U],
-  [q.UL, X.UL],
-  [q.SVG, X.SVG],
-  [q.VAR, X.VAR],
-  [q.WBR, X.WBR],
-  [q.XMP, X.XMP],
+var e5 = new Map([
+  [B.A, X.A],
+  [B.ADDRESS, X.ADDRESS],
+  [B.ANNOTATION_XML, X.ANNOTATION_XML],
+  [B.APPLET, X.APPLET],
+  [B.AREA, X.AREA],
+  [B.ARTICLE, X.ARTICLE],
+  [B.ASIDE, X.ASIDE],
+  [B.B, X.B],
+  [B.BASE, X.BASE],
+  [B.BASEFONT, X.BASEFONT],
+  [B.BGSOUND, X.BGSOUND],
+  [B.BIG, X.BIG],
+  [B.BLOCKQUOTE, X.BLOCKQUOTE],
+  [B.BODY, X.BODY],
+  [B.BR, X.BR],
+  [B.BUTTON, X.BUTTON],
+  [B.CAPTION, X.CAPTION],
+  [B.CENTER, X.CENTER],
+  [B.CODE, X.CODE],
+  [B.COL, X.COL],
+  [B.COLGROUP, X.COLGROUP],
+  [B.DD, X.DD],
+  [B.DESC, X.DESC],
+  [B.DETAILS, X.DETAILS],
+  [B.DIALOG, X.DIALOG],
+  [B.DIR, X.DIR],
+  [B.DIV, X.DIV],
+  [B.DL, X.DL],
+  [B.DT, X.DT],
+  [B.EM, X.EM],
+  [B.EMBED, X.EMBED],
+  [B.FIELDSET, X.FIELDSET],
+  [B.FIGCAPTION, X.FIGCAPTION],
+  [B.FIGURE, X.FIGURE],
+  [B.FONT, X.FONT],
+  [B.FOOTER, X.FOOTER],
+  [B.FOREIGN_OBJECT, X.FOREIGN_OBJECT],
+  [B.FORM, X.FORM],
+  [B.FRAME, X.FRAME],
+  [B.FRAMESET, X.FRAMESET],
+  [B.H1, X.H1],
+  [B.H2, X.H2],
+  [B.H3, X.H3],
+  [B.H4, X.H4],
+  [B.H5, X.H5],
+  [B.H6, X.H6],
+  [B.HEAD, X.HEAD],
+  [B.HEADER, X.HEADER],
+  [B.HGROUP, X.HGROUP],
+  [B.HR, X.HR],
+  [B.HTML, X.HTML],
+  [B.I, X.I],
+  [B.IMG, X.IMG],
+  [B.IMAGE, X.IMAGE],
+  [B.INPUT, X.INPUT],
+  [B.IFRAME, X.IFRAME],
+  [B.KEYGEN, X.KEYGEN],
+  [B.LABEL, X.LABEL],
+  [B.LI, X.LI],
+  [B.LINK, X.LINK],
+  [B.LISTING, X.LISTING],
+  [B.MAIN, X.MAIN],
+  [B.MALIGNMARK, X.MALIGNMARK],
+  [B.MARQUEE, X.MARQUEE],
+  [B.MATH, X.MATH],
+  [B.MENU, X.MENU],
+  [B.META, X.META],
+  [B.MGLYPH, X.MGLYPH],
+  [B.MI, X.MI],
+  [B.MO, X.MO],
+  [B.MN, X.MN],
+  [B.MS, X.MS],
+  [B.MTEXT, X.MTEXT],
+  [B.NAV, X.NAV],
+  [B.NOBR, X.NOBR],
+  [B.NOFRAMES, X.NOFRAMES],
+  [B.NOEMBED, X.NOEMBED],
+  [B.NOSCRIPT, X.NOSCRIPT],
+  [B.OBJECT, X.OBJECT],
+  [B.OL, X.OL],
+  [B.OPTGROUP, X.OPTGROUP],
+  [B.OPTION, X.OPTION],
+  [B.P, X.P],
+  [B.PARAM, X.PARAM],
+  [B.PLAINTEXT, X.PLAINTEXT],
+  [B.PRE, X.PRE],
+  [B.RB, X.RB],
+  [B.RP, X.RP],
+  [B.RT, X.RT],
+  [B.RTC, X.RTC],
+  [B.RUBY, X.RUBY],
+  [B.S, X.S],
+  [B.SCRIPT, X.SCRIPT],
+  [B.SEARCH, X.SEARCH],
+  [B.SECTION, X.SECTION],
+  [B.SELECT, X.SELECT],
+  [B.SOURCE, X.SOURCE],
+  [B.SMALL, X.SMALL],
+  [B.SPAN, X.SPAN],
+  [B.STRIKE, X.STRIKE],
+  [B.STRONG, X.STRONG],
+  [B.STYLE, X.STYLE],
+  [B.SUB, X.SUB],
+  [B.SUMMARY, X.SUMMARY],
+  [B.SUP, X.SUP],
+  [B.TABLE, X.TABLE],
+  [B.TBODY, X.TBODY],
+  [B.TEMPLATE, X.TEMPLATE],
+  [B.TEXTAREA, X.TEXTAREA],
+  [B.TFOOT, X.TFOOT],
+  [B.TD, X.TD],
+  [B.TH, X.TH],
+  [B.THEAD, X.THEAD],
+  [B.TITLE, X.TITLE],
+  [B.TR, X.TR],
+  [B.TRACK, X.TRACK],
+  [B.TT, X.TT],
+  [B.U, X.U],
+  [B.UL, X.UL],
+  [B.SVG, X.SVG],
+  [B.VAR, X.VAR],
+  [B.WBR, X.WBR],
+  [B.XMP, X.XMP],
 ])
 function y0(Z) {
   var Y
-  return (Y = e9.get(Z)) !== null && Y !== void 0 ? Y : X.UNKNOWN
+  return (Y = e5.get(Z)) !== null && Y !== void 0 ? Y : X.UNKNOWN
 }
 var v = X,
   xZ = {
@@ -5729,9 +5728,9 @@ var v = X,
     [R.XMLNS]: new Set(),
   },
   n0 = new Set([v.H1, v.H2, v.H3, v.H4, v.H5, v.H6]),
-  Z6 = new Set([q.STYLE, q.SCRIPT, q.XMP, q.IFRAME, q.NOEMBED, q.NOFRAMES, q.PLAINTEXT])
+  Z6 = new Set([B.STYLE, B.SCRIPT, B.XMP, B.IFRAME, B.NOEMBED, B.NOFRAMES, B.PLAINTEXT])
 function hZ(Z, Y) {
-  return Z6.has(Z) || (Y && Z === q.NOSCRIPT)
+  return Z6.has(Z) || (Y && Z === B.NOSCRIPT)
 }
 var H
 ;(function (Z) {
@@ -5826,17 +5825,17 @@ var i = {
 function Y6(Z) {
   return Z >= W.DIGIT_0 && Z <= W.DIGIT_9
 }
-function w1(Z) {
+function q1(Z) {
   return Z >= W.LATIN_CAPITAL_A && Z <= W.LATIN_CAPITAL_Z
 }
 function J6(Z) {
   return Z >= W.LATIN_SMALL_A && Z <= W.LATIN_SMALL_Z
 }
-function g0(Z) {
-  return J6(Z) || w1(Z)
+function M0(Z) {
+  return J6(Z) || q1(Z)
 }
 function YY(Z) {
-  return g0(Z) || Y6(Z)
+  return M0(Z) || Y6(Z)
 }
 function X4(Z) {
   return Z + 32
@@ -5873,7 +5872,7 @@ class Q4 {
       (this.currentAttr = { name: '', value: '' }),
       (this.preprocessor = new fZ(Y)),
       (this.currentLocation = this.getCurrentLocation(-1)),
-      (this.entityDecoder = new NZ(
+      (this.entityDecoder = new gZ(
         yZ,
         (J, K) => {
           ;((this.preprocessor.pos = this.entityStartPos + K - 1),
@@ -6506,7 +6505,7 @@ class Q4 {
     }
   }
   _stateTagOpen(Z) {
-    if (g0(Z)) (this._createStartTagToken(), (this.state = H.TAG_NAME), this._stateTagName(Z))
+    if (M0(Z)) (this._createStartTagToken(), (this.state = H.TAG_NAME), this._stateTagName(Z))
     else
       switch (Z) {
         case W.EXCLAMATION_MARK: {
@@ -6536,7 +6535,7 @@ class Q4 {
       }
   }
   _stateEndTagOpen(Z) {
-    if (g0(Z)) (this._createEndTagToken(), (this.state = H.TAG_NAME), this._stateTagName(Z))
+    if (M0(Z)) (this._createEndTagToken(), (this.state = H.TAG_NAME), this._stateTagName(Z))
     else
       switch (Z) {
         case W.GREATER_THAN_SIGN: {
@@ -6581,7 +6580,7 @@ class Q4 {
         break
       }
       default:
-        Y.tagName += String.fromCodePoint(w1(Z) ? X4(Z) : Z)
+        Y.tagName += String.fromCodePoint(q1(Z) ? X4(Z) : Z)
     }
   }
   _stateRcdataLessThanSign(Z) {
@@ -6589,7 +6588,7 @@ class Q4 {
     else (this._emitChars('<'), (this.state = H.RCDATA), this._stateRcdata(Z))
   }
   _stateRcdataEndTagOpen(Z) {
-    if (g0(Z)) ((this.state = H.RCDATA_END_TAG_NAME), this._stateRcdataEndTagName(Z))
+    if (M0(Z)) ((this.state = H.RCDATA_END_TAG_NAME), this._stateRcdataEndTagName(Z))
     else (this._emitChars('</'), (this.state = H.RCDATA), this._stateRcdata(Z))
   }
   handleSpecialEndTag(Z) {
@@ -6630,7 +6629,7 @@ class Q4 {
     else (this._emitChars('<'), (this.state = H.RAWTEXT), this._stateRawtext(Z))
   }
   _stateRawtextEndTagOpen(Z) {
-    if (g0(Z)) ((this.state = H.RAWTEXT_END_TAG_NAME), this._stateRawtextEndTagName(Z))
+    if (M0(Z)) ((this.state = H.RAWTEXT_END_TAG_NAME), this._stateRawtextEndTagName(Z))
     else (this._emitChars('</'), (this.state = H.RAWTEXT), this._stateRawtext(Z))
   }
   _stateRawtextEndTagName(Z) {
@@ -6652,7 +6651,7 @@ class Q4 {
     }
   }
   _stateScriptDataEndTagOpen(Z) {
-    if (g0(Z)) ((this.state = H.SCRIPT_DATA_END_TAG_NAME), this._stateScriptDataEndTagName(Z))
+    if (M0(Z)) ((this.state = H.SCRIPT_DATA_END_TAG_NAME), this._stateScriptDataEndTagName(Z))
     else (this._emitChars('</'), (this.state = H.SCRIPT_DATA), this._stateScriptData(Z))
   }
   _stateScriptDataEndTagName(Z) {
@@ -6743,7 +6742,7 @@ class Q4 {
   }
   _stateScriptDataEscapedLessThanSign(Z) {
     if (Z === W.SOLIDUS) this.state = H.SCRIPT_DATA_ESCAPED_END_TAG_OPEN
-    else if (g0(Z))
+    else if (M0(Z))
       (this._emitChars('<'),
         (this.state = H.SCRIPT_DATA_DOUBLE_ESCAPE_START),
         this._stateScriptDataDoubleEscapeStart(Z))
@@ -6751,7 +6750,7 @@ class Q4 {
       (this._emitChars('<'), (this.state = H.SCRIPT_DATA_ESCAPED), this._stateScriptDataEscaped(Z))
   }
   _stateScriptDataEscapedEndTagOpen(Z) {
-    if (g0(Z))
+    if (M0(Z))
       ((this.state = H.SCRIPT_DATA_ESCAPED_END_TAG_NAME), this._stateScriptDataEscapedEndTagName(Z))
     else
       (this._emitChars('</'), (this.state = H.SCRIPT_DATA_ESCAPED), this._stateScriptDataEscaped(Z))
@@ -6907,7 +6906,7 @@ class Q4 {
         break
       }
       default:
-        this.currentAttr.name += String.fromCodePoint(w1(Z) ? X4(Z) : Z)
+        this.currentAttr.name += String.fromCodePoint(q1(Z) ? X4(Z) : Z)
     }
   }
   _stateAfterAttributeName(Z) {
@@ -7294,7 +7293,7 @@ class Q4 {
     }
   }
   _stateBeforeDoctypeName(Z) {
-    if (w1(Z)) (this._createDoctypeToken(String.fromCharCode(X4(Z))), (this.state = H.DOCTYPE_NAME))
+    if (q1(Z)) (this._createDoctypeToken(String.fromCharCode(X4(Z))), (this.state = H.DOCTYPE_NAME))
     else
       switch (Z) {
         case W.SPACE:
@@ -7350,7 +7349,7 @@ class Q4 {
         break
       }
       default:
-        Y.name += String.fromCodePoint(w1(Z) ? X4(Z) : Z)
+        Y.name += String.fromCodePoint(q1(Z) ? X4(Z) : Z)
     }
   }
   _stateAfterDoctypeName(Z) {
@@ -8099,10 +8098,10 @@ class DZ {
     for (let z = 0; z < this.entries.length; z++) {
       let F = this.entries[z]
       if (F.type === X0.Marker) break
-      let { element: w } = F
-      if (this.treeAdapter.getTagName(w) === Q && this.treeAdapter.getNamespaceURI(w) === V) {
-        let B = this.treeAdapter.getAttrList(w)
-        if (B.length === K) J.push({ idx: z, attrs: B })
+      let { element: q } = F
+      if (this.treeAdapter.getTagName(q) === Q && this.treeAdapter.getNamespaceURI(q) === V) {
+        let w = this.treeAdapter.getAttrList(q)
+        if (w.length === K) J.push({ idx: z, attrs: w })
       }
     }
     return J
@@ -8334,30 +8333,30 @@ var UY = 'html',
     '-//webtechs//dtd mozilla html 2.0//',
     '-//webtechs//dtd mozilla html//',
   ],
-  w6 = [...FY, '-//w3c//dtd html 4.01 frameset//', '-//w3c//dtd html 4.01 transitional//'],
-  q6 = new Set([
+  q6 = [...FY, '-//w3c//dtd html 4.01 frameset//', '-//w3c//dtd html 4.01 transitional//'],
+  B6 = new Set([
     '-//w3o//dtd w3 html strict 3.0//en//',
     '-/w3c/dtd html 4.0 transitional/en',
     'html',
   ]),
-  wY = ['-//w3c//dtd xhtml 1.0 frameset//', '-//w3c//dtd xhtml 1.0 transitional//'],
-  B6 = [...wY, '-//w3c//dtd html 4.01 frameset//', '-//w3c//dtd html 4.01 transitional//']
+  qY = ['-//w3c//dtd xhtml 1.0 frameset//', '-//w3c//dtd xhtml 1.0 transitional//'],
+  w6 = [...qY, '-//w3c//dtd html 4.01 frameset//', '-//w3c//dtd html 4.01 transitional//']
 function HY(Z, Y) {
   return Y.some(J => Z.startsWith(J))
 }
-function qY(Z) {
+function BY(Z) {
   return Z.name === UY && Z.publicId === null && (Z.systemId === null || Z.systemId === U6)
 }
-function BY(Z) {
+function wY(Z) {
   if (Z.name !== UY) return m.QUIRKS
   let { systemId: Y } = Z
   if (Y && Y.toLowerCase() === F6) return m.QUIRKS
   let { publicId: J } = Z
   if (J !== null) {
-    if (((J = J.toLowerCase()), q6.has(J))) return m.QUIRKS
-    let K = Y === null ? w6 : FY
+    if (((J = J.toLowerCase()), B6.has(J))) return m.QUIRKS
+    let K = Y === null ? q6 : FY
     if (HY(J, K)) return m.QUIRKS
-    if (((K = Y === null ? wY : B6), HY(J, K))) return m.LIMITED_QUIRKS
+    if (((K = Y === null ? qY : w6), HY(J, K))) return m.LIMITED_QUIRKS
   }
   return m.NO_QUIRKS
 }
@@ -8575,9 +8574,9 @@ function y6(Z, Y, J) {
 function PY(Z, Y, J, K) {
   return ((!K || K === R.HTML) && y6(Z, Y, J)) || ((!K || K === R.MATHML) && f6(Z, Y))
 }
-var g6 = 'hidden',
-  M6 = 8,
-  N6 = 3,
+var M6 = 'hidden',
+  N6 = 8,
+  g6 = 3,
   U
 ;(function (Z) {
   ;((Z[(Z.INITIAL = 0)] = 'INITIAL'),
@@ -8644,7 +8643,7 @@ class b1 {
   }
   static getFragmentParser(Z, Y) {
     let J = { ...OY, ...Y }
-    ;(Z !== null && Z !== void 0) || (Z = J.treeAdapter.createElement(q.TEMPLATE, R.HTML, []))
+    ;(Z !== null && Z !== void 0) || (Z = J.treeAdapter.createElement(B.TEMPLATE, R.HTML, []))
     let K = J.treeAdapter.createElement('documentmock', R.HTML, []),
       Q = new this(J, K, Z)
     if (Q.fragmentContextID === X.TEMPLATE) Q.tmplInsertionModeStack.unshift(U.IN_TEMPLATE)
@@ -8725,7 +8724,7 @@ class b1 {
   _findFormInFragmentContext() {
     let Z = this.fragmentContext
     while (Z) {
-      if (this.treeAdapter.getTagName(Z) === q.FORM) {
+      if (this.treeAdapter.getTagName(Z) === B.FORM) {
         this.formElement = Z
         break
       }
@@ -8807,7 +8806,7 @@ class b1 {
       this.treeAdapter.setNodeSourceCodeLocation(J, null)
   }
   _insertFakeRootElement() {
-    let Z = this.treeAdapter.createElement(q.HTML, R.HTML, [])
+    let Z = this.treeAdapter.createElement(B.HTML, R.HTML, [])
     if (this.options.sourceCodeLocationInfo) this.treeAdapter.setNodeSourceCodeLocation(Z, null)
     ;(this.treeAdapter.appendChild(this.openElements.current, Z), this.openElements.push(Z, X.HTML))
   }
@@ -8828,8 +8827,8 @@ class b1 {
       Q = J ? K.lastIndexOf(J) : K.length,
       V = K[Q - 1]
     if (this.treeAdapter.getNodeSourceCodeLocation(V)) {
-      let { endLine: F, endCol: w, endOffset: B } = Z.location
-      this.treeAdapter.updateNodeSourceCodeLocation(V, { endLine: F, endCol: w, endOffset: B })
+      let { endLine: F, endCol: q, endOffset: w } = Z.location
+      this.treeAdapter.updateNodeSourceCodeLocation(V, { endLine: F, endCol: q, endOffset: w })
     } else if (this.options.sourceCodeLocationInfo)
       this.treeAdapter.setNodeSourceCodeLocation(V, Z.location)
   }
@@ -8856,7 +8855,7 @@ class b1 {
     else ({ current: Y, currentTagId: J } = this.openElements)
     if (
       Z.tagID === X.SVG &&
-      this.treeAdapter.getTagName(Y) === q.ANNOTATION_XML &&
+      this.treeAdapter.getTagName(Y) === B.ANNOTATION_XML &&
       this.treeAdapter.getNamespaceURI(Y) === R.MATHML
     )
       return !1
@@ -9054,7 +9053,7 @@ class b1 {
     }
     switch (this.insertionMode) {
       case U.INITIAL: {
-        q1(this, Z)
+        B1(this, Z)
         break
       }
       case U.BEFORE_HTML: {
@@ -9081,7 +9080,7 @@ class b1 {
       case U.IN_CAPTION:
       case U.IN_CELL:
       case U.IN_TEMPLATE: {
-        MY(this, Z)
+        NY(this, Z)
         break
       }
       case U.TEXT:
@@ -9093,7 +9092,7 @@ class b1 {
       case U.IN_TABLE:
       case U.IN_TABLE_BODY:
       case U.IN_ROW: {
-        uZ(this, Z)
+        EZ(this, Z)
         break
       }
       case U.IN_TABLE_TEXT: {
@@ -9122,7 +9121,7 @@ class b1 {
     }
     switch (this.insertionMode) {
       case U.INITIAL: {
-        q1(this, Z)
+        B1(this, Z)
         break
       }
       case U.BEFORE_HTML: {
@@ -9152,7 +9151,7 @@ class b1 {
       case U.IN_TABLE:
       case U.IN_TABLE_BODY:
       case U.IN_ROW: {
-        uZ(this, Z)
+        EZ(this, Z)
         break
       }
       case U.IN_COLUMN_GROUP: {
@@ -9172,7 +9171,7 @@ class b1 {
   }
   onComment(Z) {
     if (((this.skipNextNewLine = !1), this.currentNotInHTML)) {
-      EZ(this, Z)
+      uZ(this, Z)
       return
     }
     switch (this.insertionMode) {
@@ -9194,15 +9193,15 @@ class b1 {
       case U.IN_TEMPLATE:
       case U.IN_FRAMESET:
       case U.AFTER_FRAMESET: {
-        EZ(this, Z)
+        uZ(this, Z)
         break
       }
       case U.IN_TABLE_TEXT: {
-        B1(this, Z)
+        w1(this, Z)
         break
       }
       case U.AFTER_BODY: {
-        E6(this, Z)
+        u6(this, Z)
         break
       }
       case U.AFTER_AFTER_BODY:
@@ -9227,7 +9226,7 @@ class b1 {
         break
       }
       case U.IN_TABLE_TEXT: {
-        B1(this, Z)
+        w1(this, Z)
         break
       }
       default:
@@ -9249,7 +9248,7 @@ class b1 {
   _startTagOutsideForeignContent(Z) {
     switch (this.insertionMode) {
       case U.INITIAL: {
-        q1(this, Z)
+        B1(this, Z)
         break
       }
       case U.BEFORE_HTML: {
@@ -9281,7 +9280,7 @@ class b1 {
         break
       }
       case U.IN_TABLE_TEXT: {
-        B1(this, Z)
+        w1(this, Z)
         break
       }
       case U.IN_CAPTION: {
@@ -9293,11 +9292,11 @@ class b1 {
         break
       }
       case U.IN_TABLE_BODY: {
-        q4(this, Z)
+        B4(this, Z)
         break
       }
       case U.IN_ROW: {
-        B4(this, Z)
+        w4(this, Z)
         break
       }
       case U.IN_CELL: {
@@ -9305,7 +9304,7 @@ class b1 {
         break
       }
       case U.IN_SELECT: {
-        EY(this, Z)
+        uY(this, Z)
         break
       }
       case U.IN_SELECT_IN_TABLE: {
@@ -9346,7 +9345,7 @@ class b1 {
   _endTagOutsideForeignContent(Z) {
     switch (this.insertionMode) {
       case U.INITIAL: {
-        q1(this, Z)
+        B1(this, Z)
         break
       }
       case U.BEFORE_HTML: {
@@ -9370,7 +9369,7 @@ class b1 {
         break
       }
       case U.IN_BODY: {
-        w4(this, Z)
+        q4(this, Z)
         break
       }
       case U.TEXT: {
@@ -9382,7 +9381,7 @@ class b1 {
         break
       }
       case U.IN_TABLE_TEXT: {
-        B1(this, Z)
+        w1(this, Z)
         break
       }
       case U.IN_CAPTION: {
@@ -9398,7 +9397,7 @@ class b1 {
         break
       }
       case U.IN_ROW: {
-        uY(this, Z)
+        EY(this, Z)
         break
       }
       case U.IN_CELL: {
@@ -9439,7 +9438,7 @@ class b1 {
   onEof(Z) {
     switch (this.insertionMode) {
       case U.INITIAL: {
-        q1(this, Z)
+        B1(this, Z)
         break
       }
       case U.BEFORE_HTML: {
@@ -9479,7 +9478,7 @@ class b1 {
         break
       }
       case U.IN_TABLE_TEXT: {
-        B1(this, Z)
+        w1(this, Z)
         break
       }
       case U.IN_TEMPLATE: {
@@ -9528,13 +9527,13 @@ class b1 {
       case U.AFTER_BODY:
       case U.AFTER_AFTER_BODY:
       case U.AFTER_AFTER_FRAMESET: {
-        gY(this, Z)
+        MY(this, Z)
         break
       }
       case U.IN_TABLE:
       case U.IN_TABLE_BODY:
       case U.IN_ROW: {
-        uZ(this, Z)
+        EZ(this, Z)
         break
       }
       case U.IN_TABLE_TEXT: {
@@ -9571,9 +9570,9 @@ function D6(Z, Y, J) {
   for (let V = 0, z = Q; z !== J; V++, z = Q) {
     Q = Z.openElements.getCommonAncestor(z)
     let F = Z.activeFormattingElements.getElementEntry(z),
-      w = F && V >= N6
-    if (!F || w) {
-      if (w) Z.activeFormattingElements.removeEntry(F)
+      q = F && V >= g6
+    if (!F || q) {
+      if (q) Z.activeFormattingElements.removeEntry(F)
       Z.openElements.remove(z)
     } else {
       if (((z = G6(Z, F)), K === Y)) Z.activeFormattingElements.bookmark = F
@@ -9597,7 +9596,7 @@ function $6(Z, Y, J) {
     Z.treeAdapter.appendChild(Y, J)
   }
 }
-function u6(Z, Y, J) {
+function E6(Z, Y, J) {
   let K = Z.treeAdapter.getNamespaceURI(J.element),
     { token: Q } = J,
     V = Z.treeAdapter.createElement(Q.tagName, K, Q.attrs)
@@ -9609,7 +9608,7 @@ function u6(Z, Y, J) {
     Z.openElements.insertAfter(Y, V, Q.tagID))
 }
 function SZ(Z, Y) {
-  for (let J = 0; J < M6; J++) {
+  for (let J = 0; J < N6; J++) {
     let K = h6(Z, Y)
     if (!K) break
     let Q = C6(Z, K)
@@ -9618,13 +9617,13 @@ function SZ(Z, Y) {
     let V = D6(Z, Q, K.element),
       z = Z.openElements.getCommonAncestor(K.element)
     if ((Z.treeAdapter.detachNode(V), z)) $6(Z, z, V)
-    u6(Z, Q, K)
+    E6(Z, Q, K)
   }
 }
-function EZ(Z, Y) {
+function uZ(Z, Y) {
   Z._appendCommentNode(Y, Z.openElements.currentTmplContentOrNode)
 }
-function E6(Z, Y) {
+function u6(Z, Y) {
   Z._appendCommentNode(Y, Z.openElements.items[0])
 }
 function I6(Z, Y) {
@@ -9649,11 +9648,11 @@ function kZ(Z, Y) {
 }
 function S6(Z, Y) {
   Z._setDocumentType(Y)
-  let J = Y.forceQuirks ? m.QUIRKS : BY(Y)
-  if (!qY(Y)) Z._err(Y, j.nonConformingDoctype)
+  let J = Y.forceQuirks ? m.QUIRKS : wY(Y)
+  if (!BY(Y)) Z._err(Y, j.nonConformingDoctype)
   ;(Z.treeAdapter.setDocumentMode(Z.document, J), (Z.insertionMode = U.BEFORE_HTML))
 }
-function q1(Z, Y) {
+function B1(Z, Y) {
   ;(Z._err(Y, j.missingDoctype, !0),
     Z.treeAdapter.setDocumentMode(Z.document, m.QUIRKS),
     (Z.insertionMode = U.BEFORE_HTML),
@@ -9692,7 +9691,7 @@ function T6(Z, Y) {
   else Z._err(Y, j.endTagWithoutMatchingOpenElement)
 }
 function L1(Z, Y) {
-  ;(Z._insertFakeElement(q.HEAD, X.HEAD),
+  ;(Z._insertFakeElement(B.HEAD, X.HEAD),
     (Z.headElement = Z.openElements.current),
     (Z.insertionMode = U.IN_HEAD),
     Z._processToken(Y))
@@ -9758,14 +9757,14 @@ function m6(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     default:
       Z._err(Y, j.endTagWithoutMatchingOpenElement)
   }
 }
-function E0(Z, Y) {
+function u0(Z, Y) {
   if (Z.openElements.tmplCount > 0) {
     if (
       (Z.openElements.generateImpliedEndTagsThoroughly(),
@@ -9870,7 +9869,7 @@ function r6(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     default:
@@ -9878,20 +9877,20 @@ function r6(Z, Y) {
   }
 }
 function v1(Z, Y) {
-  ;(Z._insertFakeElement(q.BODY, X.BODY), (Z.insertionMode = U.IN_BODY), F4(Z, Y))
+  ;(Z._insertFakeElement(B.BODY, X.BODY), (Z.insertionMode = U.IN_BODY), F4(Z, Y))
 }
 function F4(Z, Y) {
   switch (Y.type) {
     case h.CHARACTER: {
-      MY(Z, Y)
+      NY(Z, Y)
       break
     }
     case h.WHITESPACE_CHARACTER: {
-      gY(Z, Y)
+      MY(Z, Y)
       break
     }
     case h.COMMENT: {
-      EZ(Z, Y)
+      uZ(Z, Y)
       break
     }
     case h.START_TAG: {
@@ -9899,7 +9898,7 @@ function F4(Z, Y) {
       break
     }
     case h.END_TAG: {
-      w4(Z, Y)
+      q4(Z, Y)
       break
     }
     case h.EOF: {
@@ -9909,10 +9908,10 @@ function F4(Z, Y) {
     default:
   }
 }
-function gY(Z, Y) {
+function MY(Z, Y) {
   ;(Z._reconstructActiveFormattingElements(), Z._insertCharacters(Y))
 }
-function MY(Z, Y) {
+function NY(Z, Y) {
   ;(Z._reconstructActiveFormattingElements(), Z._insertCharacters(Y), (Z.framesetOk = !1))
 }
 function l6(Z, Y) {
@@ -9984,7 +9983,7 @@ function YJ(Z, Y) {
   ;(Z._reconstructActiveFormattingElements(), Z._insertElement(Y, R.HTML), (Z.framesetOk = !1))
 }
 function JJ(Z, Y) {
-  let J = Z.activeFormattingElements.getElementEntryInScopeWithTagName(q.A)
+  let J = Z.activeFormattingElements.getElementEntryInScopeWithTagName(B.A)
   if (J) (SZ(Z, Y), Z.openElements.remove(J.element), Z.activeFormattingElements.removeEntry(J))
   ;(Z._reconstructActiveFormattingElements(),
     Z._insertElement(Y, R.HTML),
@@ -10014,7 +10013,7 @@ function VJ(Z, Y) {
     Z._closePElement()
   ;(Z._insertElement(Y, R.HTML), (Z.framesetOk = !1), (Z.insertionMode = U.IN_TABLE))
 }
-function NY(Z, Y) {
+function gY(Z, Y) {
   ;(Z._reconstructActiveFormattingElements(),
     Z._appendElement(Y, R.HTML),
     (Z.framesetOk = !1),
@@ -10022,7 +10021,7 @@ function NY(Z, Y) {
 }
 function xY(Z) {
   let Y = J4(Z, W0.TYPE)
-  return Y != null && Y.toLowerCase() === g6
+  return Y != null && Y.toLowerCase() === M6
 }
 function zJ(Z, Y) {
   if ((Z._reconstructActiveFormattingElements(), Z._appendElement(Y, R.HTML), !xY(Y)))
@@ -10037,7 +10036,7 @@ function HJ(Z, Y) {
   ;(Z._appendElement(Y, R.HTML), (Z.framesetOk = !1), (Y.ackSelfClosing = !0))
 }
 function UJ(Z, Y) {
-  ;((Y.tagName = q.IMG), (Y.tagID = X.IMG), NY(Z, Y))
+  ;((Y.tagName = B.IMG), (Y.tagID = X.IMG), gY(Z, Y))
 }
 function FJ(Z, Y) {
   ;(Z._insertElement(Y, R.HTML),
@@ -10047,19 +10046,19 @@ function FJ(Z, Y) {
     (Z.framesetOk = !1),
     (Z.insertionMode = U.TEXT))
 }
-function wJ(Z, Y) {
+function qJ(Z, Y) {
   if (Z.openElements.hasInButtonScope(X.P)) Z._closePElement()
   ;(Z._reconstructActiveFormattingElements(),
     (Z.framesetOk = !1),
     Z._switchToTextParsing(Y, i.RAWTEXT))
 }
-function qJ(Z, Y) {
+function BJ(Z, Y) {
   ;((Z.framesetOk = !1), Z._switchToTextParsing(Y, i.RAWTEXT))
 }
 function bY(Z, Y) {
   Z._switchToTextParsing(Y, i.RAWTEXT)
 }
-function BJ(Z, Y) {
+function wJ(Z, Y) {
   ;(Z._reconstructActiveFormattingElements(),
     Z._insertElement(Y, R.HTML),
     (Z.framesetOk = !1),
@@ -10169,7 +10168,7 @@ function c(Z, Y) {
     case X.AREA:
     case X.EMBED:
     case X.KEYGEN: {
-      NY(Z, Y)
+      gY(Z, Y)
       break
     }
     case X.HR: {
@@ -10192,7 +10191,7 @@ function c(Z, Y) {
       break
     }
     case X.XMP: {
-      wJ(Z, Y)
+      qJ(Z, Y)
       break
     }
     case X.SVG: {
@@ -10260,11 +10259,11 @@ function c(Z, Y) {
       break
     }
     case X.IFRAME: {
-      qJ(Z, Y)
+      BJ(Z, Y)
       break
     }
     case X.SELECT: {
-      BJ(Z, Y)
+      wJ(Z, Y)
       break
     }
     case X.OPTION:
@@ -10335,16 +10334,16 @@ function yJ(Z) {
     else if (J) Z.openElements.remove(J)
   }
 }
-function gJ(Z) {
-  if (!Z.openElements.hasInButtonScope(X.P)) Z._insertFakeElement(q.P, X.P)
+function MJ(Z) {
+  if (!Z.openElements.hasInButtonScope(X.P)) Z._insertFakeElement(B.P, X.P)
   Z._closePElement()
 }
-function MJ(Z) {
+function NJ(Z) {
   if (Z.openElements.hasInListItemScope(X.LI))
     (Z.openElements.generateImpliedEndTagsWithExclusion(X.LI),
       Z.openElements.popUntilTagNamePopped(X.LI))
 }
-function NJ(Z, Y) {
+function gJ(Z, Y) {
   let J = Y.tagID
   if (Z.openElements.hasInScope(J))
     (Z.openElements.generateImpliedEndTagsWithExclusion(J), Z.openElements.popUntilTagNamePopped(J))
@@ -10362,7 +10361,7 @@ function hJ(Z, Y) {
 }
 function CJ(Z) {
   ;(Z._reconstructActiveFormattingElements(),
-    Z._insertFakeElement(q.BR, X.BR),
+    Z._insertFakeElement(B.BR, X.BR),
     Z.openElements.pop(),
     (Z.framesetOk = !1))
 }
@@ -10379,7 +10378,7 @@ function hY(Z, Y) {
     if (Z._isSpecialElement(V, z)) break
   }
 }
-function w4(Z, Y) {
+function q4(Z, Y) {
   switch (Y.tagID) {
     case X.A:
     case X.B:
@@ -10399,7 +10398,7 @@ function w4(Z, Y) {
       break
     }
     case X.P: {
-      gJ(Z)
+      MJ(Z)
       break
     }
     case X.DL:
@@ -10433,12 +10432,12 @@ function w4(Z, Y) {
       break
     }
     case X.LI: {
-      MJ(Z)
+      NJ(Z)
       break
     }
     case X.DD:
     case X.DT: {
-      NJ(Z, Y)
+      gJ(Z, Y)
       break
     }
     case X.H1:
@@ -10473,7 +10472,7 @@ function w4(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     default:
@@ -10496,7 +10495,7 @@ function GJ(Z, Y) {
     (Z.insertionMode = Z.originalInsertionMode),
     Z.onEof(Y))
 }
-function uZ(Z, Y) {
+function EZ(Z, Y) {
   if (Z.openElements.currentTagId !== void 0 && yY.has(Z.openElements.currentTagId))
     switch (
       ((Z.pendingCharacterTokens.length = 0),
@@ -10522,14 +10521,14 @@ function $J(Z, Y) {
     Z._insertElement(Y, R.HTML),
     (Z.insertionMode = U.IN_CAPTION))
 }
-function uJ(Z, Y) {
+function EJ(Z, Y) {
   ;(Z.openElements.clearBackToTableContext(),
     Z._insertElement(Y, R.HTML),
     (Z.insertionMode = U.IN_COLUMN_GROUP))
 }
-function EJ(Z, Y) {
+function uJ(Z, Y) {
   ;(Z.openElements.clearBackToTableContext(),
-    Z._insertFakeElement(q.COLGROUP, X.COLGROUP),
+    Z._insertFakeElement(B.COLGROUP, X.COLGROUP),
     (Z.insertionMode = U.IN_COLUMN_GROUP),
     _Z(Z, Y))
 }
@@ -10540,9 +10539,9 @@ function IJ(Z, Y) {
 }
 function SJ(Z, Y) {
   ;(Z.openElements.clearBackToTableContext(),
-    Z._insertFakeElement(q.TBODY, X.TBODY),
+    Z._insertFakeElement(B.TBODY, X.TBODY),
     (Z.insertionMode = U.IN_TABLE_BODY),
-    q4(Z, Y))
+    B4(Z, Y))
 }
 function kJ(Z, Y) {
   if (Z.openElements.hasInTableScope(X.TABLE))
@@ -10572,7 +10571,7 @@ function o0(Z, Y) {
       break
     }
     case X.COL: {
-      EJ(Z, Y)
+      uJ(Z, Y)
       break
     }
     case X.FORM: {
@@ -10598,7 +10597,7 @@ function o0(Z, Y) {
       break
     }
     case X.COLGROUP: {
-      uJ(Z, Y)
+      EJ(Z, Y)
       break
     }
     default:
@@ -10613,7 +10612,7 @@ function O1(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     case X.BODY:
@@ -10642,7 +10641,7 @@ function DY(Z, Y) {
 function GY(Z, Y) {
   ;(Z.pendingCharacterTokens.push(Y), (Z.hasNonWhitespacePendingCharacterToken = !0))
 }
-function B1(Z, Y) {
+function w1(Z, Y) {
   let J = 0
   if (Z.hasNonWhitespacePendingCharacterToken)
     for (; J < Z.pendingCharacterTokens.length; J++) f1(Z, Z.pendingCharacterTokens[J])
@@ -10692,7 +10691,7 @@ function mJ(Z, Y) {
     case X.TR:
       break
     default:
-      w4(Z, Y)
+      q4(Z, Y)
   }
 }
 function _Z(Z, Y) {
@@ -10721,7 +10720,7 @@ function iJ(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     case X.COL:
@@ -10734,7 +10733,7 @@ function H4(Z, Y) {
   if (Z.openElements.currentTagId === X.COLGROUP)
     (Z.openElements.pop(), (Z.insertionMode = U.IN_TABLE), Z._processToken(Y))
 }
-function q4(Z, Y) {
+function B4(Z, Y) {
   switch (Y.tagID) {
     case X.TR: {
       ;(Z.openElements.clearBackToTableBodyContext(),
@@ -10745,9 +10744,9 @@ function q4(Z, Y) {
     case X.TH:
     case X.TD: {
       ;(Z.openElements.clearBackToTableBodyContext(),
-        Z._insertFakeElement(q.TR, X.TR),
+        Z._insertFakeElement(B.TR, X.TR),
         (Z.insertionMode = U.IN_ROW),
-        B4(Z, Y))
+        w4(Z, Y))
       break
     }
     case X.CAPTION:
@@ -10800,7 +10799,7 @@ function IZ(Z, Y) {
       O1(Z, Y)
   }
 }
-function B4(Z, Y) {
+function w4(Z, Y) {
   switch (Y.tagID) {
     case X.TH:
     case X.TD: {
@@ -10821,14 +10820,14 @@ function B4(Z, Y) {
         (Z.openElements.clearBackToTableRowContext(),
           Z.openElements.pop(),
           (Z.insertionMode = U.IN_TABLE_BODY),
-          q4(Z, Y))
+          B4(Z, Y))
       break
     }
     default:
       o0(Z, Y)
   }
 }
-function uY(Z, Y) {
+function EY(Z, Y) {
   switch (Y.tagID) {
     case X.TR: {
       if (Z.openElements.hasInTableScope(X.TR))
@@ -10871,7 +10870,7 @@ function cJ(Z, Y) {
   let J = Y.tagID
   if ($Y.has(J)) {
     if (Z.openElements.hasInTableScope(X.TD) || Z.openElements.hasInTableScope(X.TH))
-      (Z._closeTableCell(), B4(Z, Y))
+      (Z._closeTableCell(), w4(Z, Y))
   } else c(Z, Y)
 }
 function dJ(Z, Y) {
@@ -10891,7 +10890,7 @@ function dJ(Z, Y) {
     case X.TFOOT:
     case X.THEAD:
     case X.TR: {
-      if (Z.openElements.hasInTableScope(J)) (Z._closeTableCell(), uY(Z, Y))
+      if (Z.openElements.hasInTableScope(J)) (Z._closeTableCell(), EY(Z, Y))
       break
     }
     case X.BODY:
@@ -10901,10 +10900,10 @@ function dJ(Z, Y) {
     case X.HTML:
       break
     default:
-      w4(Z, Y)
+      q4(Z, Y)
   }
 }
-function EY(Z, Y) {
+function uY(Z, Y) {
   switch (Y.tagID) {
     case X.HTML: {
       c(Z, Y)
@@ -10971,7 +10970,7 @@ function IY(Z, Y) {
       break
     }
     case X.TEMPLATE: {
-      E0(Z, Y)
+      u0(Z, Y)
       break
     }
     default:
@@ -10990,7 +10989,7 @@ function rJ(Z, Y) {
     J === X.TH
   )
     (Z.openElements.popUntilTagNamePopped(X.SELECT), Z._resetInsertionMode(), Z._processStartTag(Y))
-  else EY(Z, Y)
+  else uY(Z, Y)
 }
 function lJ(Z, Y) {
   let J = Y.tagID
@@ -11040,12 +11039,12 @@ function sJ(Z, Y) {
     case X.TR: {
       ;((Z.tmplInsertionModeStack[0] = U.IN_TABLE_BODY),
         (Z.insertionMode = U.IN_TABLE_BODY),
-        q4(Z, Y))
+        B4(Z, Y))
       break
     }
     case X.TD:
     case X.TH: {
-      ;((Z.tmplInsertionModeStack[0] = U.IN_ROW), (Z.insertionMode = U.IN_ROW), B4(Z, Y))
+      ;((Z.tmplInsertionModeStack[0] = U.IN_ROW), (Z.insertionMode = U.IN_ROW), w4(Z, Y))
       break
     }
     default:
@@ -11053,7 +11052,7 @@ function sJ(Z, Y) {
   }
 }
 function pJ(Z, Y) {
-  if (Y.tagID === X.TEMPLATE) E0(Z, Y)
+  if (Y.tagID === X.TEMPLATE) u0(Z, Y)
 }
 function SY(Z, Y) {
   if (Z.openElements.tmplCount > 0)
@@ -11232,24 +11231,24 @@ var TY = AY(
     ]),
   )
 var VK = new Set([
-  q.AREA,
-  q.BASE,
-  q.BASEFONT,
-  q.BGSOUND,
-  q.BR,
-  q.COL,
-  q.EMBED,
-  q.FRAME,
-  q.HR,
-  q.IMG,
-  q.INPUT,
-  q.KEYGEN,
-  q.LINK,
-  q.META,
-  q.PARAM,
-  q.SOURCE,
-  q.TRACK,
-  q.WBR,
+  B.AREA,
+  B.BASE,
+  B.BASEFONT,
+  B.BGSOUND,
+  B.BR,
+  B.COL,
+  B.EMBED,
+  B.FRAME,
+  B.HR,
+  B.IMG,
+  B.INPUT,
+  B.KEYGEN,
+  B.LINK,
+  B.META,
+  B.PARAM,
+  B.SOURCE,
+  B.TRACK,
+  B.WBR,
 ])
 function zK(Z, Y) {
   return (
@@ -11267,7 +11266,7 @@ function HK(Z, Y) {
   let J = '',
     K =
       Y.treeAdapter.isElementNode(Z) &&
-      Y.treeAdapter.getTagName(Z) === q.TEMPLATE &&
+      Y.treeAdapter.getTagName(Z) === B.TEMPLATE &&
       Y.treeAdapter.getNamespaceURI(Z) === R.HTML
         ? Y.treeAdapter.getTemplateContent(Z)
         : Z,
@@ -11277,9 +11276,9 @@ function HK(Z, Y) {
 }
 function iY(Z, Y) {
   if (Y.treeAdapter.isElementNode(Z)) return UK(Z, Y)
-  if (Y.treeAdapter.isTextNode(Z)) return wK(Z, Y)
-  if (Y.treeAdapter.isCommentNode(Z)) return qK(Z, Y)
-  if (Y.treeAdapter.isDocumentTypeNode(Z)) return BK(Z, Y)
+  if (Y.treeAdapter.isTextNode(Z)) return qK(Z, Y)
+  if (Y.treeAdapter.isCommentNode(Z)) return BK(Z, Y)
+  if (Y.treeAdapter.isDocumentTypeNode(Z)) return wK(Z, Y)
   return ''
 }
 function UK(Z, Y) {
@@ -11312,17 +11311,17 @@ function FK(Z, { treeAdapter: Y }) {
   }
   return J
 }
-function wK(Z, Y) {
+function qK(Z, Y) {
   let { treeAdapter: J } = Y,
     K = J.getTextNodeContent(Z),
     Q = J.getParentNode(Z),
     V = Q && J.isElementNode(Q) && J.getTagName(Q)
   return V && J.getNamespaceURI(Q) === R.HTML && hZ(V, Y.scriptingEnabled) ? K : mY(K)
 }
-function qK(Z, { treeAdapter: Y }) {
+function BK(Z, { treeAdapter: Y }) {
   return `<!--${Y.getCommentNodeContent(Z)}-->`
 }
-function BK(Z, { treeAdapter: Y }) {
+function wK(Z, { treeAdapter: Y }) {
   return `<!DOCTYPE ${Y.getDocumentTypeNodeName(Z)}>`
 }
 function cY(Z, Y) {
@@ -11361,8 +11360,8 @@ var j0 = {
       Q = Object.create(null),
       V = Object.create(null)
     for (let F = 0; F < J.length; F++) {
-      let w = J[F].name
-      ;((K[w] = J[F].value), (Q[w] = J[F].namespace), (V[w] = J[F].prefix))
+      let q = J[F].name
+      ;((K[q] = J[F].value), (Q[q] = J[F].namespace), (V[q] = J[F].prefix))
     }
     let z = new A0(Z, K, [])
     return ((z.namespace = Y), (z['x-attribsNamespace'] = Q), (z['x-attribsPrefix'] = V), z)
@@ -11505,8 +11504,9 @@ function sY(Z) {
   }
   return J
 }
-var RK = d8((Z, Y, J, K) => (Y._useHtmlParser2 ? q8(Z, Y) : lY(Z, Y, J, K))),
+var RK = d8((Z, Y, J, K) => (Y._useHtmlParser2 ? B8(Z, Y) : lY(Z, Y, J, K))),
   j4 = o8(RK, (Z, Y) => (Y._useHtmlParser2 ? C1(Z, Y) : sY(Z)))
+import PK from 'ky'
 class TZ {
   name
   baseUrl
@@ -11545,10 +11545,10 @@ class mZ extends TZ {
       J('.c-tabs-item').each((Q, V) => {
         let z = J(V),
           F = z.find('.post-title a'),
-          w = F.text().trim(),
+          q = F.text().trim(),
           L = (F.attr('href') || '').match(/\/novel\/([^/]+)\/?/)?.[1] || '',
           O = z.find('.tab-thumb img, .post-thumb img').attr('src') || ''
-        if (w && L) K.push({ id: L, title: w, cover: O, source: 'arno' })
+        if (q && L) K.push({ id: L, title: q, cover: O, source: 'arno' })
       }),
       K
     )
@@ -11562,10 +11562,10 @@ class mZ extends TZ {
       J('.popular-item-wrap .popular-content, .slider__item').each((Q, V) => {
         let z = J(V),
           F = z.find('.post-title a').first(),
-          w = F.text().trim(),
+          q = F.text().trim(),
           L = (F.attr('href') || '').match(/\/novel\/([^/]+)\/?/)?.[1] || '',
           O = z.find('.slider__thumb_item img').attr('src') || ''
-        if (w && L) K.push({ id: L, title: w, cover: O, source: 'arno' })
+        if (q && L) K.push({ id: L, title: q, cover: O, source: 'arno' })
       }),
       K
     )
@@ -11580,18 +11580,18 @@ class mZ extends TZ {
         J('.author-content a').text().trim() ||
         J(".post-content_item:contains('المؤلف') .summary-content").text().trim(),
       F = []
-    J('.genres-content a').each((B, L) => {
+    J('.genres-content a').each((w, L) => {
       let O = J(L).text().trim()
       if (O) F.push(O)
     })
-    let w = ''
+    let q = ''
     return (
-      J('.post-content_item').each((B, L) => {
+      J('.post-content_item').each((w, L) => {
         let O = J(L),
           b = O.find('h5').text().trim()
-        if (b === 'الحالة' || b === 'الحالة ') w = O.find('.summary-content').text().trim()
+        if (b === 'الحالة' || b === 'الحالة ') q = O.find('.summary-content').text().trim()
       }),
-      { id: Z, source: 'arno', title: K, description: V, cover: Q, author: z, genres: F, status: w }
+      { id: Z, source: 'arno', title: K, description: V, cover: Q, author: z, genres: F, status: q }
     )
   }
   async fetchChapters(Z) {
@@ -11608,9 +11608,9 @@ class mZ extends TZ {
         V = []
       return (
         Q('.wp-manga-chapter').each((z, F) => {
-          let B = Q(F).find('a'),
-            L = B.attr('href') || '',
-            O = B.text().trim()
+          let w = Q(F).find('a'),
+            L = w.attr('href') || '',
+            O = w.text().trim()
           if (L && O) V.push({ id: L, title: O, url: L })
         }),
         V.toReversed()

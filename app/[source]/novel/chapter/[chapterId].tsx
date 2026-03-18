@@ -20,7 +20,7 @@ export default function Chapter() {
     navigation.setOptions({
       headerTitle: chapter?.title || 'Loading...',
     })
-  }, [chapter])
+  }, [chapter, navigation])
 
   if (isLoading) {
     return (

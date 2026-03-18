@@ -60,7 +60,7 @@ export default function Novel() {
     navigation.setOptions({
       headerTitle: novel?.title || 'Loading...',
     })
-  }, [novel])
+  }, [novel, navigation])
 
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 
@@ -148,9 +148,9 @@ export default function Novel() {
           {novel.genres && novel.genres.length > 0 && (
             <View className="px-4 pt-4">
               <View className="flex-row flex-wrap gap-2">
-                {novel.genres.map((genre: string, index: number) => (
+                {novel.genres.map((genre: string) => (
                   <View
-                    key={index}
+                    key={genre}
                     className="px-3 py-1.5 bg-secondary rounded-full"
                   >
                     <Text className="text-xs font-medium text-secondary-foreground">{genre}</Text>
@@ -193,10 +193,10 @@ export default function Novel() {
       ListFooterComponent={
         isLoadingChapters ? (
           <View>
-            {Array(10)
+            {Array.from({ length: 10 })
               .fill(0)
               .map((_, i) => (
-                <ChapterItemSkeleton key={i} />
+                <ChapterItemSkeleton key={`chapter-skeleton-${i}`} />
               ))}
           </View>
         ) : null

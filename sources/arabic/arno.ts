@@ -27,8 +27,8 @@ export class ArnoSource extends Source {
       const $el = $(element)
       const titleEl = $el.find('.post-title a')
       const title = titleEl.text().trim()
-      const url = titleEl.attr('href') || ''
-      const id = url.match(/\/novel\/([^/]+)\/?/)?.[1] || ''
+      const novelUrl = titleEl.attr('href') || ''
+      const id = novelUrl.match(/\/novel\/([^/]+)\/?/)?.[1] || ''
       const cover = $el.find('.tab-thumb img, .post-thumb img').attr('src') || ''
 
       if (title && id) {
@@ -58,8 +58,8 @@ export class ArnoSource extends Source {
       const $el = $(element)
       const titleEl = $el.find('.post-title a').first()
       const title = titleEl.text().trim()
-      const url = titleEl.attr('href') || ''
-      const id = url.match(/\/novel\/([^/]+)\/?/)?.[1] || ''
+      const novelUrl = titleEl.attr('href') || ''
+      const id = novelUrl.match(/\/novel\/([^/]+)\/?/)?.[1] || ''
       const cover = $el.find('.slider__thumb_item img').attr('src') || ''
 
       if (title && id) {
@@ -149,6 +149,7 @@ export class ArnoSource extends Source {
 
       return chapters.toReversed()
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to fetch chapters:', error)
       return []
     }

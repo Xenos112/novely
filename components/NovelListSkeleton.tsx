@@ -7,7 +7,7 @@ const NUM_COLUMNS = 3
 const ITEM_COUNT = 12
 
 export default function NovelListSkeleton() {
-  const paddedData = Array(ITEM_COUNT).fill(null)
+  const paddedData = Array.from({ length: ITEM_COUNT }).fill(null)
 
   return (
     <FlatList
