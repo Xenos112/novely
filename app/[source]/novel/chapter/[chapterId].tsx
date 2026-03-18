@@ -41,12 +41,15 @@ export default function Chapter() {
       >
         {chapter?.title}
       </Text>
-      <Text
-        className="leading-8 text-lg"
-        style={isRTL && styles.rtlText}
-      >
-        {chapter?.content}
-      </Text>
+      {chapter?.content.split('\n\n').filter(Boolean).map((paragraph, index) => (
+        <Text
+          key={index}
+          className="leading-8 text-lg mb-4"
+          style={isRTL && styles.rtlText}
+        >
+          {paragraph}
+        </Text>
+      ))}
     </ScrollView>
   )
 }

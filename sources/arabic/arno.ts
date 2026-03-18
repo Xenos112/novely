@@ -154,16 +154,27 @@ export class ArnoSource extends Source {
   }
 
   async fetchChapterContent(chapterId: string): Promise<ChapterContent> {
-    const url = chapterId // FIX: maybe i will not
+    const url = chapterId
     const $ = await this.fetchHtml(url)
 
     const title = $('.entry-title').text().trim() || $('h1').text().trim()
 
-    let content = $('.reading-content, .c-blog-post .entry-content').text().trim()
-
-    if (!content) {
-      content = $('.c-blog-post .entry-content_wrap').text().trim()
+    let contentElement = $('.reading-content').first()
+    if (!contentElement.length) {
+      contentElement = $('.c-blog-post .entry-content').first()
     }
+    if (!contentElement.length) {
+      contentElement = $('.c-blog-post .entry-content_wrap').first()
+    }
+
+    let html = contentElement.html() || ''
+    html = html.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '</p>\n')
+    const div = cheerio.load(html)
+    const text = div.text()
+
+    const paragraphs = text.split(/\n{2,}/).filter(p => p.trim()).map(p => p.trim())
+
+    const content = paragraphs.join('\n\n')
 
     return {
       title,
