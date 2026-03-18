@@ -1,9 +1,9 @@
-import { ArnoSource } from "./arabic/arno";
+import { ArnoSource } from './arabic/arno'
 
 export const sources = {
-	arno: ArnoSource
-};
+  arno: ArnoSource,
+}
 
-export const sourcesNames = ["arno"];
+export const sourcesNames = ['arno']
 
-export type Sources = keyof typeof sources;
+export type Sources = keyof typeof sources

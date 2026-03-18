@@ -1,11 +1,55 @@
 {
-	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": [],
-	"useTabs": true,
-	"tabWidth": 2,
-	"printWidth": 80,
-	"semi": true,
-	"singleQuote": false,
-	"trailingComma": "none",
-	"jsxSingleQuote": false
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    "dist",
+    "build",
+    ".expo",
+    ".next",
+    "node_modules",
+    "coverage",
+    "*.min.js",
+    "*.generated.*",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "package-lock.json"
+  ],
+  "printWidth": 100,
+  "useTabs": false,
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "insertFinalNewline": true,
+  "quoteProps": "as-needed",
+  "objectWrap": "preserve",
+  "singleAttributePerLine": true,
+  "embeddedLanguageFormatting": "auto",
+  "proseWrap": "preserve",
+  "sortImports": {
+    "order": "asc",
+    "ignoreCase": true,
+    "newlinesBetween": true,
+    "partitionByNewline": false,
+    "partitionByComment": false,
+    "sortSideEffects": false,
+    "internalPattern": ["~/", "@/", "#/"],
+    "groups": [
+      "side_effect",
+      "builtin",
+      "external",
+      ["internal", "subpath"],
+      ["parent", "sibling", "index"],
+      "type",
+      "style",
+      "unknown"
+    ]
+  },
+  "sortPackageJson": {
+    "sortScripts": true
+  }
 }
