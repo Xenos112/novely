@@ -8,9 +8,7 @@ export default function useNovelQuery(sourceName: Sources, id: string) {
     queryKey: ['novel', sourceName, id],
     queryFn: async () => {
       const source = new sources[sourceName]()
-      const novel = (await source.fetchNovelInfo(id)) as Novel
-
-      return novel
+      return source.fetchNovelInfo(id) as unknown as Novel
     },
   })
 }
