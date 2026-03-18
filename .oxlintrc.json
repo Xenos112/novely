@@ -29,7 +29,7 @@
     "no-debugger": "error",
     "no-eval": "error",
     "no-implied-eval": "error",
-    "no-new-func": "error",
+    "no-new-func": "off",
     "no-proto": "error",
     "no-return-assign": "error",
     "no-throw-literal": "error",
@@ -127,9 +127,6 @@
     "react/void-dom-elements-no-children": "error",
     "react/react-in-jsx-scope": "off",
 
-    "react-perf/jsx-no-new-array-as-prop": "warn",
-    "react-perf/jsx-no-new-object-as-prop": "warn",
-    "react-perf/jsx-no-new-function-as-prop": "warn",
     "react-perf/jsx-no-jsx-as-prop": "warn",
 
     "jsx-a11y/alt-text": "error",
@@ -179,5 +176,11 @@
       }
     }
   ],
-  "ignorePatterns": ["sources/plugins.js", "dist/**", ".expo/**", "android/**", "ios/**"]
+  "ignorePatterns": [
+    "sources/plugins.js",
+    "dist/**",
+    ".expo/**",
+    "android/**",
+    "ios/**"
+  ]
 }

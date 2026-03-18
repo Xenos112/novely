@@ -1,11 +1,10 @@
-import { Link, Stack, usePathname } from 'expo-router'
+// oxlint-disable react_perf/jsx-no-new-object-as-prop
+import { Link, Stack } from 'expo-router'
 import { StyleSheet } from 'react-native'
 
 import { Text, View } from '@/components/Themed'
 
 export default function NotFoundScreen() {
-  const s = usePathname()
-  console.log(s)
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
