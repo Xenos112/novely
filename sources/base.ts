@@ -3,6 +3,8 @@ import ky, { type KyInstance } from 'ky'
 import { HTTP } from '@/constants/config'
 import type { AbstactNovel, Chapter, ChapterContent, Novel } from '@/types/source'
 
+export type Cheerio = ReturnType<typeof cheerio.load>
+
 export type SourceOptions = {
   name: string
   baseUrl: string
@@ -33,7 +35,7 @@ export abstract class Source {
     })
   }
 
-  async fetchHtml(url: string) {
+  async fetchHtml(url: string): Promise<Cheerio> {
     const response = await this.client.get(url)
     const html = await response.text()
     const $ = cheerio.load(html)

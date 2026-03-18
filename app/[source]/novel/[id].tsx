@@ -7,6 +7,7 @@ import NovelInfoSkeleton from '@/app/[source]/novel/_components/NovelInfoSkeleto
 import NovelItem from '@/app/[source]/novel/_components/NovelItem'
 import { View } from '@/components/Themed'
 import { Text } from '@/components/ui/text'
+import { parseStringParam } from '@/lib/utils'
 import useChaptersQuery from '@/hooks/useChaptersQuery'
 import useNovelQuery from '@/hooks/useNovelQuery'
 import type { Sources } from '@/sources'
@@ -14,13 +15,15 @@ import type { Chapter } from '@/types/source'
 
 export default function Novel() {
   const { source, id } = useLocalSearchParams()
+  const sourceName = parseStringParam(source) as Sources
+  const novelId = parseStringParam(id)
   const navigation = useNavigation()
 
-  const { data: novel, isLoading } = useNovelQuery(source as Sources, id as string)
+  const { data: novel, isLoading } = useNovelQuery(sourceName, novelId)
 
   const { data: chapters, isLoading: isLoadingChapters } = useChaptersQuery(
-    source as Sources,
-    id as string,
+    sourceName,
+    novelId,
   )
 
   useLayoutEffect(() => {
@@ -59,7 +62,7 @@ export default function Novel() {
       renderItem={({ item: chapter }: { item: Chapter; index: number }) => (
         <NovelItem
           chapter={chapter}
-          sourceName={source as Sources}
+          sourceName={sourceName}
         />
       )}
       ListFooterComponent={isLoadingChapters ? <ChapterItemSkeleton /> : null}
