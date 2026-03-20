@@ -32,5 +32,18 @@ func main() {
 		}
 		fmt.Printf("Title: %s\n", novelResult.Novel.Title)
 		fmt.Printf("Author: %s\n", novelResult.Novel.Author)
+
+		fmt.Printf("\nFetching chapters for: %s\n", novelID)
+		chaptersResult := sources.FetchChapters("arno", novelID)
+		if chaptersResult.Error != "" {
+			log.Fatalf("Error: %s", chaptersResult.Error)
+		}
+		fmt.Printf("Found %d chapters:\n", len(chaptersResult.Chapters))
+		for i, chapter := range chaptersResult.Chapters {
+			if i >= 10 {
+				break
+			}
+			fmt.Printf("  - %s\n", chapter.Title)
+		}
 	}
 }
