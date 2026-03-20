@@ -1,5 +1,4 @@
 // oxlint-disable react/no-danger
-// oxlint-disable react_perf/jsx-no-new-object-as-prop
 import { ScrollViewStyleReset } from 'expo-router/html'
 
 export default function Root({ children }: { children: React.ReactNode }) {
