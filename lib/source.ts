@@ -1,4 +1,4 @@
-import { sources } from '@/sources/plugins'
+import { sources } from '@/sources'
 import type { Sources } from '@/sources'
 import type { Source } from '@/sources/base'
 

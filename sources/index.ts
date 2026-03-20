@@ -1,4 +1,4 @@
-import { ArnoSource } from './arabic/arno'
+import { ArnoSource } from './arabic/ArnoSource'
 
 export const sources = {
   arno: ArnoSource,

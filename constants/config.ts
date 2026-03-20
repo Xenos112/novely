@@ -10,8 +10,3 @@ export const QUERY = {
   GC_TIME: 10 * 60 * 1000,
   RETRY: 2,
 } as const
-
-export const HTTP = {
-  TIMEOUT: 20000,
-  CACHE: 'no-cache',
-} as const
