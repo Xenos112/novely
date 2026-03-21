@@ -1,4 +1,6 @@
+import { router } from 'expo-router'
 import { ArrowLeft } from 'lucide-react-native'
+import { Pressable } from 'react-native'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import { View } from '@/components/Themed'
 import { Text } from '@/components/ui/text'
@@ -26,10 +28,12 @@ export default function ChapterHeader({ title }: ChapterHeaderProps) {
         style={animatedStyle}
         className="flex-row gap-4 px-4 py-2 w-full absolute top-0 left-0 right-0"
       >
-        <ArrowLeft
-          className="text-xl"
-          color={NAV_THEME[theme].colors.text}
-        />
+        <Pressable onPress={() => router.back()}>
+          <ArrowLeft
+            className="text-xl"
+            color={NAV_THEME[theme].colors.text}
+          />
+        </Pressable>
         <Text className="text-xl font-medium">{title}</Text>
       </Animated.View>
     </View>
