@@ -1,0 +1,21 @@
+name: Format Go
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "go/**/*.go"
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - run: gofmt -w ./go
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: format go code"
+          file_pattern: "go/**/*.go"
