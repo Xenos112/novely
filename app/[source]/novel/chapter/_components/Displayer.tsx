@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { type GestureResponderEvent, Pressable, ScrollView } from 'react-native'
 import { Text } from '@/components/ui/text'
 import { useChapterContext } from '../_providers/ChapterProvider'
@@ -12,19 +12,8 @@ export default function Displayer() {
   const isRTL = chapter?.content?.language === 'ar'
 
   const smoothScroll = (targetY: number) => {
-    const steps = 20
-    const duration = 300
-    const startY = currentY.current
-    const diff = targetY - startY
-    let step = 0
-
-    const interval = setInterval(() => {
-      step++
-      const next = startY + (diff * step) / steps
-      scrollRef.current?.scrollTo({ y: next, animated: false })
-
-      if (step >= steps) clearInterval(interval)
-    }, duration / steps)
+    const clamped = Math.max(0, targetY)
+    scrollRef.current?.scrollTo({ y: clamped, animated: true })
   }
 
   const handlePress = (e: GestureResponderEvent) => {
@@ -40,6 +29,11 @@ export default function Displayer() {
     }
   }
 
+  const paragraphs = useMemo(
+    () => chapter?.content?.content.split('\n\n') ?? [],
+    [chapter?.content?.content],
+  )
+
   return (
     <ScrollView
       ref={scrollRef}
@@ -54,7 +48,7 @@ export default function Displayer() {
         {chapter?.content?.title}
       </Text>
       <Pressable onPress={handlePress}>
-        {chapter?.content?.content.split('\n\n').map((paragraph: string, index: number) => (
+        {paragraphs.map((paragraph: string, index: number) => (
           <Text
             key={index}
             className={`leading-8 text-lg mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
