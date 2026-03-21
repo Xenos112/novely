@@ -11,16 +11,32 @@ export default function Displayer() {
   const [height, setHeight] = useState(0)
   const isRTL = chapter?.content?.language === 'ar'
 
+  const smoothScroll = (targetY: number) => {
+    const steps = 20
+    const duration = 300
+    const startY = currentY.current
+    const diff = targetY - startY
+    let step = 0
+
+    const interval = setInterval(() => {
+      step++
+      const next = startY + (diff * step) / steps
+      scrollRef.current?.scrollTo({ y: next, animated: false })
+
+      if (step >= steps) clearInterval(interval)
+    }, duration / steps)
+  }
+
   const handlePress = (e: any) => {
     const y = e.nativeEvent.pageY
     const third = height / 3
 
     if (y < third) {
-      scrollRef.current?.scrollTo({ y: currentY.current - 600, animated: true })
+      smoothScroll(currentY.current - height * 0.6)
     } else if (y < third * 2) {
       setIsMenuOpen(!isMenuOpen)
     } else {
-      scrollRef.current?.scrollTo({ y: currentY.current + 600, animated: true })
+      smoothScroll(currentY.current + height * 0.6)
     }
   }
 
@@ -41,7 +57,7 @@ export default function Displayer() {
         {chapter?.content?.content.split('\n\n').map((paragraph: string, index: number) => (
           <Text
             key={index}
-            className={`leading-8 text-lg mb-4 ${isRTL ? 'text-right' : ''}`}
+            className={`leading-8 text-lg mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
           >
             {paragraph}
           </Text>
