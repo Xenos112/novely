@@ -54,11 +54,8 @@ function RootLayoutNav() {
     <ThemeProvider value={NAV_THEME[colorScheme]}>
       <ReactQueryProvider>
         <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{ headerShown: false }}
-          />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
         </Stack>
         <PortalHost />
       </ReactQueryProvider>

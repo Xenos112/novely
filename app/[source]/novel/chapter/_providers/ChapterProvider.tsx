@@ -1,4 +1,4 @@
-import { createContext, use } from 'react'
+import { createContext, type Dispatch, type SetStateAction, use } from 'react'
 import type { ChapterContent, Sources } from '@/types/source'
 
 type ChapterProviderProps = {
@@ -6,9 +6,12 @@ type ChapterProviderProps = {
   chapterId: string
   novelId: string
   content?: ChapterContent
+  isMenuOpen: boolean
+  setIsMenuOpen: Dispatch<SetStateAction<boolean>>
 }
+
 const ChapterContext = createContext<ChapterProviderProps | undefined>(undefined)
 
 export const useChapterContext = () => use(ChapterContext)
 
-export default ChapterContext // expo will throw warning if i dont export default
+export default ChapterContext
