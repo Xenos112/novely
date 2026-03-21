@@ -7,12 +7,6 @@
 
 A mobile novel reader for Android, designed to respect user privacy and support Arabic and multilingual content out of the box.
 
-## Repositories
-
-- [App](https://github.com/Xenos112/novely) - Expo/React Native frontend
-- [Scraper](https://github.com/Xenos112/novely-scraper) - Go scraper library
-- [Native](https://github.com/Xenos112/novely-native) - Kotlin native module
-
 ## Why
 
 Creating a fast mobile reader that works on Android, respects the user, and supports Arabic and many languages out of the box.
