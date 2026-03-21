@@ -3,6 +3,7 @@ package sources
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -59,11 +60,13 @@ func (s *ArnoScraper) createCollector() *colly.Collector {
 		colly.IgnoreRobotsTxt(),
 	)
 
-	c.Limit(&colly.LimitRule{
+	if err := c.Limit(&colly.LimitRule{
 		DomainGlob:  "*",
 		Parallelism: 6,
 		Delay:       50 * time.Millisecond,
-	})
+	}); err != nil {
+		log.Fatal(err)
+	}
 
 	c.OnError(func(_ *colly.Response, err error) {
 		fmt.Printf("Scraper error: %v\n", err)

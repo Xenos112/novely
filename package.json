@@ -14,7 +14,9 @@
     "web": "expo start --web",
     "go:build": "cd go && go build ./...",
     "go:test": "cd go && go test -v ./tests/... -count=1",
-    "go:release": "cd go && go run golang.org/x/mobile/cmd/gomobile bind -target=android -o scraper.aar ./sources && cp scraper.aar ../android/app/libs/"
+    "go:release": "cd go && go run golang.org/x/mobile/cmd/gomobile bind -target=android -o scraper.aar ./sources && cp scraper.aar ../android/app/libs/",
+    "go:fmt": "gofmt -w ./go",
+    "go:lint": "golangci-lint run ./go/..."
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.28",

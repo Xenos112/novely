@@ -1,0 +1,11 @@
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - staticcheck
+    - unused
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
