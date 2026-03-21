@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 
@@ -196,7 +197,7 @@ func (s *ArnoScraper) FetchChapters(novelSlug string) *ChaptersResult {
 			}
 		}
 	}
-
+	slices.Reverse(chapters)
 	return &ChaptersResult{Chapters: chapters}
 }
 
