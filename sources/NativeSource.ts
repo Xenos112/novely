@@ -4,7 +4,7 @@ import {
   nativeFetchChapters,
   nativeFetchChapterContent,
   nativeSearch,
-} from '@/src/native/Scraper'
+} from './native/Scraper'
 import { Source } from './base'
 import type { AbstactNovel, Chapter, ChapterContent, Novel } from '@/types/source'
 

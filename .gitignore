@@ -44,3 +44,4 @@ android/build/
 android/.gradle/
 android/app/build/
 *.apk
+*.aar
