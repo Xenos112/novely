@@ -1,3 +1,4 @@
+import { Source } from './base'
 import {
   nativeFetchPopular,
   nativeFetchNovelInfo,
@@ -5,7 +6,6 @@ import {
   nativeFetchChapterContent,
   nativeSearch,
 } from './native/Scraper'
-import { Source } from './base'
 import type { AbstactNovel, Chapter, ChapterContent, Novel } from '@/types/source'
 
 export abstract class NativeSource extends Source {

@@ -15,7 +15,7 @@ type ChapterHeaderProps = {
 export default function ChapterHeader({ title }: ChapterHeaderProps) {
   const theme = useColorScheme()
   const chapterContext = useChapterContext()
-  const { isMenuOpen } = chapterContext!
+  const { isMenuOpen } = chapterContext
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: withTiming(isMenuOpen ? 0 : 1, { duration: 200 }),

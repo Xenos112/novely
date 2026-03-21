@@ -103,19 +103,19 @@ bun run android
 
 ### Scripts
 
-| Command             | Description                     |
-| ------------------- | ------------------------------- |
-| `bun start`         | Start Expo dev server           |
-| `bun run android`   | Run on Android                  |
-| `bun run web`       | Run on web                      |
-| `bun run lint`      | Run oxlint                      |
-| `bun run lint:fix`  | Fix lint issues                 |
-| `bun run fmt`       | Format code                     |
-| `bun go:build`      | Build Go sources                |
-| `bun go:test`       | Run Go tests                    |
-| `bun go:fmt`        | Format Go code                  |
-| `bun go:lint`       | Lint Go code                    |
-| `bun go:release`    | Build Go scraper to Android AAR |
+| Command            | Description                     |
+| ------------------ | ------------------------------- |
+| `bun start`        | Start Expo dev server           |
+| `bun run android`  | Run on Android                  |
+| `bun run web`      | Run on web                      |
+| `bun run lint`     | Run oxlint                      |
+| `bun run lint:fix` | Fix lint issues                 |
+| `bun run fmt`      | Format code                     |
+| `bun go:build`     | Build Go sources                |
+| `bun go:test`      | Run Go tests                    |
+| `bun go:fmt`       | Format Go code                  |
+| `bun go:lint`      | Lint Go code                    |
+| `bun go:release`   | Build Go scraper to Android AAR |
 
 ## License
 

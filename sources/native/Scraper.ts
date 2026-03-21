@@ -32,7 +32,7 @@ class NativeScraperFallback {
 const isNativeAvailable = Platform.OS === 'android' && ScraperModule
 
 export const nativeScraper: NativeScraperInterface = isNativeAvailable
-  ? ScraperModule as NativeScraperInterface
+  ? (ScraperModule as NativeScraperInterface)
   : new NativeScraperFallback()
 
 export async function nativeFetchPopular(source: string, page: number): Promise<AbstactNovel[]> {
@@ -47,7 +47,10 @@ export async function nativeFetchChapters(source: string, novelSlug: string): Pr
   return nativeScraper.fetchChapters(source, novelSlug)
 }
 
-export async function nativeFetchChapterContent(source: string, chapterUrl: string): Promise<ChapterContent> {
+export async function nativeFetchChapterContent(
+  source: string,
+  chapterUrl: string,
+): Promise<ChapterContent> {
   return nativeScraper.fetchChapterContent(source, chapterUrl)
 }
 

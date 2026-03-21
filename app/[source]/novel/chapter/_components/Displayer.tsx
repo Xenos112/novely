@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react'
-import { Pressable, ScrollView } from 'react-native'
+import { type GestureResponderEvent, Pressable, ScrollView } from 'react-native'
 import { Text } from '@/components/ui/text'
 import { useChapterContext } from '../_providers/ChapterProvider'
 
 export default function Displayer() {
   const chapter = useChapterContext()
-  const { isMenuOpen, setIsMenuOpen } = chapter!
+  const { isMenuOpen, setIsMenuOpen } = chapter
   const scrollRef = useRef<ScrollView>(null)
   const currentY = useRef(0)
   const [height, setHeight] = useState(0)
@@ -27,7 +27,7 @@ export default function Displayer() {
     }, duration / steps)
   }
 
-  const handlePress = (e: any) => {
+  const handlePress = (e: GestureResponderEvent) => {
     const y = e.nativeEvent.pageY
     const third = height / 3
 
