@@ -1,6 +1,8 @@
+import { useAtom } from 'jotai'
 import { useMemo, useRef, useState } from 'react'
 import { type GestureResponderEvent, Pressable, ScrollView } from 'react-native'
 import { Text } from '@/components/ui/text'
+import { settingsAtom } from '@/store/settings'
 import { useChapterContext } from '../_providers/ChapterProvider'
 
 export default function Displayer() {
@@ -9,6 +11,7 @@ export default function Displayer() {
   const scrollRef = useRef<ScrollView>(null)
   const currentY = useRef(0)
   const [height, setHeight] = useState(0)
+  const [settings] = useAtom(settingsAtom)
   const isRTL = chapter?.content?.language === 'ar'
 
   const smoothScroll = (targetY: number) => {
@@ -51,7 +54,8 @@ export default function Displayer() {
         {paragraphs.map((paragraph: string, index: number) => (
           <Text
             key={index}
-            className={`leading-8 text-lg mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
+            style={{ fontSize: settings.fontSize }}
+            className={`leading-8 mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
           >
             {paragraph}
           </Text>
