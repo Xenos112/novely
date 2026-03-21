@@ -6,11 +6,32 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
-	"slices"
 	"strings"
 	"time"
 
 	"github.com/gocolly/colly/v2"
+)
+
+var (
+	arNoTransport = &http.Transport{
+		DisableKeepAlives:   false,
+		MaxIdleConns:        100,
+		MaxIdleConnsPerHost: 10,
+		IdleConnTimeout:     90 * time.Second,
+	}
+
+	httpClient = &http.Client{
+		Transport: arNoTransport,
+		Timeout:   30 * time.Second,
+	}
+
+	regexChapterLI    = regexp.MustCompile(`<li class="wp-manga-chapter[^"]*"[^>]*>([\s\S]*?)</li>`)
+	regexChapterURL   = regexp.MustCompile(`href="(https://ar-no\.com/novel/[^"]+)"`)
+	regexChapterTitle = regexp.MustCompile(`>([^<]+)</a>`)
+	regexNovelID      = regexp.MustCompile(`/novel/([^/]+)/?`)
+	regexHTMLTags     = regexp.MustCompile(`<[^>]*>`)
+	regexChapterHead  = regexp.MustCompile(`<h1[^>]*id="chapter-heading"[^>]*>([\s\S]*?)</h1>`)
+	regexContentDiv   = regexp.MustCompile(`<div class="reading-content"[^>]*>([\s\S]*?)</div>`)
 )
 
 type ArnoScraper struct {
@@ -40,8 +61,8 @@ func (s *ArnoScraper) createCollector() *colly.Collector {
 
 	c.Limit(&colly.LimitRule{
 		DomainGlob:  "*",
-		Parallelism: 4,
-		Delay:       100e6,
+		Parallelism: 6,
+		Delay:       50 * time.Millisecond,
 	})
 
 	c.OnError(func(_ *colly.Response, err error) {
@@ -52,11 +73,11 @@ func (s *ArnoScraper) createCollector() *colly.Collector {
 }
 
 func (s *ArnoScraper) FetchPopular(page int) *PopularResult {
-	novels := make([]AbstractNovel, 0)
+	novels := make([]AbstractNovel, 0, 20)
 
-	url := s.baseURL
+	pageURL := s.baseURL
 	if page > 1 {
-		url = fmt.Sprintf("%s/?paged=%d", s.baseURL, page)
+		pageURL = fmt.Sprintf("%s/?paged=%d", s.baseURL, page)
 	}
 
 	c := s.createCollector()
@@ -82,7 +103,7 @@ func (s *ArnoScraper) FetchPopular(page int) *PopularResult {
 		})
 	})
 
-	err := c.Visit(url)
+	err := c.Visit(pageURL)
 	if err != nil {
 		return &PopularResult{Error: fmt.Sprintf("failed to fetch popular: %v", err)}
 	}
@@ -92,7 +113,10 @@ func (s *ArnoScraper) FetchPopular(page int) *PopularResult {
 }
 
 func (s *ArnoScraper) FetchNovel(novelID string) *NovelResult {
-	novel := &Novel{}
+	novel := &Novel{
+		ID:     novelID,
+		Source: "arno",
+	}
 	url := fmt.Sprintf("%s/novel/%s/", s.baseURL, novelID)
 
 	c := s.createCollector()
@@ -138,15 +162,10 @@ func (s *ArnoScraper) FetchNovel(novelID string) *NovelResult {
 		return &NovelResult{Error: "novel not found"}
 	}
 
-	novel.ID = novelID
-	novel.Source = "arno"
-
 	return &NovelResult{Novel: novel}
 }
 
 func (s *ArnoScraper) FetchChapters(novelSlug string) *ChaptersResult {
-	chapters := make([]Chapter, 0)
-
 	novelURL := fmt.Sprintf("%s/novel/%s/", s.baseURL, novelSlug)
 
 	body, err := s.fetchAJAXChapters(novelURL)
@@ -155,11 +174,12 @@ func (s *ArnoScraper) FetchChapters(novelSlug string) *ChaptersResult {
 	}
 
 	decodedSlug, _ := url.QueryUnescape(novelSlug)
+	chapterCount := strings.Count(body, `wp-manga-chapter`)
+	chapters := make([]Chapter, 0, chapterCount)
 
-	liPattern := regexp.MustCompile(`<li class="wp-manga-chapter[^"]*"[^>]*>([\s\S]*?)</li>`)
-	liMatches := liPattern.FindAllStringSubmatch(body, -1)
+	seen := make(map[string]bool, chapterCount)
 
-	seen := make(map[string]bool)
+	liMatches := regexChapterLI.FindAllStringSubmatch(body, -1)
 	for _, liMatch := range liMatches {
 		if len(liMatch) < 2 {
 			continue
@@ -167,11 +187,8 @@ func (s *ArnoScraper) FetchChapters(novelSlug string) *ChaptersResult {
 
 		liContent := liMatch[1]
 
-		urlPattern := regexp.MustCompile(`href="(https://ar-no\.com/novel/[^"]+)"`)
-		urlMatch := urlPattern.FindStringSubmatch(liContent)
-
-		titlePattern := regexp.MustCompile(`>([^<]+)</a>`)
-		titleMatch := titlePattern.FindStringSubmatch(liContent)
+		urlMatch := regexChapterURL.FindStringSubmatch(liContent)
+		titleMatch := regexChapterTitle.FindStringSubmatch(liContent)
 
 		if len(urlMatch) > 1 && len(titleMatch) > 1 {
 			rawURL := urlMatch[1]
@@ -197,38 +214,12 @@ func (s *ArnoScraper) FetchChapters(novelSlug string) *ChaptersResult {
 			}
 		}
 	}
-	slices.Reverse(chapters)
+
+	for i, j := 0, len(chapters)-1; i < j; i, j = i+1, j-1 {
+		chapters[i], chapters[j] = chapters[j], chapters[i]
+	}
+
 	return &ChaptersResult{Chapters: chapters}
-}
-
-func (s *ArnoScraper) fetchHTML(url string) (string, error) {
-	var body []byte
-	var fetchErr error
-
-	c := colly.NewCollector(
-		colly.UserAgent(s.userAgent),
-		colly.AllowedDomains("ar-no.com", "www.ar-no.com"),
-	)
-
-	c.OnResponse(func(r *colly.Response) {
-		body = r.Body
-	})
-
-	c.OnError(func(_ *colly.Response, err error) {
-		fetchErr = err
-	})
-
-	err := c.Visit(url)
-	if err != nil {
-		return "", err
-	}
-	c.Wait()
-
-	if fetchErr != nil {
-		return "", fetchErr
-	}
-
-	return string(body), nil
 }
 
 func (s *ArnoScraper) fetchAJAXChapters(novelURL string) (string, error) {
@@ -241,8 +232,7 @@ func (s *ArnoScraper) fetchAJAXChapters(novelURL string) (string, error) {
 	req.Header.Set("User-Agent", s.userAgent)
 	req.Header.Set("X-Requested-With", "XMLHttpRequest")
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	resp, err := httpClient.Do(req)
 	if err != nil {
 		return "", err
 	}
@@ -259,8 +249,7 @@ func (s *ArnoScraper) fetchAJAXChapters(novelURL string) (string, error) {
 func (s *ArnoScraper) FetchChapterContent(chapterURL string) *ChapterContentResult {
 	content := &ChapterContent{}
 
-	client := &http.Client{Timeout: 30 * time.Second}
-	resp, err := client.Get(chapterURL)
+	resp, err := httpClient.Get(chapterURL)
 	if err != nil {
 		return &ChapterContentResult{Error: fmt.Sprintf("failed to fetch chapter: %v", err)}
 	}
@@ -273,14 +262,12 @@ func (s *ArnoScraper) FetchChapterContent(chapterURL string) *ChapterContentResu
 
 	html := string(body)
 
-	titlePattern := regexp.MustCompile(`<h1[^>]*id="chapter-heading"[^>]*>([\s\S]*?)</h1>`)
-	titleMatch := titlePattern.FindStringSubmatch(html)
+	titleMatch := regexChapterHead.FindStringSubmatch(html)
 	if len(titleMatch) > 1 {
-		content.Title = strings.TrimSpace(stripHTMLTags(titleMatch[1]))
+		content.Title = strings.TrimSpace(regexHTMLTags.ReplaceAllString(titleMatch[1], ""))
 	}
 
-	contentPattern := regexp.MustCompile(`<div class="reading-content"[^>]*>([\s\S]*?)</div>`)
-	contentMatch := contentPattern.FindStringSubmatch(html)
+	contentMatch := regexContentDiv.FindStringSubmatch(html)
 	if len(contentMatch) > 1 {
 		innerHTML := contentMatch[1]
 
@@ -289,12 +276,12 @@ func (s *ArnoScraper) FetchChapterContent(chapterURL string) *ChapterContentResu
 		innerHTML = strings.ReplaceAll(innerHTML, "<br />", "\n")
 		innerHTML = strings.ReplaceAll(innerHTML, "</p>", "</p>\n")
 
-		text := stripHTMLTags(innerHTML)
+		text := regexHTMLTags.ReplaceAllString(innerHTML, "")
 		text = strings.ReplaceAll(text, "\n\n\n", "\n\n")
 		text = strings.TrimSpace(text)
 
 		paragraphs := strings.Split(text, "\n\n")
-		var filtered []string
+		filtered := paragraphs[:0]
 		for _, p := range paragraphs {
 			p = strings.TrimSpace(p)
 			if p != "" {
@@ -315,8 +302,8 @@ func (s *ArnoScraper) FetchChapterContent(chapterURL string) *ChapterContentResu
 }
 
 func (s *ArnoScraper) Search(query string) *SearchResult {
-	results := make([]AbstractNovel, 0)
-	url := fmt.Sprintf("%s/?s=%s&post_type=wp-manga", s.baseURL, query)
+	results := make([]AbstractNovel, 0, 20)
+	searchURL := fmt.Sprintf("%s/?s=%s&post_type=wp-manga", s.baseURL, query)
 
 	c := s.createCollector()
 
@@ -341,7 +328,7 @@ func (s *ArnoScraper) Search(query string) *SearchResult {
 		})
 	})
 
-	err := c.Visit(url)
+	err := c.Visit(searchURL)
 	if err != nil {
 		return &SearchResult{Error: fmt.Sprintf("search failed: %v", err)}
 	}
@@ -350,18 +337,12 @@ func (s *ArnoScraper) Search(query string) *SearchResult {
 	return &SearchResult{Results: results}
 }
 
-func (s *ArnoScraper) extractNovelID(url string) string {
-	re := regexp.MustCompile(`/novel/([^/]+)/?`)
-	matches := re.FindStringSubmatch(url)
+func (s *ArnoScraper) extractNovelID(pageURL string) string {
+	matches := regexNovelID.FindStringSubmatch(pageURL)
 	if len(matches) > 1 {
 		return matches[1]
 	}
 	return ""
-}
-
-func stripHTMLTags(html string) string {
-	re := regexp.MustCompile(`<[^>]*>`)
-	return re.ReplaceAllString(html, "")
 }
 
 func NewArno() Scraper {
