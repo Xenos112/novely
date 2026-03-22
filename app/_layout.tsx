@@ -9,6 +9,7 @@ import React, { useEffect } from 'react'
 import { StatusBar } from 'react-native'
 import { useColorScheme } from '@/components/useColorScheme'
 import { NAV_THEME } from '@/lib/theme'
+import DatabaseProvider from '@/providers/Database'
 import ReactQueryProvider from '@/providers/ReactQuery'
 
 export {
@@ -49,9 +50,11 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={NAV_THEME[colorScheme]}>
       <ReactQueryProvider>
-        <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
-        <Stack screenOptions={{ headerShown: false }} />
-        <PortalHost />
+        <DatabaseProvider>
+          <StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} />
+          <Stack screenOptions={{ headerShown: false }} />
+          <PortalHost />
+        </DatabaseProvider>
       </ReactQueryProvider>
     </ThemeProvider>
   )
