@@ -1,3 +1,4 @@
+import { useKeyEventListener } from 'expo-key-event'
 import { useAtom } from 'jotai'
 import { useMemo, useRef, useState } from 'react'
 import { type GestureResponderEvent, Pressable, ScrollView } from 'react-native'
@@ -37,6 +38,15 @@ export default function Displayer() {
     [chapter?.content?.content],
   )
 
+  // FIX: Volume still changes
+  useKeyEventListener(event => {
+    if (settings.isOnPressScroll && event.key === '25') {
+      smoothScroll(currentY.current + height * 0.6)
+    } else if (settings.isOnPressScroll && event.key === '24') {
+      smoothScroll(currentY.current - height * 0.6)
+    }
+  })
+
   return (
     <ScrollView
       ref={scrollRef}
@@ -55,7 +65,7 @@ export default function Displayer() {
           <Text
             key={index}
             style={{ fontSize: settings.fontSize }}
-            className={`leading-8 mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
+            className={`leading-[1.6] mb-4 ${isRTL ? 'text-right font-noto-arabic' : ''}`}
           >
             {paragraph}
           </Text>
