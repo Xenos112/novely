@@ -1,3 +1,4 @@
+import { activateKeepAwakeAsync } from 'expo-keep-awake'
 import { useKeyEventListener } from 'expo-key-event'
 import { useAtom } from 'jotai'
 import { useMemo, useRef, useState } from 'react'
@@ -46,6 +47,8 @@ export default function Displayer() {
       smoothScroll(currentY.current - height * 0.6)
     }
   })
+
+  if (settings.keepAwake) activateKeepAwakeAsync()
 
   return (
     <ScrollView

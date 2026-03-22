@@ -18,6 +18,7 @@
         "expo-constants": "~55.0.7",
         "expo-font": "~55.0.4",
         "expo-image": "~55.0.6",
+        "expo-keep-awake": "~55.0.4",
         "expo-key-event": "^1.8.3",
         "expo-linking": "~55.0.7",
         "expo-router": "~55.0.5",

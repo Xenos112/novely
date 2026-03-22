@@ -1,4 +1,4 @@
-import { setItem } from 'expo-secure-store'
+import { setItem, deleteItemAsync } from 'expo-secure-store'
 import { useAtom } from 'jotai'
 import { Minus, Plus } from 'lucide-react-native'
 import { Pressable, ScrollView } from 'react-native'
@@ -26,10 +26,18 @@ export default function ReaderSettings() {
     setSettings({ ...settings, fontSize: settings.fontSize + 1 })
   }
 
-  const toggleOnPressScroll = () => {
+  const toggleOnPressScroll = async () => {
     const newValue = !settings.isOnPressScroll
-    setItem('isOnPressScroll', newValue.toString())
+    if (newValue) setItem('isOnPressScroll', newValue.toString())
+    else await deleteItemAsync('isOnPressScroll')
     setSettings({ ...settings, isOnPressScroll: newValue })
+  }
+
+  const toggleKeepAwake = async () => {
+    const newValue = !settings.keepAwake
+    if (newValue) setItem('keepAwake', newValue.toString())
+    else await deleteItemAsync('keepAwake')
+    setSettings({ ...settings, keepAwake: newValue })
   }
 
   return (
@@ -90,6 +98,16 @@ export default function ReaderSettings() {
               <Switch
                 checked={settings.isOnPressScroll}
                 onCheckedChange={toggleOnPressScroll}
+              />
+            </View>
+          </View>
+
+          <View className="mt-4">
+            <View className="flex-row items-center justify-between bg-card rounded-xl">
+              <Label>Keep screen awake</Label>
+              <Switch
+                checked={settings.keepAwake}
+                onCheckedChange={toggleKeepAwake}
               />
             </View>
           </View>
