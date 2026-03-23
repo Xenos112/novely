@@ -5,18 +5,18 @@
   "main": "expo-router/entry",
   "scripts": {
     "android": "expo run:android",
+    "ios": "expo run:ios",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "go:build": "cd go && go build ./...",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "go:fmt": "gofmt -w ./go",
     "go:lint": "cd go && golangci-lint run ./...",
     "go:release": "cd go && go run golang.org/x/mobile/cmd/gomobile bind -target=android -o scraper.aar ./sources && cp scraper.aar ../android/app/libs/",
     "go:test": "cd go && go test -v ./tests/... -count=1",
-    "ios": "expo run:ios",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
     "start": "expo start",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.28",

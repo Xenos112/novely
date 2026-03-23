@@ -9,11 +9,12 @@ export const novels = sqliteTable('novels', {
   cover: text(),
   source: text(),
   status: text(),
+  favorite: int({ mode: 'boolean' }).default(false),
 })
 
 export const chapters = sqliteTable('chapters', {
-  id: text().primaryKey(),
-  novelId: text()
+  id: int().primaryKey({ autoIncrement: true }),
+  novelId: int()
     .notNull()
     .references(() => novels.id),
   title: text().notNull(),
@@ -22,27 +23,29 @@ export const chapters = sqliteTable('chapters', {
 })
 
 export const chapterContent = sqliteTable('chapterContent', {
-  chapterId: text()
+  chapterId: int()
     .primaryKey()
     .references(() => chapters.id),
   title: text().notNull(),
   content: text().notNull(),
   language: text().notNull(),
+  progress: int().notNull().default(0),
 })
 
 export const readingProgress = sqliteTable('readingProgress', {
-  id: text().primaryKey(),
-  novelId: text()
+  id: int().primaryKey({ autoIncrement: true }),
+  novelId: int()
     .notNull()
     .references(() => novels.id),
-  chapterId: text()
+  chapterId: int()
     .notNull()
     .references(() => chapters.id),
   scrollPosition: int().notNull().default(0),
   updatedAt: int({ mode: 'timestamp' }).notNull(),
 })
+
 export const library = sqliteTable('library', {
-  novelId: text()
+  novelId: int()
     .primaryKey()
     .references(() => novels.id),
 })
